@@ -18,6 +18,7 @@
 <nav class="space-x-6 text-sm font-medium">
 <a class="hover:underline" href="index.html">Home</a>
 <a class="hover:underline" href="setup.html">Setup</a>
+<a class="hover:underline" href="user-guide.html">User Guide</a>
 <a class="hover:underline" href="how-it-works.html">How it works</a>
 </nav>
 <a class="bg-white text-indigo-700 font-semibold text-sm px-4 py-2 rounded hover:bg-gray-100 transition" href="https://your-download-link.com" target="_blank">Download</a>
@@ -33,11 +34,11 @@
         Setting Up CrossyBot
       </h2>
 <p class="text-base text-gray-700 md:text-lg mb-6">
-        Follow these steps to connect your exchange, Telegram bot, and automate your crypto trading experience.
+        Follow these steps to connect your exchange, Telegram bot, and automate your crypto trading experience 24/7.
       </p>
 </div>
-<div class="px-4 py-4 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-12 lg:px-16 lg:py-4"><div class="space-y-4 mt-0">
-<div class="border-b">
+<div class="flex flex-col lg:flex-row gap-10 l g : m l - 6 0"><div class="w-full mx-auto mb-6"><div class="bg-white rounded-lg shadow p-4 w-full"><h3 class="text-lg font-semibold mb-3">Table of Contents</h3><a class="block text-blue-600 hover:underline mb-2" href="#step-1">Create Kraken API Keys</a><a class="block text-blue-600 hover:underline mb-2" href="#step-2">Create Telegram Bot Token</a><a class="block text-blue-600 hover:underline mb-2" href="#step-3">Create AWS Account</a><a class="block text-blue-600 hover:underline mb-2" href="#step-4">Launch EC2 Instance</a><a class="block text-blue-600 hover:underline mb-2" href="#step-5">Setup CrossyBot</a></div></div></div><div class="w-full mx-auto px-4 py-4"><div class="space-y-4 mt-0">
+<div class="border-b" id="step-1">
 <button class="w-full text-left p-4 focus:outline-none toggle flex justify-between items-center" type="button">
 <div class="flex items-center">
 <div class="w-6 h-6 rounded-full bg-indigo-600 text-white text-xs font-bold flex items-center justify-center mr-2">1</div>
@@ -68,7 +69,7 @@
 </div>
 </div>
 </div>
-<div class="border-b">
+<div class="border-b" id="step-2">
 <button class="w-full text-left p-4 focus:outline-none toggle flex justify-between items-center" type="button">
 <div class="flex items-center">
 <div class="w-6 h-6 rounded-full bg-indigo-600 text-white text-xs font-bold flex items-center justify-center mr-2">2</div>
@@ -78,55 +79,18 @@
 <polyline fill="none" points="2,7 12,17 22,7" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="2"></polyline>
 </svg>
 </button>
-<div class="p-4 pt-0 hidden content">
-<ul class="list-disc list-inside text-gray-700 space-y-2 mb-4">
+<div class="p-4 pt-0 hidden content"><div class="grid-cols-1 md:grid-cols-10 gap-6"><div class="md:col-span-7 flex items-center text-gray-700"><ul class="list-disc list-inside text-gray-700 space-y-2 mb-4">
 <li>Download Telegram app</li>
 <li>Tap pencil icon to search</li>
-<li>Search for <b>BotFather</b></li><img class="w-full md:w-1/4 rounded shadow my-2" src="https://learn.microsoft.com/en-us/azure/bot-service/media/channels/tg-stepvisitbotfather.png?view=azure-bot-service-4.0"/>
+<li>Search for <b>BotFather</b></li>
 <li>Send <code>/newbot</code> to create bot</li>
 <li>Name your bot &amp; copy token</li>
 <li>Open your bot chat</li>
-</ul>
-</div>
-</div>
-<div class="border-b">
+</ul></div><div class="md:col-span-3 flex justify-start md:justify-start justify-center items-start"><img class="rounded shadow w-full h-auto max-w-xs my-4" src="https://learn.microsoft.com/en-us/azure/bot-service/media/channels/tg-stepvisitbotfather.png?view=azure-bot-service-4.0"/></div></div></div>
+</div><div class="border-b" id="step-3">
 <button class="w-full text-left p-4 focus:outline-none toggle flex justify-between items-center" type="button">
 <div class="flex items-center">
 <div class="w-6 h-6 rounded-full bg-indigo-600 text-white text-xs font-bold flex items-center justify-center mr-2">3</div>
-<span class="text-lg font-medium">Setup CrossyBot</span>
-</div>
-<svg class="w-3 text-gray-600 transition-transform duration-200 arrow" viewbox="0 0 24 24">
-<polyline fill="none" points="2,7 12,17 22,7" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="2"></polyline>
-</svg>
-</button>
-<div class="p-4 pt-0 hidden content">
-<ul class="list-disc list-inside text-gray-700 space-y-2">
-<li>Download &amp; run CrossyBot</li>
-<li>Paste Telegram bot token</li>
-<li>Send <code>/start</code> in Telegram chat to link your account</li>
-<li>Paste in Kraken API &amp; private key</li>
-<li>Send /start to launch menu</li><li>Start trading 🚀</li></ul>
-</div>
-</div>
-</div></div>
-<div class="bg-gray-100 mt-10">
-<div class="px-4 py-10 mx-auto max-w-4xl md:px-4 lg:px-4 lg:py-10">
-<div class="text-center md:mb-8">
-<p class="inline-block px-3 py-px mb-4 text-xs font-semibold tracking-wider text-teal-900 uppercase rounded-full bg-teal-200">
-                OPTIONAL
-              </p>
-<h2 class="mb-6 font-sans text-4xl font-bold leading-none tracking-tight text-gray-900 sm:text-5xl text-center">
-                Run 24/7 in the Cloud on AWS
-              </h2>
-<p class="text-base text-gray-700 md:text-lg mb-6 text-center">Want CrossyBot always online without leaving your device running?<br/>Set it up on a free for 12 months AWS server that runs 24/7 in the cloud.</p>
-</div>
-</div>
-</div>
-<div class="space-y-4 mt-0">
-<div class="border-b">
-<button class="w-full text-left p-4 focus:outline-none toggle flex justify-between items-center" type="button">
-<div class="flex items-center">
-<div class="w-6 h-6 rounded-full bg-indigo-600 text-white text-xs font-bold flex items-center justify-center mr-2">1</div>
 <span class="text-lg font-medium">Create AWS Account</span>
 </div>
 <svg class="w-3 text-gray-600 transition-transform duration-200 arrow" viewbox="0 0 24 24">
@@ -138,19 +102,16 @@
 <li>Go to <a class="text-indigo-600 underline" href="https://aws.amazon.com" target="_blank">aws.amazon.com</a></li>
 <li>Click <b>Create an AWS Account</b></li>
 <li>Enter your email and set a strong password</li>
-
 <li>Enter your contact and billing details</li>
 <li>Verify your phone number</li>
-
 <li>Wait for confirmation email (can take up to 24 hours)</li>
 </ul>
 </div>
-</div>
-<div class="border-b">
+</div><div class="border-b" id="step-4">
 <button class="w-full text-left p-4 focus:outline-none toggle flex justify-between items-center" type="button">
 <div class="flex items-center">
-<div class="w-6 h-6 rounded-full bg-indigo-600 text-white text-xs font-bold flex items-center justify-center mr-2">2</div>
-<span class="text-lg font-medium">Create EC2 Instance</span>
+<div class="w-6 h-6 rounded-full bg-indigo-600 text-white text-xs font-bold flex items-center justify-center mr-2">4</div>
+<span class="text-lg font-medium">Launch EC2 Instance</span>
 </div>
 <svg class="w-3 text-gray-600 transition-transform duration-200 arrow" viewbox="0 0 24 24">
 <polyline fill="none" points="2,7 12,17 22,7" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="2"></polyline>
@@ -168,21 +129,27 @@
 </ul>
 </div>
 </div>
-<div class="border-b">
+<div class="border-b" id="step-5">
 <button class="w-full text-left p-4 focus:outline-none toggle flex justify-between items-center" type="button">
 <div class="flex items-center">
-<div class="w-6 h-6 rounded-full bg-indigo-600 text-white text-xs font-bold flex items-center justify-center mr-2">3</div>
-<span class="text-lg font-medium">Run CrossyBot</span>
+<div class="w-6 h-6 rounded-full bg-indigo-600 text-white text-xs font-bold flex items-center justify-center mr-2">5</div>
+<span class="text-lg font-medium">Setup CrossyBot</span>
 </div>
 <svg class="w-3 text-gray-600 transition-transform duration-200 arrow" viewbox="0 0 24 24">
 <polyline fill="none" points="2,7 12,17 22,7" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="2"></polyline>
 </svg>
 </button>
 <div class="p-4 pt-0 hidden content">
-<p class="text-gray-700">something here</p>
+<ul class="list-disc list-inside text-gray-700 space-y-2">
+<li>Download &amp; run CrossyBot</li>
+<li>Paste Telegram bot token</li>
+<li>Send <code>/start</code> in Telegram chat to link your account</li>
+<li>Paste in Kraken API &amp; private key</li>
+<li>Send /start to launch menu</li><li>Start trading 🚀</li></ul>
 </div>
 </div>
-</div>
+</div></div></div>
+<div class="space-y-4 mt-0">
 </div>
 </div>
 <script>
@@ -194,6 +161,49 @@
       icon.classList.toggle('rotate-180');
     });
   });
+</script>
+<script>
+function openDropdownById(id) {
+  const target = document.getElementById(id);
+  if (!target) return;
+
+  // Collapse all
+  document.querySelectorAll('.content').forEach(c => c.classList.add('hidden'));
+  document.querySelectorAll('.arrow').forEach(a => a.classList.remove('rotate-180'));
+
+  // Expand target
+  const button = target.querySelector('button');
+  const content = target.querySelector('.content');
+  const icon = target.querySelector('.arrow');
+  if (button && content && icon) {
+    content.classList.remove('hidden');
+    icon.classList.add('rotate-180');
+    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+  setTimeout(() => {
+    const hash = window.location.hash.substring(1);
+    if (hash) openDropdownById(hash);
+  }, 300);
+
+  document.querySelectorAll('a[href^="#"]').forEach(link => {
+    link.addEventListener('click', e => {
+      const id = link.getAttribute('href').substring(1);
+      setTimeout(() => openDropdownById(id), 50);
+    });
+  });
+});
+</script>
+<button class="fixed bottom-4 right-4 z-50 text-sm bg-indigo-600 text-white px-4 py-2 rounded-full shadow hover:bg-indigo-700 transition" id="minimize-all">
+  Minimise All
+</button>
+<script>
+document.getElementById('minimize-all').addEventListener('click', () => {
+  document.querySelectorAll('.content').forEach(c => c.classList.add('hidden'));
+  document.querySelectorAll('.arrow').forEach(a => a.classList.remove('rotate-180'));
+});
 </script>
 </body>
 </html>
