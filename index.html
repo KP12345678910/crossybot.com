@@ -1,16 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
- <head>
-  <meta charset="utf-8"/>
-  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-  <title>
-   CrossyBot | Crypto Co-pilot
-  </title>
-  <script src="https://cdn.tailwindcss.com">
-  </script>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&amp;family=Space+Grotesk:wght@500;700&amp;display=swap" rel="stylesheet"/>
-  <style>
-   :root {
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>
+            CrossyBot | Crypto Co-pilot
+        </title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&amp;family=Space+Grotesk:wght@500;700&amp;display=swap" rel="stylesheet" />
+        <style>
+            :root {
                 --primary: #6366f1;
                 --secondary: #8b5cf6;
                 --accent: #ec4899;
@@ -73,205 +72,191 @@
             .floating {
                 animation: float 6s ease-in-out infinite;
             }
-  </style>
- </head>
- <body class="min-h-screen">
+        </style>
+    </head>
+    <body class="min-h-screen">
+        <!-- Navigation -->
+        <nav class="fixed top-0 left-0 w-full z-50 py-6 px-4 md:px-12 backdrop-blur-md bg-slate-900/50">
+            <div class="flex justify-between items-center max-w-7xl mx-auto">
+                <div class="flex items-center space-x-2">
+                    <div class="w-8 h-8 rounded-full gradient-bg flex items-center justify-center">
+                        <svg class="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M5 19L19 5M19 5L19 9M19 5L15 5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+                            <path d="M5 5L8.5 8.5L9.375 9.375M19 19L15 19M19 19L19 15M19 19L15.5 15.5L14.625 14.625" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+                        </svg>
+                    </div>
+                    <span class="text-xl font-bold title-font">CrossyBot</span>
+                </div>
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a class="text-slate-300 hover:text-white transition animated-underline" href="index.html#home">Home</a>
+                    <a class="text-slate-300 hover:text-white transition animated-underline" href="index.html#features">Features</a>
+                    <a class="text-slate-300 hover:text-white transition animated-underline" href="index.html#pricing">Pricing</a>
+                    <a class="text-slate-300 hover:text-white transition animated-underline" href="setup.html">Setup</a>
+                    <a class="text-slate-300 hover:text-white transition animated-underline" href="guide.html">User Guide</a>
+                    <a class="text-slate-300 hover:text-white transition animated-underline" href="index.html#how">How CrossyBot Works</a>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button class="px-6 py-2 rounded-full gradient-bg text-white font-bold hover:opacity-90 transition transform hover:scale-105">
+                        Download Now
+                    </button>
+                </div>
+                <button id="menu-toggle" class="md:hidden text-slate-300">
+                    <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path d="M4 6h16M4 12h16M4 18h16" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
+                    </svg>
+                </button>
+            </div>
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="fixed top-0 right-0 h-screen w-64 bg-white rounded-l-2xl shadow-lg transform translate-x-full transition-transform duration-300 ease-in-out md:hidden flex flex-col justify-center space-y-6 p-6 z-40">
+                <button onclick="toggleMenu()" class="mt-8 px-4 py-2 text-sm text-white bg-slate-800 rounded-lg hover:bg-slate-700 transition">
+                    Minimise >>
+                </button>
+                <a href="index.html#home" class="text-slate-800 hover:text-black menu-link">Home</a>
+                <a href="index.html#features" class="text-slate-800 hover:text-black menu-link">Features</a>
+                <a href="index.html#pricing" class="text-slate-800 hover:text-black menu-link">Pricing</a>
+                <a href="setup.html" class="text-slate-800 hover:text-black menu-link">Setup</a>
+                <a href="guide.html" class="text-slate-800 hover:text-black menu-link">User Guide</a>
+                <a href="index.html#how" class="text-slate-800 hover:text-black menu-link">How CrossyBot Works</a>
+            </div>
+        </nav>
 
- <!-- Navigation -->
-  <nav class="fixed top-0 left-0 w-full z-50 py-6 px-4 md:px-12 backdrop-blur-md bg-slate-900/50">
-   <div class="flex justify-between items-center max-w-7xl mx-auto">
-    <div class="flex items-center space-x-2">
-     <div class="w-8 h-8 rounded-full gradient-bg flex items-center justify-center">
-      <svg class="h-5 w-5 text-white" fill="none" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-       <path d="M5 19L19 5M19 5L19 9M19 5L15 5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
-       </path>
-       <path d="M5 5L8.5 8.5L9.375 9.375M19 19L15 19M19 19L19 15M19 19L15.5 15.5L14.625 14.625" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
-       </path>
-      </svg>
-     </div>
-     <span class="text-xl font-bold title-font">
-      CrossyBot
-     </span>
-    </div>
-    <div class="hidden md:flex space-x-8 items-center">
-     <a class="text-slate-300 hover:text-white transition animated-underline" href="#home">
-      Home
-     </a>
-     <a class="text-slate-300 hover:text-white transition animated-underline" href="#features">
-      Features
-     </a>
-     <a class="text-slate-300 hover:text-white transition animated-underline" href="#pricing">
-      Pricing
-     </a>
-     <a class="text-slate-300 hover:text-white transition animated-underline" href="setup.html">
-      Setup
-     </a>
-     <a class="text-slate-300 hover:text-white transition animated-underline" href="guide.html">
-      User Guide
-     </a>
-     <a class="text-slate-300 hover:text-white transition animated-underline" href="how.html">
-      How it Works
-     </a>
-    </div>
-    <div class="flex items-center space-x-4">
-     <button class="px-6 py-2 rounded-full gradient-bg text-white font-medium hover:opacity-90 transition transform hover:scale-105">
-      Download Now
-     </button>
-    </div>
-    <button id="menu-toggle" class="md:hidden text-slate-300">
-      <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path d="M4 6h16M4 12h16M4 18h16" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
-      </svg>
-    </button>
-   </div>
-   <!-- Mobile Menu -->
-  <div id="mobile-menu" class="fixed top-0 right-0 h-screen w-64 bg-white rounded-l-2xl shadow-lg transform translate-x-full transition-transform duration-300 ease-in-out md:hidden flex flex-col justify-center space-y-6 p-6 z-40">
-     <button onclick="toggleMenu()" class="mt-8 px-4 py-2 text-sm text-white bg-slate-800 rounded-lg hover:bg-slate-700 transition">
-     Minimise >>
-     </button>
-     <a href="#home" class="text-slate-800 hover:text-black menu-link">Home</a>
-     <a href="#features" class="text-slate-800 hover:text-black menu-link">Features</a>
-     <a href="#pricing" class="text-slate-800 hover:text-black menu-link">Pricing</a>
-     <a href="setup.html" class="text-slate-800 hover:text-black menu-link">Setup</a>
-     <a href="guide.html" class="text-slate-800 hover:text-black menu-link">User Guide</a>
-     <a href="how.html" class="text-slate-800 hover:text-black menu-link">How it Works</a
-   </div>
-  </nav>
 
- <!-- Hero Section -->
-  <section class="pt-32 pb-20 px-4 md:px-12 max-w-7xl mx-auto" id="home">
-   <div class="flex flex-col lg:flex-row items-center">
-    <div class="lg:w-1/2 mb-16 lg:mb-0">
-     <div class="inline-block px-4 py-1 rounded-full bg-slate-800 text-sm font-medium mb-6">
-      <span class="gradient-text">
-       Beta v1.0 is live!
-      </span>
-     </div>
-     <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight title-font">
-      <span class="gradient-text">
-       Trades with you
-      </span>
-      <br/>
-      or Trades for you
-     </h1>
-     <p class="text-lg md:text-xl text-slate-400 mb-5 max-w-2xl">
-      Power up moving averages with your own personal co-pilot. Get priority executions, trade unlimited pairs &amp; capitalise on market movements with CrossyBot.
-     </p>
-     <p class="mt-0 text-lg md:text-xl text-slate-400 italic mb-10 max-w-2xl">
-      Built for Kraken
-      <img alt="Kraken" class="h-5 inline-block ml-1" src="https://ibsintelligence.com/wp-content/uploads/2021/06/Kraken-300x300.jpg"/>
-      Controlled via Telegram
-      <img alt="Telegram" class="h-5 inline-block ml-1" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Telegram_logo.svg/768px-Telegram_logo.svg.png?20220101141644"/>
-     </p>
-     <div class="flex flex-wrap gap-4">
-      <a class="px-8 py-4 rounded-full gradient-bg text-white font-bold hover:opacity-90 transition transform hover:scale-105 glow-effect inline-block" href="#features">
-       Find out more
-      </a>
-      <button class="px-8 py-4 rounded-full border-2 border-slate-600 text-white font-bold hover:border-white transition flex items-center space-x-2">
-       <svg class="h-5 w-5" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-        <path clip-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" fill-rule="evenodd">
-        </path>
-       </svg>
-       <span>
-        Watch Demo
-       </span>
-      </button>
-     </div>
-     <div class="mt-12 flex items-center space-x-4">
-      <button class="group transition-all duration-500 hover:-translate-y-2">
-       <svg fill="none" height="48" viewbox="0 0 92 93" width="48" xmlns="http://www.w3.org/2000/svg">
-        <rect fill="#34AADF" height="91.5618" rx="15" width="91.5618" x="0.138672" y="1">
-        </rect>
-        <path d="M25.0881 43.5652C25.0881 43.5652 43.716 35.7194 50.1765 32.9567C52.6532 31.8518 61.0518 28.3155 61.0518 28.3155C61.0518 28.3155 64.9282 26.7685 64.6052 30.5256C64.4974 32.0728 63.6361 37.4874 62.7747 43.3442C61.4825 51.6322 60.0827 60.6935 60.0827 60.6935C60.0827 60.6935 59.8674 63.2352 58.0369 63.6772C56.2065 64.1192 53.1914 62.1302 52.6532 61.6881C52.2223 61.3566 44.5774 56.3838 41.7778 53.9527C41.0241 53.2897 40.1627 51.9637 41.8854 50.4166C45.7618 46.7699 50.3919 42.2392 53.1914 39.3661C54.4836 38.04 55.7757 34.9459 50.3919 38.703C42.7469 44.1178 35.2096 49.201 35.2096 49.201C35.2096 49.201 33.4868 50.306 30.2565 49.3115C27.0261 48.317 23.2575 46.9909 23.2575 46.9909C23.2575 46.9909 20.6734 45.3334 25.0881 43.5652Z" fill="white">
-        </path>
-       </svg>
-      </button>
-      <!-- Discord -->
-      <button class="group transition-all duration-500 hover:-translate-y-2 rounded-[20%] bg-[#5865F2] p-3">
-       <svg fill="white" height="24" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
-        <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z">
-        </path>
-       </svg>
-      </button>
-      <!-- Reddit -->
-      <button class="group transition-all duration-500 hover:-translate-y-2 rounded-[20%] bg-[#FF4500] p-3">
-       <img alt="Reddit" height="24" src="https://img.icons8.com/ios-filled/50/ffffff/reddit.png" width="24"/>
-      </button>
-      <div>
-       <p class="text-sm text-slate-400">
-        Join our Communities!
-       </p>
-      </div>
-     </div>
-    </div>
-    <div class="lg:w-1/2 relative">
-     <img alt="AI Technology Interface" class="w-full max-w-xl mx-auto hero-image floating" src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=1200&amp;q=80"/>
-     <div class="absolute -bottom-10 -left-10 w-32 h-32 rounded-full bg-indigo-500/20 blur-3xl">
-     </div>
-     <div class="absolute -top-10 -right-10 w-32 h-32 rounded-full bg-pink-500/20 blur-3xl">
-     </div>
-    </div>
-   </div>
-  </section>
+        <!-- Hero Section -->
+        <section class="pt-32 pb-20 px-4 md:px-12 max-w-7xl mx-auto" id="home">
+            <div class="flex flex-col lg:flex-row items-center">
+                <div class="lg:w-1/2 mb-16 lg:mb-0">
+                    <div class="inline-block px-4 py-1 rounded-full bg-slate-800 text-sm font-medium mb-6">
+                        <span class="gradient-text">
+                            Beta v1.0 is live!
+                        </span>
+                    </div>
+                   <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight title-font">
+                        <span class="gradient-text">Trades with you</span>
+                        <br />
+                        <span class="text-white block w-[14ch] min-h-[1em]" id="typewriter"></span>
+                    </h1>
 
- <!-- Supported Currencies Section -->
-  <section class="mt-4 mb-6 min-h-[5rem] px-4 md:px-12 bg-slate-900/50 overflow-hidden">
-   <div class="max-w-7xl mx-auto">
-    <p class="text-center text-slate-500 mb-10">
-     SUPPORTS
-     <u>
-      ALL
-     </u>
-     KRAKEN USD PAIRS
-    </p>
-    <div class="relative overflow-hidden">
-     <div class="flex animate-scroll w-max py-4">
-      <!-- First image set -->
-      <div class="flex gap-x-12">
-       <img alt="bitcoin" class="h-8 w-auto opacity-70 hover:opacity-100 hover:scale-110 transition duration-300" src="https://assets.kraken.com/marketing/web/icons-uni-webp/s_btc.webp?i=kds"/>
-       <img alt="ethereum" class="h-8 w-auto opacity-70 hover:opacity-100 hover:scale-110 transition duration-300" src="https://assets.kraken.com/marketing/web/icons-uni-webp/s_eth.webp?i=kds"/>
-       <img alt="ripple" class="h-8 w-auto opacity-70 hover:opacity-100 hover:scale-110 transition duration-300" src="https://assets.kraken.com/marketing/web/icons-uni-webp/s_xrp.webp?i=kds"/>
-       <img alt="solana" class="h-8 w-auto opacity-70 hover:opacity-100 hover:scale-110 transition duration-300" src="https://assets.kraken.com/marketing/web/icons-uni-webp/s_sol.webp?i=kds"/>
-       <img alt="dogecoin" class="h-8 w-auto opacity-70 hover:opacity-100 hover:scale-110 transition duration-300" src="https://assets.kraken.com/marketing/web/icons-uni-webp/s_doge.webp?i=kds"/>
-       <img alt="cardano" class="h-8 w-auto opacity-70 hover:opacity-100 hover:scale-110 transition duration-300" src="https://assets.kraken.com/marketing/web/icons-uni-webp/s_ada.webp?i=kds"/>
-       <img alt="sui" class="h-8 w-auto opacity-70 hover:opacity-100 hover:scale-110 transition duration-300" src="https://assets.kraken.com/marketing/web/icons-uni-webp/s_sui.webp?i=kds"/>
-       <img alt="tron" class="h-8 w-auto opacity-70 hover:opacity-100 hover:scale-110 transition duration-300" src="https://assets.kraken.com/marketing/web/icons-uni-webp/s_trx.webp?i=kds"/>
-       <img alt="chainlink" class="h-8 w-auto opacity-70 hover:opacity-100 hover:scale-110 transition duration-300" src="https://assets.kraken.com/marketing/web/icons-uni-webp/s_link.webp?i=kds"/>
-       <img alt="shib" class="h-8 w-auto opacity-70 hover:opacity-100 hover:scale-110 transition duration-300" src="https://assets.kraken.com/marketing/web/icons-uni-webp/s_shib.webp?i=kds"/>
-       <img alt="pepe" class="h-8 w-auto opacity-70 hover:opacity-100 hover:scale-110 transition duration-300" src="https://assets.kraken.com/marketing/web/icons-uni-webp/s_pepe.webp?i=kds"/>
-       <img alt="uniswap" class="h-8 w-auto opacity-70 hover:opacity-100 hover:scale-110 transition duration-300" src="https://assets.kraken.com/marketing/web/icons-uni-webp/s_uni.webp?i=kds"/>
-       <img alt="near" class="h-8 w-auto opacity-70 hover:opacity-100 hover:scale-110 transition duration-300" src="https://assets.kraken.com/marketing/web/icons-uni-webp/s_near.webp?i=kds"/>
-       <img alt="fetch" class="h-8 w-auto opacity-70 hover:opacity-100 hover:scale-110 transition duration-300" src="https://assets.kraken.com/marketing/web/icons-uni-webp/s_fet.webp?i=kds"/>
-       <img alt="render" class="h-8 w-auto opacity-70 hover:opacity-100 hover:scale-110 transition duration-300" src="https://assets.kraken.com/marketing/web/icons-uni-webp/s_render.webp?i=kds"/>
-       <img alt="pol" class="h-8 w-auto opacity-70 hover:opacity-100 hover:scale-110 transition duration-300" src="https://assets.kraken.com/marketing/web/icons-uni-webp/s_pol.webp?i=kds"/>
-       <img alt="jup" class="h-8 w-auto opacity-70 hover:opacity-100 hover:scale-110 transition duration-300" src="https://assets.kraken.com/marketing/web/icons-uni-webp/s_jup.webp?i=kds"/>
-      </div>
-      <!-- Duplicate set with offset -->
-      <div class="flex gap-x-12 ml-12">
-       <img alt="bitcoin" class="h-8 w-auto opacity-70 hover:opacity-100 hover:scale-110 transition duration-300" src="https://assets.kraken.com/marketing/web/icons-uni-webp/s_btc.webp?i=kds"/>
-       <img alt="ethereum" class="h-8 w-auto opacity-70 hover:opacity-100 hover:scale-110 transition duration-300" src="https://assets.kraken.com/marketing/web/icons-uni-webp/s_eth.webp?i=kds"/>
-       <img alt="ripple" class="h-8 w-auto opacity-70 hover:opacity-100 hover:scale-110 transition duration-300" src="https://assets.kraken.com/marketing/web/icons-uni-webp/s_xrp.webp?i=kds"/>
-       <img alt="solana" class="h-8 w-auto opacity-70 hover:opacity-100 hover:scale-110 transition duration-300" src="https://assets.kraken.com/marketing/web/icons-uni-webp/s_sol.webp?i=kds"/>
-       <img alt="dogecoin" class="h-8 w-auto opacity-70 hover:opacity-100 hover:scale-110 transition duration-300" src="https://assets.kraken.com/marketing/web/icons-uni-webp/s_doge.webp?i=kds"/>
-       <img alt="cardano" class="h-8 w-auto opacity-70 hover:opacity-100 hover:scale-110 transition duration-300" src="https://assets.kraken.com/marketing/web/icons-uni-webp/s_ada.webp?i=kds"/>
-       <img alt="sui" class="h-8 w-auto opacity-70 hover:opacity-100 hover:scale-110 transition duration-300" src="https://assets.kraken.com/marketing/web/icons-uni-webp/s_sui.webp?i=kds"/>
-       <img alt="tron" class="h-8 w-auto opacity-70 hover:opacity-100 hover:scale-110 transition duration-300" src="https://assets.kraken.com/marketing/web/icons-uni-webp/s_trx.webp?i=kds"/>
-       <img alt="chainlink" class="h-8 w-auto opacity-70 hover:opacity-100 hover:scale-110 transition duration-300" src="https://assets.kraken.com/marketing/web/icons-uni-webp/s_link.webp?i=kds"/>
-       <img alt="shib" class="h-8 w-auto opacity-70 hover:opacity-100 hover:scale-110 transition duration-300" src="https://assets.kraken.com/marketing/web/icons-uni-webp/s_shib.webp?i=kds"/>
-       <img alt="pepe" class="h-8 w-auto opacity-70 hover:opacity-100 hover:scale-110 transition duration-300" src="https://assets.kraken.com/marketing/web/icons-uni-webp/s_pepe.webp?i=kds"/>
-       <img alt="uniswap" class="h-8 w-auto opacity-70 hover:opacity-100 hover:scale-110 transition duration-300" src="https://assets.kraken.com/marketing/web/icons-uni-webp/s_uni.webp?i=kds"/>
-       <img alt="near" class="h-8 w-auto opacity-70 hover:opacity-100 hover:scale-110 transition duration-300" src="https://assets.kraken.com/marketing/web/icons-uni-webp/s_near.webp?i=kds"/>
-       <img alt="fetch" class="h-8 w-auto opacity-70 hover:opacity-100 hover:scale-110 transition duration-300" src="https://assets.kraken.com/marketing/web/icons-uni-webp/s_fet.webp?i=kds"/>
-       <img alt="render" class="h-8 w-auto opacity-70 hover:opacity-100 hover:scale-110 transition duration-300" src="https://assets.kraken.com/marketing/web/icons-uni-webp/s_render.webp?i=kds"/>
-       <img alt="pol" class="h-8 w-auto opacity-70 hover:opacity-100 hover:scale-110 transition duration-300" src="https://assets.kraken.com/marketing/web/icons-uni-webp/s_pol.webp?i=kds"/>
-       <img alt="jup" class="h-8 w-auto opacity-70 hover:opacity-100 hover:scale-110 transition duration-300" src="https://assets.kraken.com/marketing/web/icons-uni-webp/s_jup.webp?i=kds"/>
-      </div>
-     </div>
-    </div>
-   </div>
-  </section>
-  <style>
-   @keyframes scroll {
+                    <p class="text-lg md:text-xl text-slate-400 mb-5 max-w-2xl">
+                        Power up moving averages with your own personal co-pilot. Get priority executions, trade unlimited pairs &amp; capitalise on market movements with CrossyBot.
+                    </p>
+                    <p class="mt-0 text-lg md:text-xl text-slate-400 italic mb-10 max-w-2xl">
+                        Built for Kraken
+                        <img alt="Kraken" class="h-5 inline-block ml-1" src="https://ibsintelligence.com/wp-content/uploads/2021/06/Kraken-300x300.jpg" />
+                        Controlled via Telegram
+                        <img alt="Telegram" class="h-5 inline-block ml-1" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Telegram_logo.svg/768px-Telegram_logo.svg.png?20220101141644" />
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <a class="px-8 py-4 rounded-full gradient-bg text-white font-bold hover:opacity-90 transition transform hover:scale-105 glow-effect inline-block" href="#features">
+                            Find out more
+                        </a>
+                        <button class="px-8 py-4 rounded-full border-2 border-slate-600 text-white font-bold hover:border-white transition flex items-center space-x-2">
+                            <svg class="h-5 w-5" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path clip-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" fill-rule="evenodd"></path>
+                            </svg>
+                            <span>
+                                Watch Demo
+                            </span>
+                        </button>
+                    </div>
+                    <div class="mt-12 flex items-center space-x-4">
+                        <button class="group transition-all duration-500 hover:-translate-y-2">
+                            <svg fill="none" height="48" viewbox="0 0 92 93" width="48" xmlns="http://www.w3.org/2000/svg">
+                                <rect fill="#34AADF" height="91.5618" rx="15" width="91.5618" x="0.138672" y="1"></rect>
+                                <path
+                                    d="M25.0881 43.5652C25.0881 43.5652 43.716 35.7194 50.1765 32.9567C52.6532 31.8518 61.0518 28.3155 61.0518 28.3155C61.0518 28.3155 64.9282 26.7685 64.6052 30.5256C64.4974 32.0728 63.6361 37.4874 62.7747 43.3442C61.4825 51.6322 60.0827 60.6935 60.0827 60.6935C60.0827 60.6935 59.8674 63.2352 58.0369 63.6772C56.2065 64.1192 53.1914 62.1302 52.6532 61.6881C52.2223 61.3566 44.5774 56.3838 41.7778 53.9527C41.0241 53.2897 40.1627 51.9637 41.8854 50.4166C45.7618 46.7699 50.3919 42.2392 53.1914 39.3661C54.4836 38.04 55.7757 34.9459 50.3919 38.703C42.7469 44.1178 35.2096 49.201 35.2096 49.201C35.2096 49.201 33.4868 50.306 30.2565 49.3115C27.0261 48.317 23.2575 46.9909 23.2575 46.9909C23.2575 46.9909 20.6734 45.3334 25.0881 43.5652Z"
+                                    fill="white"
+                                ></path>
+                            </svg>
+                        </button>
+                        <!-- Discord -->
+                        <button class="group transition-all duration-500 hover:-translate-y-2 rounded-[20%] bg-[#5865F2] p-3">
+                            <svg fill="white" height="24" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"
+                                ></path>
+                            </svg>
+                        </button>
+                        <!-- Reddit -->
+                        <button class="group transition-all duration-500 hover:-translate-y-2 rounded-[20%] bg-[#FF4500] p-3">
+                            <img alt="Reddit" height="24" src="https://img.icons8.com/ios-filled/50/ffffff/reddit.png" width="24" />
+                        </button>
+                        <div>
+                            <p class="text-sm text-slate-400">
+                                Join our Communities!
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="lg:w-1/2 relative">
+                    <img
+                        alt="AI Technology Interface"
+                        class="w-full max-w-xl mx-auto hero-image floating"
+                        src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=1200&amp;q=80"
+                    />
+                    <div class="absolute -bottom-10 -left-10 w-32 h-32 rounded-full bg-indigo-500/20 blur-3xl"></div>
+                    <div class="absolute -top-10 -right-10 w-32 h-32 rounded-full bg-pink-500/20 blur-3xl"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Supported Currencies Section -->
+        <section class="mt-4 mb-6 min-h-[5rem] px-4 md:px-12 bg-slate-900/50 overflow-hidden">
+            <div class="max-w-7xl mx-auto">
+                <p class="text-center text-slate-500 mb-10">
+                    SUPPORTS
+                    <u>
+                        ALL
+                    </u>
+                    KRAKEN USD PAIRS
+                </p>
+                <div class="relative overflow-hidden">
+                    <div class="flex animate-scroll w-max py-4">
+                        <!-- First image set -->
+                        <div class="flex gap-x-12">
+                            <img alt="bitcoin" class="h-8 w-auto opacity-70 hover:opacity-100 hover:scale-110 transition duration-300" src="https://assets.kraken.com/marketing/web/icons-uni-webp/s_btc.webp?i=kds" />
+                            <img alt="ethereum" class="h-8 w-auto opacity-70 hover:opacity-100 hover:scale-110 transition duration-300" src="https://assets.kraken.com/marketing/web/icons-uni-webp/s_eth.webp?i=kds" />
+                            <img alt="ripple" class="h-8 w-auto opacity-70 hover:opacity-100 hover:scale-110 transition duration-300" src="https://assets.kraken.com/marketing/web/icons-uni-webp/s_xrp.webp?i=kds" />
+                            <img alt="solana" class="h-8 w-auto opacity-70 hover:opacity-100 hover:scale-110 transition duration-300" src="https://assets.kraken.com/marketing/web/icons-uni-webp/s_sol.webp?i=kds" />
+                            <img alt="dogecoin" class="h-8 w-auto opacity-70 hover:opacity-100 hover:scale-110 transition duration-300" src="https://assets.kraken.com/marketing/web/icons-uni-webp/s_doge.webp?i=kds" />
+                            <img alt="cardano" class="h-8 w-auto opacity-70 hover:opacity-100 hover:scale-110 transition duration-300" src="https://assets.kraken.com/marketing/web/icons-uni-webp/s_ada.webp?i=kds" />
+                            <img alt="sui" class="h-8 w-auto opacity-70 hover:opacity-100 hover:scale-110 transition duration-300" src="https://assets.kraken.com/marketing/web/icons-uni-webp/s_sui.webp?i=kds" />
+                            <img alt="tron" class="h-8 w-auto opacity-70 hover:opacity-100 hover:scale-110 transition duration-300" src="https://assets.kraken.com/marketing/web/icons-uni-webp/s_trx.webp?i=kds" />
+                            <img alt="chainlink" class="h-8 w-auto opacity-70 hover:opacity-100 hover:scale-110 transition duration-300" src="https://assets.kraken.com/marketing/web/icons-uni-webp/s_link.webp?i=kds" />
+                            <img alt="shib" class="h-8 w-auto opacity-70 hover:opacity-100 hover:scale-110 transition duration-300" src="https://assets.kraken.com/marketing/web/icons-uni-webp/s_shib.webp?i=kds" />
+                            <img alt="pepe" class="h-8 w-auto opacity-70 hover:opacity-100 hover:scale-110 transition duration-300" src="https://assets.kraken.com/marketing/web/icons-uni-webp/s_pepe.webp?i=kds" />
+                            <img alt="uniswap" class="h-8 w-auto opacity-70 hover:opacity-100 hover:scale-110 transition duration-300" src="https://assets.kraken.com/marketing/web/icons-uni-webp/s_uni.webp?i=kds" />
+                            <img alt="near" class="h-8 w-auto opacity-70 hover:opacity-100 hover:scale-110 transition duration-300" src="https://assets.kraken.com/marketing/web/icons-uni-webp/s_near.webp?i=kds" />
+                            <img alt="fetch" class="h-8 w-auto opacity-70 hover:opacity-100 hover:scale-110 transition duration-300" src="https://assets.kraken.com/marketing/web/icons-uni-webp/s_fet.webp?i=kds" />
+                            <img alt="render" class="h-8 w-auto opacity-70 hover:opacity-100 hover:scale-110 transition duration-300" src="https://assets.kraken.com/marketing/web/icons-uni-webp/s_render.webp?i=kds" />
+                            <img alt="pol" class="h-8 w-auto opacity-70 hover:opacity-100 hover:scale-110 transition duration-300" src="https://assets.kraken.com/marketing/web/icons-uni-webp/s_pol.webp?i=kds" />
+                            <img alt="jup" class="h-8 w-auto opacity-70 hover:opacity-100 hover:scale-110 transition duration-300" src="https://assets.kraken.com/marketing/web/icons-uni-webp/s_jup.webp?i=kds" />
+                        </div>
+                        <!-- Duplicate set with offset -->
+                        <div class="flex gap-x-12 ml-12">
+                            <img alt="bitcoin" class="h-8 w-auto opacity-70 hover:opacity-100 hover:scale-110 transition duration-300" src="https://assets.kraken.com/marketing/web/icons-uni-webp/s_btc.webp?i=kds" />
+                            <img alt="ethereum" class="h-8 w-auto opacity-70 hover:opacity-100 hover:scale-110 transition duration-300" src="https://assets.kraken.com/marketing/web/icons-uni-webp/s_eth.webp?i=kds" />
+                            <img alt="ripple" class="h-8 w-auto opacity-70 hover:opacity-100 hover:scale-110 transition duration-300" src="https://assets.kraken.com/marketing/web/icons-uni-webp/s_xrp.webp?i=kds" />
+                            <img alt="solana" class="h-8 w-auto opacity-70 hover:opacity-100 hover:scale-110 transition duration-300" src="https://assets.kraken.com/marketing/web/icons-uni-webp/s_sol.webp?i=kds" />
+                            <img alt="dogecoin" class="h-8 w-auto opacity-70 hover:opacity-100 hover:scale-110 transition duration-300" src="https://assets.kraken.com/marketing/web/icons-uni-webp/s_doge.webp?i=kds" />
+                            <img alt="cardano" class="h-8 w-auto opacity-70 hover:opacity-100 hover:scale-110 transition duration-300" src="https://assets.kraken.com/marketing/web/icons-uni-webp/s_ada.webp?i=kds" />
+                            <img alt="sui" class="h-8 w-auto opacity-70 hover:opacity-100 hover:scale-110 transition duration-300" src="https://assets.kraken.com/marketing/web/icons-uni-webp/s_sui.webp?i=kds" />
+                            <img alt="tron" class="h-8 w-auto opacity-70 hover:opacity-100 hover:scale-110 transition duration-300" src="https://assets.kraken.com/marketing/web/icons-uni-webp/s_trx.webp?i=kds" />
+                            <img alt="chainlink" class="h-8 w-auto opacity-70 hover:opacity-100 hover:scale-110 transition duration-300" src="https://assets.kraken.com/marketing/web/icons-uni-webp/s_link.webp?i=kds" />
+                            <img alt="shib" class="h-8 w-auto opacity-70 hover:opacity-100 hover:scale-110 transition duration-300" src="https://assets.kraken.com/marketing/web/icons-uni-webp/s_shib.webp?i=kds" />
+                            <img alt="pepe" class="h-8 w-auto opacity-70 hover:opacity-100 hover:scale-110 transition duration-300" src="https://assets.kraken.com/marketing/web/icons-uni-webp/s_pepe.webp?i=kds" />
+                            <img alt="uniswap" class="h-8 w-auto opacity-70 hover:opacity-100 hover:scale-110 transition duration-300" src="https://assets.kraken.com/marketing/web/icons-uni-webp/s_uni.webp?i=kds" />
+                            <img alt="near" class="h-8 w-auto opacity-70 hover:opacity-100 hover:scale-110 transition duration-300" src="https://assets.kraken.com/marketing/web/icons-uni-webp/s_near.webp?i=kds" />
+                            <img alt="fetch" class="h-8 w-auto opacity-70 hover:opacity-100 hover:scale-110 transition duration-300" src="https://assets.kraken.com/marketing/web/icons-uni-webp/s_fet.webp?i=kds" />
+                            <img alt="render" class="h-8 w-auto opacity-70 hover:opacity-100 hover:scale-110 transition duration-300" src="https://assets.kraken.com/marketing/web/icons-uni-webp/s_render.webp?i=kds" />
+                            <img alt="pol" class="h-8 w-auto opacity-70 hover:opacity-100 hover:scale-110 transition duration-300" src="https://assets.kraken.com/marketing/web/icons-uni-webp/s_pol.webp?i=kds" />
+                            <img alt="jup" class="h-8 w-auto opacity-70 hover:opacity-100 hover:scale-110 transition duration-300" src="https://assets.kraken.com/marketing/web/icons-uni-webp/s_jup.webp?i=kds" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <style>
+            @keyframes scroll {
                 0% {
                     transform: translateX(0);
                 }
@@ -282,480 +267,888 @@
             .animate-scroll {
                 animation: scroll 25s linear infinite;
             }
-  </style>
+        </style>
 
- <!-- Features Section -->
-  <section class="py-20 px-4 md:px-12 max-w-7xl mx-auto" id="features">
-   <div class="text-center mb-20">
-    <div class="inline-block px-4 py-1 rounded-full bg-slate-800 text-sm font-medium mb-6">
-     <span class="gradient-text">
-      Powerful Features at a low cost
-     </span>
-    </div>
-    <h2 class="text-3xl md:text-5xl font-bold mb-6 title-font">
-     Features to
-     <span class="gradient-text">
-      Succeed
-     </span>
-    </h2>
-    <p class="text-lg text-slate-400 max-w-2xl mx-auto">
-     Explore advanced features designed to simplify trading, boost performance and manage risk effectively.
-    </p>
-   </div>
-   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-    <!-- Feature Card 1 -->
-    <div class="card-gradient p-8 rounded-2xl feature-card transition duration-300">
-     <div class="w-12 h-12 rounded-lg gradient-bg flex items-center justify-center mb-6">
-      <svg class="h-6 w-6 text-white" fill="none" stroke="currentColor" viewbox="0 0 24 24">
-       <path d="M12 14l9-5-9-5-9 5 9 5z">
-       </path>
-       <path d="M12 14l6.16-3.422a12.083 12.083 0 01.34 6.694L12 21l-6.5-3.728a12.083 12.083 0 01.34-6.694L12 14z">
-       </path>
-      </svg>
-     </div>
-     <h3 class="text-xl font-bold mb-3">
-      Principle Driven Automations
-     </h3>
-     <ul class="text-slate-400 list-disc ml-4 space-y-1">
-      <li>
-       Detects the larger trend
-      </li>
-      <li>
-       Opens trades on lower timeframes
-      </li>
-      <li>
-       Takes profit on trend changes
-      </li>
-      <li>
-       Always has an exit strategy
-      </li>
-      <li>
-       Supports long &amp; short trading
-      </li>
-      <li>
-       Limits max margin risk
-      </li>
-     </ul>
-    </div>
-    <!-- Feature Card 2 -->
-    <div class="card-gradient p-8 rounded-2xl feature-card transition duration-300">
-     <div class="w-12 h-12 rounded-lg gradient-bg flex items-center justify-center mb-6">
-      <svg class="h-6 w-6 text-white" fill="none" stroke="currentColor" viewbox="0 0 24 24">
-       <path d="M12 3a6 6 0 00-6 6c0 2.485 1.5 4.5 3 5.5v2a1 1 0 001 1h4a1 1 0 001-1v-2c1.5-1 3-3.015 3-5.5a6 6 0 00-6-6z">
-       </path>
-       <path d="M9 21h6">
-       </path>
-      </svg>
-     </div>
-     <h3 class="text-xl font-bold mb-3">
-      Intelligent Trade Handling
-     </h3>
-     <ul class="text-slate-400 list-disc ml-4 space-y-1">
-      <div class="text-slate-400 font-semibold">
-       [OPENING]
-      </div>
-      <li>
-       Standard mode: Opens on EMA crosses until off
-      </li>
-      <li>
-       One shot mode: Opens on next EMA cross only
-      </li>
-      <br/>
-      <div class="text-slate-400 font-semibold">
-       [CLOSING]
-      </div>
-      <li>
-       Detects new account balances
-      </li>
-      <li>
-       Manages all balances to closure
-      </li>
-      <li>
-       Trades closed above % profit only
-      </li>
-      <li>
-       Supports manual trade averaging
-      </li>
-     </ul>
-    </div>
-    <!-- Feature Card 3 -->
-    <div class="card-gradient p-8 rounded-2xl feature-card transition duration-300">
-     <div class="w-12 h-12 rounded-lg gradient-bg flex items-center justify-center mb-6">
-      <svg class="h-6 w-6 text-white" fill="none" stroke="currentColor" viewbox="0 0 24 24">
-       <path d="M6 7h.01M4 10h16M4 14h16M7 17h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v8a2 2 0 002 2z">
-       </path>
-      </svg>
-     </div>
-     <h3 class="text-xl font-bold mb-3">
-      Personal Telegram Bot
-     </h3>
-     <ul class="text-slate-400 list-disc ml-4 space-y-1">
-      <li>
-       View portfolio PNL summaries
-      </li>
-      <li>
-       Manual trading (single &amp; bulk)
-      </li>
-      <li>
-       Manage live trades &amp; automations
-      </li>
-      <li>
-       Get live activity notifications
-      </li>
-      <li>
-       Explore market signals &amp; live charts
-      </li>
-      <li>
-       Update risk settings
-      </li>
-     </ul>
-    </div>
-    <!-- Feature Card 4 -->
-    <div class="card-gradient p-8 rounded-2xl feature-card transition duration-300">
-     <div class="w-12 h-12 rounded-lg gradient-bg flex items-center justify-center mb-6">
-      <svg class="h-6 w-6 text-white" fill="none" stroke="currentColor" viewbox="0 0 24 24">
-       <path d="M12 2l8 4v5c0 5.25-3.375 10.313-8 12-4.625-1.687-8-6.75-8-12V6l8-4z">
-       </path>
-       <path d="M9 12l2 2 4-4">
-       </path>
-      </svg>
-     </div>
-     <h3 class="text-xl font-bold mb-3">
-      Advanced Executions
-     </h3>
-     <ul class="text-slate-400 list-disc ml-4 space-y-1">
-      <li>
-       Price order book impact assessments
-      </li>
-      <li>
-       Filled orders confirmed before fees
-      </li>
-      <li>
-       Trade sizes adjusted within risk limits
-      </li>
-     </ul>
-    </div>
-    <!-- Feature Card 5 -->
-    <div class="card-gradient p-8 rounded-2xl feature-card transition duration-300">
-     <div class="w-12 h-12 rounded-lg gradient-bg flex items-center justify-center mb-6">
-      <svg class="h-6 w-6 text-white" fill="none" stroke="currentColor" viewbox="0 0 24 24">
-       <path d="M17 20v-2a4 4 0 00-4-4H7a4 4 0 00-4 4v2">
-       </path>
-       <circle cx="9" cy="7" r="4">
-       </circle>
-       <path d="M23 20v-2a4 4 0 00-3-3.87">
-       </path>
-       <circle cx="17" cy="7" r="4">
-       </circle>
-      </svg>
-     </div>
-     <h3 class="text-xl font-bold mb-3">
-      Volume &amp; Referrals Program
-     </h3>
-     <ul class="text-slate-400 list-disc ml-4 space-y-1">
-      <li>
-       20% off fees when referred
-      </li>
-      <li>
-       10% of fees from referrals (after first deposit)
-      </li>
-      <li>
-       Volume discounts over $1000
-      </li>
-     </ul>
-    </div>
-    <!-- Feature Card 6 -->
-    <div class="card-gradient p-8 rounded-2xl feature-card transition duration-300">
-     <div class="w-12 h-12 rounded-lg gradient-bg flex items-center justify-center mb-6">
-      <svg class="h-6 w-6 text-white" fill="none" stroke="currentColor" viewbox="0 0 24 24">
-       <path d="M4 6h16M4 10h16M4 14h16M4 18h16M4 6a2 2 0 012-2h12a2 2 0 012 2M4 18a2 2 0 002 2h12a2 2 0 002-2">
-       </path>
-      </svg>
-     </div>
-     <h3 class="text-xl font-bold mb-3">
-      Flexible Deployments
-     </h3>
-     <ul class="text-slate-400 list-disc ml-4 space-y-1">
-      <li>
-       Run locally on Windows
-      </li>
-      <li>
-       Or 24/7 in AWS
-      </li>
-     </ul>
-    </div>
-   </div>
-  </section>
+        <!-- Features Section -->
+        <section class="py-20 px-4 md:px-12 max-w-7xl mx-auto" id="features">
+            <div class="text-center mb-20">
+                <div class="inline-block px-4 py-1 rounded-full bg-slate-800 text-sm font-medium mb-6">
+                    <span class="gradient-text">
+                        Powerful Features
+                    </span>
+                </div>
+                <h2 class="text-3xl md:text-5xl font-bold mb-6 title-font">
+                    Features for
+                    <span class="gradient-text">
+                        Success
+                    </span>
+                </h2>
+                <p class="text-lg text-slate-400 max-w-2xl mx-auto">Explore advanced features designed to <u>simplify trading</u>, <u>boost performance</u> and <u>manage risk</u>.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Feature Card 1 -->
+                <div class="card-gradient p-8 rounded-2xl feature-card transition duration-300">
+                    <div class="w-12 h-12 rounded-lg gradient-bg flex items-center justify-center mb-6">
+                        <svg class="h-6 w-6 text-white" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+                            <path d="M12 14l9-5-9-5-9 5 9 5z"></path>
+                            <path d="M12 14l6.16-3.422a12.083 12.083 0 01.34 6.694L12 21l-6.5-3.728a12.083 12.083 0 01.34-6.694L12 14z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">
+                        Principle Driven Automations
+                    </h3>
+                    <ul class="text-slate-400 list-disc ml-4 space-y-1">
+                        <li>
+                            Detects the larger trend
+                        </li>
+                        <li>
+                            Opens trades on lower timeframes
+                        </li>
+                        <li>
+                            Takes profit on trend changes
+                        </li>
+                        <li>
+                            Always has an exit strategy
+                        </li>
+                        <li>
+                            Supports long &amp; short trading
+                        </li>
+                        <li>
+                            Limits max margin risk
+                        </li>
+                    </ul>
+                </div>
+                <!-- Feature Card 2 -->
+                <div class="card-gradient p-8 rounded-2xl feature-card transition duration-300">
+                    <div class="w-12 h-12 rounded-lg gradient-bg flex items-center justify-center mb-6">
+                        <svg class="h-6 w-6 text-white" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+                            <path d="M12 3a6 6 0 00-6 6c0 2.485 1.5 4.5 3 5.5v2a1 1 0 001 1h4a1 1 0 001-1v-2c1.5-1 3-3.015 3-5.5a6 6 0 00-6-6z"></path>
+                            <path d="M9 21h6"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">
+                        Intelligent Trade Handling
+                    </h3>
+                    <ul class="text-slate-400 list-disc ml-4 space-y-1">
+                        <div class="text-slate-400 font-semibold">
+                            [OPENING]
+                        </div>
+                        <li>
+                            Standard mode: Opens on EMA crosses until off
+                        </li>
+                        <li>
+                            One shot mode: Opens on next EMA cross only
+                        </li>
+                        <br />
+                        <div class="text-slate-400 font-semibold">
+                            [CLOSING]
+                        </div>
+                        <li>
+                            Detects new account balances
+                        </li>
+                        <li>
+                            Manages all balances to closure
+                        </li>
+                        <li>
+                            Trades closed above % profit only
+                        </li>
+                        <li>
+                            Supports manual trade averaging
+                        </li>
+                    </ul>
+                </div>
+                <!-- Feature Card 3 -->
+                <div class="card-gradient p-8 rounded-2xl feature-card transition duration-300">
+                    <div class="w-12 h-12 rounded-lg gradient-bg flex items-center justify-center mb-6">
+                        <svg class="h-6 w-6 text-white" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+                            <path d="M6 7h.01M4 10h16M4 14h16M7 17h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">
+                        Personal Telegram Bot
+                    </h3>
+                    <ul class="text-slate-400 list-disc ml-4 space-y-1">
+                        <li>
+                            View portfolio PNL summaries
+                        </li>
+                        <li>
+                            Manual trading (single &amp; bulk)
+                        </li>
+                        <li>
+                            Manage live trades &amp; automations
+                        </li>
+                        <li>
+                            Get live activity notifications
+                        </li>
+                        <li>
+                            Explore market signals &amp; live charts
+                        </li>
+                        <li>
+                            Update risk settings
+                        </li>
+                    </ul>
+                </div>
+                <!-- Feature Card 4 -->
+                <div class="card-gradient p-8 rounded-2xl feature-card transition duration-300">
+                    <div class="w-12 h-12 rounded-lg gradient-bg flex items-center justify-center mb-6">
+                        <svg class="h-6 w-6 text-white" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+                            <path d="M12 2l8 4v5c0 5.25-3.375 10.313-8 12-4.625-1.687-8-6.75-8-12V6l8-4z"></path>
+                            <path d="M9 12l2 2 4-4"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">
+                        Advanced Executions
+                    </h3>
+                    <ul class="text-slate-400 list-disc ml-4 space-y-1">
+                        <li>
+                            Price order book impact assessments
+                        </li>
+                        <li>
+                            Filled orders confirmed before fees
+                        </li>
+                        <li>
+                            Trade sizes adjusted within risk limits
+                        </li>
+                    </ul>
+                </div>
+                <!-- Feature Card 5 -->
+                <div class="card-gradient p-8 rounded-2xl feature-card transition duration-300">
+                    <div class="w-12 h-12 rounded-lg gradient-bg flex items-center justify-center mb-6">
+                        <svg class="h-6 w-6 text-white" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+                            <path d="M17 20v-2a4 4 0 00-4-4H7a4 4 0 00-4 4v2"></path>
+                            <circle cx="9" cy="7" r="4"></circle>
+                            <path d="M23 20v-2a4 4 0 00-3-3.87"></path>
+                            <circle cx="17" cy="7" r="4"></circle>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">
+                        Volume &amp; Referrals Program
+                    </h3>
+                    <ul class="text-slate-400 list-disc ml-4 space-y-1">
+                        <li>
+                            +20% off fees when referred
+                        </li>
+                        <li>
+                            10% of referral's fees**
+                        </li>
+                        <li>
+                            Volume discounts over $1000
+                        </li>
+                    </ul>
+                </div>
+                <!-- Feature Card 6 -->
+                <div class="card-gradient p-8 rounded-2xl feature-card transition duration-300">
+                    <div class="w-12 h-12 rounded-lg gradient-bg flex items-center justify-center mb-6">
+                        <svg class="h-6 w-6 text-white" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+                            <path d="M4 6h16M4 10h16M4 14h16M4 18h16M4 6a2 2 0 012-2h12a2 2 0 012 2M4 18a2 2 0 002 2h12a2 2 0 002-2"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">
+                        Flexible Deployments
+                    </h3>
+                    <ul class="text-slate-400 list-disc ml-4 space-y-1">
+                        <li>
+                            Run locally on Windows
+                        </li>
+                        <li>
+                            Or 24/7 in AWS
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
 
+        <!-- Pricing Section -->
+        <section class="py-20 px-4 md:px-12 max-w-7xl mx-auto" id="pricing">
+            <div class="text-center mb-20">
+                <div class="inline-block px-4 py-1 rounded-full bg-slate-800 text-sm font-medium mb-6">
+                    <span class="gradient-text">
+                        Low Fees
+                    </span>
+                </div>
+                <h2 class="text-3xl md:text-5xl font-bold mb-6 title-font">
+                    Fees which
+                    <span class="gradient-text">
+                        don't Break the Bank
+                    </span>
+                </h2>
+                <p class="text-lg text-slate-400 max-w-2xl mx-auto">Explore the <u>full featured</u> CrossyBot free forever for <u>all</u> trades less than $30.</p>
+            </div>
+            <div class="flex flex-col lg:flex-row justify-center items-center gap-6">
+                <!-- Free Tier -->
+                <div class="max-w-xs w-full overflow-hidden bg-white rounded-lg shadow-lg transition transform hover:scale-105 hover:shadow-xl">
+                    <div class="px-6 py-4 bg-gray-300">
+                        <h2 class="text-2xl font-semibold text-gray-800">
+                            Free Tier
+                        </h2>
+                        <p class="text-gray-600">
+                            For trades &le; $30
+                        </p>
+                    </div>
+                    <div class="px-6 py-4">
+                        <div class="text-4xl font-bold text-gray-800">
+                            0%
+                            <span class="text-lg text-gray-600">
+                                /automation
+                            </span>
+                        </div>
+                        <p class="text-gray-600">
+                            No credits required
+                        </p>
+                    </div>
+                    <div class="px-6 py-4">
+                        <ul class="text-gray-600 space-y-2">
+                            <li class="flex items-center">
+                                <svg class="w-4 h-4 mr-2 text-red-500" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+                                    <path d="M6 18L18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+                                </svg>
+                                Automations &gt; $30
+                            </li>
+                            <li class="flex items-center">
+                                <svg class="w-4 h-4 mr-2 text-green-500" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+                                    <path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+                                </svg>
+                                Manual trading 100% free
+                            </li>
+                            <li class="flex items-center">
+                                <svg class="w-4 h-4 mr-2 text-green-500" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+                                    <path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+                                </svg>
+                                Risk management features
+                            </li>
+                            <li class="flex items-center">
+                                <svg class="w-4 h-4 mr-2 text-green-500" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+                                    <path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+                                </svg>
+                                Personal Telegram bot
+                            </li>
+                            <li class="flex items-center">
+                                <svg class="w-4 h-4 mr-2 text-green-500" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+                                    <path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+                                </svg>
+                                Runs 24/7 in AWS
+                            </li>
+                            <li class="flex items-center">
+                                <svg class="w-4 h-4 mr-2 text-yellow-500" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 17.27L18.18 21 16.54 13.97 22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                                </svg>
+                                +20% off fees if referred
+                            </li>
+                            <li class="flex items-center">
+                                <svg class="w-4 h-4 mr-2 text-yellow-500" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 17.27L18.18 21 16.54 13.97 22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                                </svg>
+                                +10% of referral's fees**
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="px-6 pt-4 pb-6">
+                        <a class="block w-full px-4 py-2 font-semibold text-center text-white bg-gray-500 rounded hover:bg-gray-600 transition">
+                            Auto-applied
+                        </a>
+                    </div>
+                </div>
+                <!-- Standard Tier -->
+                <div class="max-w-xs w-full overflow-hidden bg-white rounded-lg shadow-lg transition transform hover:scale-105 hover:shadow-xl">
+                    <div class="px-6 py-4 bg-gradient-to-r from-indigo-500 to-purple-600">
+                        <h2 class="text-2xl font-semibold text-white">
+                            Standard Tier
+                        </h2>
+                        <p class="text-gray-200">
+                            For trades &gt; $30
+                        </p>
+                    </div>
+                    <div class="px-6 py-4">
+                        <div class="text-4xl font-bold text-gray-800">
+                            0.5%
+                            <span class="text-lg text-gray-600">
+                                /automation
+                            </span>
+                        </div>
+                        <p class="text-gray-600">
+                            No Credits, No Execution
+                        </p>
+                    </div>
+                    <div class="px-6 py-4">
+                        <ul class="text-gray-600 space-y-2">
+                            <li class="flex items-center">
+                                <svg class="w-4 h-4 mr-2 text-green-500" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+                                    <path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+                                </svg>
+                                Automations &gt; $30
+                            </li>
+                            <li class="flex items-center">
+                                <svg class="w-4 h-4 mr-2 text-green-500" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+                                    <path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+                                </svg>
+                                Manual trading 100% free
+                            </li>
+                            <li class="flex items-center">
+                                <svg class="w-4 h-4 mr-2 text-green-500" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+                                    <path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+                                </svg>
+                                Risk management features
+                            </li>
+                            <li class="flex items-center">
+                                <svg class="w-4 h-4 mr-2 text-green-500" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+                                    <path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+                                </svg>
+                                Personal Telegram bot
+                            </li>
+                            <li class="flex items-center">
+                                <svg class="w-4 h-4 mr-2 text-green-500" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+                                    <path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+                                </svg>
+                                Runs 24/7 in AWS
+                            </li>
+                            <li class="flex items-center">
+                                <svg class="w-4 h-4 mr-2 text-yellow-500" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 17.27L18.18 21 16.54 13.97 22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                                </svg>
+                                +20% off fees if referred
+                            </li>
+                            <li class="flex items-center">
+                                <svg class="w-4 h-4 mr-2 text-yellow-500" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 17.27L18.18 21 16.54 13.97 22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                                </svg>
+                                +10% of referral's fees**
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="px-6 pt-4 pb-6">
+                        <a class="block w-full px-4 py-2 font-semibold text-center text-white bg-indigo-500 rounded hover:bg-indigo-600 transition">
+                            Auto-applied
+                        </a>
+                    </div>
+                </div>
 
-  ## FIX MENU BUTTON ON MOBILE VIEW
+                <!-- Pro Tier -->
+                <div class="max-w-xs w-full overflow-hidden bg-white rounded-lg shadow-lg transition transform hover:scale-105 hover:shadow-xl">
+                    <div class="px-6 py-4 bg-gradient-to-r from-pink-500 to-red-500">
+                        <h2 class="text-2xl font-semibold text-white">Pro Tier</h2>
+                        <p class="text-gray-200">For trades &gt; $1000</p>
+                    </div>
+                    <div class="px-6 py-4">
+                        <div class="text-4xl font-bold text-gray-800">
+                            &lt; 0.5%
+                            <span class="text-lg text-gray-600">/automation</span>
+                        </div>
+                        <p class="text-gray-600">(Volume discounts auto-applied)</p>
+                    </div>
+                    <div class="px-6 py-4">
+                        <ul class="text-gray-600 space-y-2">
+                            <li class="flex items-center">
+                                <svg class="w-4 h-4 mr-2 text-yellow-500" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 17.27L18.18 21 16.54 13.97 22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                                </svg>
+                                +2% off 0.5% over $1k
+                            </li>
+                            <li class="flex items-center">
+                                <svg class="w-4 h-4 mr-2 text-yellow-500" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 17.27L18.18 21 16.54 13.97 22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                                </svg>
+                                +5% off 0.5% over $10k
+                            </li>
+                            <li class="flex items-center">
+                                <svg class="w-4 h-4 mr-2 text-yellow-500" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 17.27L18.18 21 16.54 13.97 22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                                </svg>
+                                +10% off 0.5% over $25k
+                            </li>
+                            <li class="flex items-center">
+                                <svg class="w-4 h-4 mr-2 text-yellow-500" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 17.27L18.18 21 16.54 13.97 22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                                </svg>
+                                +15% off 0.5% over $50k
+                            </li>
+                            <li class="flex items-center">
+                                <svg class="w-4 h-4 mr-2 text-yellow-500" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 17.27L18.18 21 16.54 13.97 22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                                </svg>
+                                +20% off 0.5% over $100k
+                            </li>
+                            <li class="flex items-center">
+                                <svg class="w-4 h-4 mr-2 text-yellow-500" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 17.27L18.18 21 16.54 13.97 22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                                </svg>
+                                Additional +20% off if referred
+                            </li>
+                            <li class="flex items-center">
+                                <svg class="w-4 h-4 mr-2 text-yellow-500" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 17.27L18.18 21 16.54 13.97 22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                                </svg>
+                                +10% of referral's fees**
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="px-6 pt-4 pb-6">
+                        <a class="block w-full px-4 py-2 font-semibold text-center text-white bg-pink-500 rounded hover:bg-pink-600 transition">
+                            Auto-applied
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <p class="text-center text-slate-500 mb-10">
+                <br />
+                **Referral fees can only be earned after your first deposit & as credits added directly to your account.
+            </p>
+        </section>
 
+        <!-- How CrossyBot works Section -->
+        <section class="py-20 px-4 md:px-12 bg-slate-900/50" id="how">
+            <div class="max-w-7xl mx-auto">
+                <div class="flex flex-col lg:flex-row lg:space-x-12">
+                    <!-- Left Column -->
+                    <div class="lg:w-1/2 mb-16 lg:mb-0">
+                        <div class="inline-block px-4 py-1 rounded-full bg-slate-800 text-sm font-medium mb-6">
+                            <span class="gradient-text">Time Tested</span>
+                        </div>
+                        <h2 class="text-3xl md:text-5xl font-bold mb-6 title-font">Simple Strategies, <span class="gradient-text">Big Results</span></h2>
+                        <p class="text-lg text-slate-400 mb-10">
+                            Use <u>moving averages</u> to track trends, ride the wave and level up your trading experience (watch
+                            <a class="text-blue-600 underline" href="https://www.youtube.com/watch?v=6flHiM5-n50&amp;t=17s&amp;ab_channel=TradePrime" target="_blank"> this video</a> if you're new to moving averages).
+                        </p>
+                        <div class="space-y-6">
+                            <div class="flex items-start">
+                                <div class="w-8 h-8 rounded-full bg-pink-500/10 flex items-center justify-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-pink-400" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                                    </svg>
+                                </div>
+                                <div class="ml-4">
+                                    <h3 class="text-lg font-bold mb-1">What’s a Moving Average?</h3>
+                                    <p class="text-slate-400">
+                                        Moving averages (MAs) smooth price over time to cut through noise, show trend direction, strength, and potential reversal points. MAs are often used to spot bias, confirm signals, and find
+                                        support/resistance. <br />
+                                        An 'EMA' is a type of moving average which gives recent data greater weight in averaging calculations & is more responsive to sudden market shifts than a simple moving average.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="w-8 h-8 rounded-full bg-pink-500/10 flex items-center justify-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-pink-400" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                                    </svg>
+                                </div>
+                                <div class="ml-4">
+                                    <h3 class="text-lg font-bold mb-1">What’s an EMA Crossover?</h3>
+                                    <p class="text-slate-400">
+                                        Shorter EMAs respond faster than longer EMAs.<br />
+                                        A crossover is when the short EMA crosses above long (bullish) & a crossunder is when the short EMA crosses below long (bearish). Simple, effective trend-following.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="w-8 h-8 rounded-full bg-pink-500/10 flex items-center justify-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-pink-400" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                                    </svg>
+                                </div>
+                                <div class="ml-4">
+                                    <h3 class="text-lg font-bold mb-1">How CrossyBot Uses EMAs</h3>
+                                    <p class="text-slate-400">
+                                        <b>Standard mode:</b><br />
+                                        Higher timeframe sets the trend bias & Lower timeframe crossover confirms entry - ensuring entries are always aligned with broader market momentum.
+                                    </p>
+                                    <p class="text-slate-400 text-sm mt-1 italic">E.g. 1H is bullish, 5min crosses up → go long.<br /></p>
+                                    <p class="text-slate-400">
+                                        <br />
+                                        <b>One Shot mode:</b><br />
+                                        Enters on next matching Lower timeframe EMA cross.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="w-8 h-8 rounded-full bg-pink-500/10 flex items-center justify-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-pink-400" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                                    </svg>
+                                </div>
+                                <div class="ml-4">
+                                    <h3 class="text-lg font-bold mb-1">When CrossyBot Exits Trades</h3>
+                                    <p class="text-slate-400">
+                                        If EMAs cross against your trade when in profit (signalling trend end) - your trade will be exited.<br />
+                                        All other trades will remain open & monitored until a profitable EMA cross or stop-loss has been hit.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Right Column with Icons -->
+                    <div class="lg:w-1/2 flex flex-col items-center justify-center space-y-4">
+                        <div class="inline-block px-4 py-1 rounded-full bg-slate-800 text-sm font-medium mb-6">
+                            <span class="gradient-text">Multi-OS support</span>
+                        </div>
+                        <h2 class="text-3xl md:text-5xl font-bold mb-6 title-font">Available <span class="gradient-text">on</span></h2>
+                        <br />
+                        <div class="flex flex-row items-center justify-center space-x-8">
+                            <!-- Windows -->
+                            <div class="flex flex-col items-center">
+                                <svg width="100" height="100" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <g fill="none" fill-rule="evenodd" transform="translate(0 1)">
+                                        <path fill="#F35325" d="M2.613 9.096h7.187V1.823L2.613 2.783z" />
+                                        <path fill="#81BC06" d="M10.613 9.096h7.187V1.202l-7.187.98z" />
+                                        <path fill="#FFBA08" d="M2.613 10.216v7.273l7.187.94V10.216z" />
+                                        <path fill="#05A6F0" d="M10.613 10.216v8.075l7.187.94v-9.015z" />
+                                    </g>
+                                </svg>
+                                <span class="text-slate-400 text-sm mt-1">Windows</span>
+                            </div>
 
-  <!-- Pricing Section -->
-  <section class="py-20 px-4 md:px-12 max-w-7xl mx-auto" id="pricing">
-   <div class="text-center mb-20">
-    <h2 class="text-3xl md:text-5xl font-bold mb-6 title-font">
-     Fees which
-     <span class="gradient-text">
-      don't Break the Bank
-     </span>
-    </h2>
-    <p class="text-lg text-slate-400 max-w-2xl mx-auto">
-     Explore the
-     <u>
-      full featured
-     </u>
-     CrossyBot free forever for
-     <u>
-      all
-     </u>
-     trades less than $30.
-    </p>
-   </div>
-   <div class="flex flex-col lg:flex-row justify-center items-center gap-6">
-    <!-- Free Tier -->
-    <div class="max-w-xs w-full overflow-hidden bg-white rounded-lg shadow-lg transition transform hover:scale-105 hover:shadow-xl">
-     <div class="px-6 py-4 bg-gray-300">
-      <h2 class="text-2xl font-semibold text-gray-800">
-       Free Tier
-      </h2>
-      <p class="text-gray-600">
-       For trades &le; $30
-      </p>
-     </div>
-     <div class="px-6 py-4">
-      <div class="text-4xl font-bold text-gray-800">
-       0%
-       <span class="text-lg text-gray-600">
-        /automation
-       </span>
-      </div>
-      <p class="text-gray-600">
-       No credits required
-      </p>
-     </div>
-     <div class="px-6 py-4">
-      <ul class="text-gray-600 space-y-2">
-       <li class="flex items-center">
-        <svg class="w-4 h-4 mr-2 text-red-500" fill="none" stroke="currentColor" viewbox="0 0 24 24">
-         <path d="M6 18L18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
-         </path>
-        </svg>
-        Automations &gt; $30
-       </li>
-       <li class="flex items-center">
-        <svg class="w-4 h-4 mr-2 text-green-500" fill="none" stroke="currentColor" viewbox="0 0 24 24">
-         <path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
-         </path>
-        </svg>
-        Manual trading 100% free
-       </li>
-       <li class="flex items-center">
-        <svg class="w-4 h-4 mr-2 text-green-500" fill="none" stroke="currentColor" viewbox="0 0 24 24">
-         <path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
-         </path>
-        </svg>
-        Risk management features
-       </li>
-       <li class="flex items-center">
-        <svg class="w-4 h-4 mr-2 text-green-500" fill="none" stroke="currentColor" viewbox="0 0 24 24">
-         <path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
-         </path>
-        </svg>
-        Personal Telegram bot
-       </li>
-       <li class="flex items-center">
-        <svg class="w-4 h-4 mr-2 text-green-500" fill="none" stroke="currentColor" viewbox="0 0 24 24">
-         <path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
-         </path>
-        </svg>
-        Runs 24/7 in AWS
-       </li>
-      </ul>
-     </div>
-     <div class="px-6 pt-4 pb-6">
-      <a class="block w-full px-4 py-2 font-semibold text-center text-white bg-gray-500 rounded hover:bg-gray-600 transition">
-      Auto-applied
-    </a>
-     </div>
-    </div>
-    <!-- Standard Tier -->
-    <div class="max-w-xs w-full overflow-hidden bg-white rounded-lg shadow-lg transition transform hover:scale-105 hover:shadow-xl">
-     <div class="px-6 py-4 bg-gradient-to-r from-indigo-500 to-purple-600">
-      <h2 class="text-2xl font-semibold text-white">
-       Standard Tier
-      </h2>
-      <p class="text-gray-200">
-       For trades &gt; $30
-      </p>
-     </div>
-     <div class="px-6 py-4">
-      <div class="text-4xl font-bold text-gray-800">
-       0.5%
-       <span class="text-lg text-gray-600">
-        /automation
-       </span>
-      </div>
-      <p class="text-gray-600">
-       Credits required
-      </p>
-     </div>
-     <div class="px-6 py-4">
-      <ul class="text-gray-600 space-y-2">
-       <li class="flex items-center">
-        <svg class="w-4 h-4 mr-2 text-green-500" fill="none" stroke="currentColor" viewbox="0 0 24 24">
-         <path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
-         </path>
-        </svg>
-        Automations &gt; $30
-       </li>
-       <li class="flex items-center">
-        <svg class="w-4 h-4 mr-2 text-green-500" fill="none" stroke="currentColor" viewbox="0 0 24 24">
-         <path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
-         </path>
-        </svg>
-        Manual trading 100% free
-       </li>
-       <li class="flex items-center">
-        <svg class="w-4 h-4 mr-2 text-green-500" fill="none" stroke="currentColor" viewbox="0 0 24 24">
-         <path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
-         </path>
-        </svg>
-        Risk management features
-       </li>
-       <li class="flex items-center">
-        <svg class="w-4 h-4 mr-2 text-green-500" fill="none" stroke="currentColor" viewbox="0 0 24 24">
-         <path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
-         </path>
-        </svg>
-        Personal Telegram bot
-       </li>
-       <li class="flex items-center">
-        <svg class="w-4 h-4 mr-2 text-green-500" fill="none" stroke="currentColor" viewbox="0 0 24 24">
-         <path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
-         </path>
-        </svg>
-        Runs 24/7 in AWS
-       </li>
-      </ul>
-     </div>
-     <div class="px-6 pt-4 pb-6">
-      <a class="block w-full px-4 py-2 font-semibold text-center text-white bg-indigo-500 rounded hover:bg-indigo-600 transition">
-      Auto-applied
-      </a>
-     </div>
-    </div>
+                            <!-- Linux -->
+                            <div class="flex flex-col items-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 256 295">
+                                    <defs>
+                                        <linearGradient id="logosLinuxTux0" x1="48.548%" x2="51.047%" y1="115.276%" y2="41.364%">
+                                            <stop offset="0%" stop-color="#FFEED7" />
+                                            <stop offset="100%" stop-color="#BDBFC2" />
+                                        </linearGradient>
+                                        <linearGradient id="logosLinuxTux1" x1="54.407%" x2="46.175%" y1="2.404%" y2="90.542%">
+                                            <stop offset="0%" stop-color="#FFF" stop-opacity=".8" />
+                                            <stop offset="100%" stop-color="#FFF" stop-opacity="0" />
+                                        </linearGradient>
+                                        <linearGradient id="logosLinuxTux2" x1="51.86%" x2="47.947%" y1="88.248%" y2="9.748%">
+                                            <stop offset="0%" stop-color="#FFEED7" />
+                                            <stop offset="100%" stop-color="#BDBFC2" />
+                                        </linearGradient>
+                                        <linearGradient id="logosLinuxTux3" x1="49.925%" x2="49.924%" y1="85.49%" y2="13.811%">
+                                            <stop offset="0%" stop-color="#FFEED7" />
+                                            <stop offset="100%" stop-color="#BDBFC2" />
+                                        </linearGradient>
+                                        <linearGradient id="logosLinuxTux4" x1="53.901%" x2="45.956%" y1="3.102%" y2="93.895%">
+                                            <stop offset="0%" stop-color="#FFF" stop-opacity=".65" />
+                                            <stop offset="100%" stop-color="#FFF" stop-opacity="0" />
+                                        </linearGradient>
+                                        <linearGradient id="logosLinuxTux5" x1="45.593%" x2="54.811%" y1="5.475%" y2="93.524%">
+                                            <stop offset="0%" stop-color="#FFF" stop-opacity=".65" />
+                                            <stop offset="100%" stop-color="#FFF" stop-opacity="0" />
+                                        </linearGradient>
+                                        <linearGradient id="logosLinuxTux6" x1="49.984%" x2="49.984%" y1="89.845%" y2="40.632%">
+                                            <stop offset="0%" stop-color="#FFEED7" />
+                                            <stop offset="100%" stop-color="#BDBFC2" />
+                                        </linearGradient>
+                                        <linearGradient id="logosLinuxTux7" x1="53.505%" x2="42.746%" y1="99.975%" y2="23.545%">
+                                            <stop offset="0%" stop-color="#FFEED7" />
+                                            <stop offset="100%" stop-color="#BDBFC2" />
+                                        </linearGradient>
+                                        <linearGradient id="logosLinuxTux8" x1="49.841%" x2="50.241%" y1="13.229%" y2="94.673%">
+                                            <stop offset="0%" stop-color="#FFF" stop-opacity=".8" />
+                                            <stop offset="100%" stop-color="#FFF" stop-opacity="0" />
+                                        </linearGradient>
+                                        <linearGradient id="logosLinuxTux9" x1="49.927%" x2="50.727%" y1="37.327%" y2="92.782%">
+                                            <stop offset="0%" stop-color="#FFF" stop-opacity=".65" />
+                                            <stop offset="100%" stop-color="#FFF" stop-opacity="0" />
+                                        </linearGradient>
+                                        <linearGradient id="logosLinuxTuxa" x1="49.876%" x2="49.876%" y1="2.299%" y2="81.204%">
+                                            <stop offset="0%" stop-color="#FFF" stop-opacity=".65" />
+                                            <stop offset="100%" stop-color="#FFF" stop-opacity="0" />
+                                        </linearGradient>
+                                        <linearGradient id="logosLinuxTuxb" x1="49.833%" x2="49.824%" y1="2.272%" y2="71.799%">
+                                            <stop offset="0%" stop-color="#FFF" stop-opacity=".65" />
+                                            <stop offset="100%" stop-color="#FFF" stop-opacity="0" />
+                                        </linearGradient>
+                                        <linearGradient id="logosLinuxTuxc" x1="53.467%" x2="38.949%" y1="48.921%" y2="98.1%">
+                                            <stop offset="0%" stop-color="#FFA63F" />
+                                            <stop offset="100%" stop-color="#FF0" />
+                                        </linearGradient>
+                                        <linearGradient id="logosLinuxTuxd" x1="52.373%" x2="47.579%" y1="143.009%" y2="-64.622%">
+                                            <stop offset="0%" stop-color="#FFEED7" />
+                                            <stop offset="100%" stop-color="#BDBFC2" />
+                                        </linearGradient>
+                                        <linearGradient id="logosLinuxTuxe" x1="30.581%" x2="65.887%" y1="34.024%" y2="89.175%">
+                                            <stop offset="0%" stop-color="#FFA63F" />
+                                            <stop offset="100%" stop-color="#FF0" />
+                                        </linearGradient>
+                                        <linearGradient id="logosLinuxTuxf" x1="59.572%" x2="48.361%" y1="-17.216%" y2="66.118%">
+                                            <stop offset="0%" stop-color="#FFF" stop-opacity=".65" />
+                                            <stop offset="100%" stop-color="#FFF" stop-opacity="0" />
+                                        </linearGradient>
+                                        <linearGradient id="logosLinuxTuxg" x1="47.769%" x2="51.373%" y1="1.565%" y2="104.313%">
+                                            <stop offset="0%" stop-color="#FFF" stop-opacity=".65" />
+                                            <stop offset="100%" stop-color="#FFF" stop-opacity="0" />
+                                        </linearGradient>
+                                        <linearGradient id="logosLinuxTuxh" x1="43.55%" x2="57.114%" y1="4.533%" y2="92.827%">
+                                            <stop offset="0%" stop-color="#FFF" stop-opacity=".65" />
+                                            <stop offset="100%" stop-color="#FFF" stop-opacity="0" />
+                                        </linearGradient>
+                                        <linearGradient id="logosLinuxTuxi" x1="49.733%" x2="50.558%" y1="17.609%" y2="99.385%">
+                                            <stop offset="0%" stop-color="#FFA63F" />
+                                            <stop offset="100%" stop-color="#FF0" />
+                                        </linearGradient>
+                                        <linearGradient id="logosLinuxTuxj" x1="50.17%" x2="49.68%" y1="2.89%" y2="94.17%">
+                                            <stop offset="0%" stop-color="#FFF" stop-opacity=".65" />
+                                            <stop offset="100%" stop-color="#FFF" stop-opacity="0" />
+                                        </linearGradient>
+                                        <filter id="logosLinuxTuxk" width="200%" height="200%" x="-50%" y="-50%" filterUnits="objectBoundingBox">
+                                            <feOffset in="SourceAlpha" result="shadowOffsetOuter1" />
+                                            <feGaussianBlur in="shadowOffsetOuter1" result="shadowBlurOuter1" stdDeviation="6.5" />
+                                        </filter>
+                                    </defs>
+                                    <g fill="none">
+                                        <path
+                                            fill="#000"
+                                            fill-opacity=".2"
+                                            d="M235.125 249.359c0 17.355-52.617 31.497-117.54 31.497S.044 266.806.044 249.359c0-17.356 52.618-31.498 117.54-31.498c64.924 0 117.45 14.142 117.541 31.498Z"
+                                            filter="url(#logosLinuxTuxk)"
+                                            transform="translate(10)"
+                                        />
+                                        <path
+                                            fill="#000"
+                                            d="M63.213 215.474c-11.387-16.346-13.591-69.606 12.947-102.39C89.292 97.383 92.69 86.455 93.7 71.67c.734-16.805-11.846-66.851 35.537-70.616c48.027-3.857 45.364 43.526 45.088 68.596c-.183 21.12 15.52 33.15 26.355 49.68c19.927 30.303 18.274 82.461-3.765 110.745c-27.916 35.354-51.791 20.018-67.678 21.304c-29.752 1.745-30.762 17.54-66.024-35.905Z"
+                                        />
+                                        <path
+                                            fill="url(#logosLinuxTux0)"
+                                            d="M169.1 122.451c8.265 7.622 29.661 41.69-4.224 62.995c-11.937 7.438 10.653 35.721 21.488 22.039c19.193-24.61 6.98-63.913-4.591-77.963c-7.714-9.917-19.651-13.774-12.672-7.07Z"
+                                            transform="translate(10)"
+                                        />
+                                        <path
+                                            fill="#000"
+                                            stroke="#000"
+                                            stroke-width=".977"
+                                            d="M176.805 117.86c13.59 11.02 38.292 49.587 2.204 74.748c-11.846 7.806 10.468 32.508 23.049 19.927c43.618-43.894-1.102-94.308-16.53-111.664c-13.774-15.151-25.987 3.49-8.723 16.989Z"
+                                        />
+                                        <path
+                                            fill="url(#logosLinuxTux1)"
+                                            d="M147.245 25.02c-.459 12.581-14.325 23.51-30.946 24.52c-16.621 1.01-29.66-8.54-29.202-21.121c.46-12.581 14.326-23.509 30.947-24.519c16.62-.918 29.66 8.54 29.201 21.12Z"
+                                            transform="translate(10)"
+                                        />
+                                        <path
+                                            fill="url(#logosLinuxTux2)"
+                                            d="M107.483 54.957c.46 8.173-3.397 15.06-8.723 15.335c-5.326.276-10.01-6.06-10.469-14.233c-.459-8.173 3.398-15.06 8.724-15.335c5.326-.276 10.01 6.06 10.468 14.233Z"
+                                            transform="translate(10)"
+                                        />
+                                        <path
+                                            fill="url(#logosLinuxTux3)"
+                                            d="M117.125 55.6c.184 9.458 6.337 16.988 13.683 16.805c7.346-.184 13.131-7.99 12.948-17.54c-.184-9.458-6.336-16.988-13.683-16.804c-7.346.183-13.223 8.08-12.948 17.539Z"
+                                            transform="translate(10)"
+                                        />
+                                        <path
+                                            fill="#000"
+                                            d="M133.186 57.712c-.092 5.234 2.48 9.458 5.877 9.458c3.306 0 6.153-4.224 6.245-9.366c.091-5.234-2.48-9.459-5.878-9.459c-3.397 0-6.152 4.225-6.244 9.367Zm-21.212.092c.459 4.316-1.194 7.989-3.582 8.356c-2.387.276-4.683-2.938-5.142-7.254c-.46-4.316 1.194-7.99 3.581-8.357c2.388-.275 4.684 2.939 5.143 7.255Z"
+                                        />
+                                        <path
+                                            fill="url(#logosLinuxTux4)"
+                                            d="M124.564 54.773c-.276 2.939 1.102 5.326 3.03 5.51c1.928.184 3.765-2.112 4.04-4.959c.276-2.938-1.102-5.326-3.03-5.51c-1.928-.183-3.765 2.113-4.04 4.96Z"
+                                            transform="translate(10)"
+                                        />
+                                        <path
+                                            fill="url(#logosLinuxTux5)"
+                                            d="M99.953 55.508c.276 2.388-.734 4.5-2.203 4.683c-1.47.184-2.847-1.653-3.123-4.132c-.275-2.388.735-4.5 2.204-4.683c1.47-.184 2.847 1.744 3.122 4.132Z"
+                                            transform="translate(10)"
+                                        />
+                                        <path
+                                            fill="url(#logosLinuxTux6)"
+                                            d="M71.027 145.684c6.52-14.785 20.386-40.772 20.662-60.883c0-15.978 47.843-19.835 51.7-3.856c3.856 15.978 13.59 39.853 19.834 51.424c6.245 11.478 24.335 48.118 5.051 80.074c-17.356 28.284-69.973 50.69-98.073-3.856c-9.55-18.917-7.806-42.333.826-62.903Z"
+                                            transform="translate(10)"
+                                        />
+                                        <path
+                                            fill="url(#logosLinuxTux7)"
+                                            d="M65.15 134.664c-5.601 10.56-17.172 38.293 11.112 53.445c30.395 16.162 30.303 49.312-6.245 33.517c-33.425-14.233-18.641-71.902-9.274-85.676c6.06-9.642 15.243-21.488 4.407-1.286Z"
+                                            transform="translate(10)"
+                                        />
+                                        <path
+                                            fill="#000"
+                                            stroke="#000"
+                                            stroke-width="1.25"
+                                            d="M79.925 122.727c-8.907 14.509-30.211 48.669-1.652 66.484c38.384 23.6 27.548 47.108-7.53 25.895c-49.404-29.568-5.97-89.257 13.774-112.03c22.59-25.529 4.316 4.683-4.592 19.65Z"
+                                        />
+                                        <path
+                                            fill="url(#logosLinuxTux8)"
+                                            d="M156.428 151.285c0 16.162-15.519 37.1-42.15 36.916c-27.456.183-39.118-20.754-39.118-36.916c0-16.161 18.182-29.293 40.588-29.293c22.498.092 40.68 13.132 40.68 29.293Z"
+                                            transform="translate(10)"
+                                        />
+                                        <path
+                                            fill="url(#logosLinuxTux9)"
+                                            d="M141.92 100.504c-.276 16.713-11.204 20.662-24.978 20.662c-13.775 0-23.784-2.48-24.978-20.662c0-11.387 11.203-17.998 24.978-17.998c13.774-.092 24.977 6.52 24.977 17.998Z"
+                                            transform="translate(10)"
+                                        />
+                                        <path
+                                            fill="url(#logosLinuxTuxa)"
+                                            d="M58.63 126.216c9-13.682 28.008-34.711 3.582 2.939c-19.835 31.038-7.346 50.965-.918 56.474c18.549 16.53 17.814 27.64 3.214 18.917c-31.314-18.641-24.794-50.047-5.878-78.33Z"
+                                            transform="translate(10)"
+                                        />
+                                        <path
+                                            fill="url(#logosLinuxTuxb)"
+                                            d="M188.936 131.818c-7.806-16.07-32.6-56.842 1.193-9.459c30.763 42.884 9.183 72.729 5.326 75.667c-3.856 2.939-16.804 8.908-13.04-1.469c3.858-10.377 22.958-30.028 6.52-64.74Z"
+                                            transform="translate(10)"
+                                        />
+                                        <path
+                                            fill="url(#logosLinuxTuxc)"
+                                            stroke="#E68C3F"
+                                            stroke-width="6.25"
+                                            d="M51.835 258.542c-20.57-10.928-50.414 2.112-39.578-27.457c2.204-6.704-3.214-16.805.275-23.325c4.133-7.989 13.04-6.244 18.366-11.57c5.234-5.51 8.54-15.06 18.366-13.59c9.734 1.468 16.254 13.406 23.049 28.099c5.05 10.468 22.865 25.253 21.672 37.007c-1.47 17.998-21.948 21.396-42.15 10.836Z"
+                                            transform="translate(10)"
+                                        />
+                                        <path
+                                            fill="url(#logosLinuxTuxd)"
+                                            d="M201.608 189.119c-3.122 5.877-16.162 15.335-24.886 12.856c-8.815-2.388-12.856-15.795-11.111-25.988c1.653-11.386 11.111-12.03 23.05-6.336c12.855 6.336 16.712 11.662 12.947 19.468Z"
+                                            transform="translate(10)"
+                                        />
+                                        <path
+                                            fill="url(#logosLinuxTuxe)"
+                                            stroke="#E68C3F"
+                                            stroke-width="6.251"
+                                            d="M194.445 253.49c15.06-18.273 48.578-14.508 25.988-39.577c-4.775-5.418-3.306-16.989-9.183-21.947c-6.887-6.061-14.509-1.102-21.488-4.224c-6.979-3.398-14.325-9.918-22.865-5.327c-8.54 4.684-9.459 16.805-10.285 32.783c-.735 11.479-11.203 30.671-5.602 41.231c8.081 16.346 29.11 14.142 43.435-2.938Z"
+                                            transform="translate(10)"
+                                        />
+                                        <path
+                                            fill="url(#logosLinuxTuxf)"
+                                            d="M187.925 229.064c23.325-34.435 5.97-34.16.092-36.823c-5.877-2.755-12.03-8.173-18.916-4.408c-6.888 3.857-7.255 13.775-7.439 26.814c-.275 9.367-8.08 25.07-3.397 33.793c5.693 10.193 19.467-4.591 29.66-19.376Z"
+                                            transform="translate(10)"
+                                        />
+                                        <path
+                                            fill="url(#logosLinuxTuxg)"
+                                            d="M47.06 234.023c-34.895-22.59-18.55-30.303-13.315-33.885c6.336-4.591 6.428-13.407 14.233-12.58c7.806.826 12.397 10.468 17.631 22.406c3.857 8.54 17.264 19.927 16.254 29.753c-1.285 11.57-19.743 3.948-34.803-5.694Z"
+                                            transform="translate(10)"
+                                        />
+                                        <path fill="#000" d="M209.588 188.843c-2.755 4.776-13.958 12.306-21.396 10.285c-7.622-1.928-11.112-12.672-9.55-20.753c1.377-9.183 9.55-9.642 19.834-5.05c10.928 4.958 14.326 9.182 11.112 15.518Z" />
+                                        <path
+                                            fill="url(#logosLinuxTuxh)"
+                                            d="M192.058 186.18c-1.745 3.306-9.091 8.54-14.234 7.163c-5.142-1.377-7.713-8.815-6.887-14.417c.735-6.336 6.244-6.704 13.223-3.581c7.53 3.49 9.918 6.428 7.898 10.835Z"
+                                            transform="translate(10)"
+                                        />
+                                        <path
+                                            fill="url(#logosLinuxTuxi)"
+                                            stroke="#E68C3F"
+                                            stroke-width="3.75"
+                                            d="M97.107 66.344c3.673-3.398 12.58-13.774 29.477-2.939c3.122 2.02 5.693 2.204 11.662 4.775c12.03 4.96 6.336 16.897-6.52 20.937c-5.51 1.745-10.468 8.449-20.386 7.806c-8.54-.46-10.744-6.06-15.978-9.091c-9.275-5.234-10.652-12.305-5.602-16.07c5.051-3.765 6.98-5.143 7.347-5.418Z"
+                                            transform="translate(10)"
+                                        />
+                                        <path stroke="#E68C3F" stroke-width="2.5" d="M148.43 75.986c-5.05.275-15.979 11.203-27.457 11.203c-11.479 0-18.366-10.652-20.11-10.652" />
+                                        <path
+                                            fill="url(#logosLinuxTuxj)"
+                                            d="M102.8 65.426c1.837-1.653 7.622-6.153 15.244-1.562c1.653.919 3.306 1.929 5.693 3.306c4.867 2.847 2.48 6.98-3.398 9.55c-2.663 1.102-7.07 3.49-10.376 3.306c-3.673-.367-6.153-2.755-8.54-4.316c-4.5-2.938-4.224-5.418-2.112-7.346c1.56-1.47 3.305-2.847 3.49-2.938Z"
+                                            transform="translate(10)"
+                                        />
+                                    </g>
+                                </svg>
+                                <span class="text-slate-400 text-sm mt-1">Linux</span>
+                            </div>
 
-       <!-- Pro Tier -->
-    <div class="max-w-xs w-full overflow-hidden bg-white rounded-lg shadow-lg transition transform hover:scale-105 hover:shadow-xl">
-  <div class="px-6 py-4 bg-gradient-to-r from-pink-500 to-red-500">
-    <h2 class="text-2xl font-semibold text-white">Pro Tier</h2>
-    <p class="text-gray-200">For trades &gt; $1000</p>
-  </div>
-  <div class="px-6 py-4">
-    <div class="text-4xl font-bold text-gray-800">
-      &lt; 0.49%
-      <span class="text-lg text-gray-600">/automation</span>
-    </div>
-    <p class="text-gray-600">Volume-based discounts apply</p>
-  </div>
-  <div class="px-6 py-4">
-    <ul class="text-gray-600 space-y-2">
-      <li class="flex items-center">
-        <svg class="w-4 h-4 mr-2 text-yellow-500" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M12 17.27L18.18 21 16.54 13.97 22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
-        </svg>
-        +2% off over $1k
-      </li>
-      <li class="flex items-center">
-        <svg class="w-4 h-4 mr-2 text-yellow-500" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M12 17.27L18.18 21 16.54 13.97 22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
-        </svg>
-        +5% off over $10k
-      </li>
-      <li class="flex items-center">
-        <svg class="w-4 h-4 mr-2 text-yellow-500" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M12 17.27L18.18 21 16.54 13.97 22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
-        </svg>
-        +10% off over $25k
-      </li>
-      <li class="flex items-center">
-        <svg class="w-4 h-4 mr-2 text-yellow-500" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M12 17.27L18.18 21 16.54 13.97 22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
-        </svg>
-        +15% off over $50k
-      </li>
-      <li class="flex items-center">
-        <svg class="w-4 h-4 mr-2 text-yellow-500" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M12 17.27L18.18 21 16.54 13.97 22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
-        </svg>
-        +20% off over $100k
-      </li>
-    </ul>
-  </div>
-  <div class="px-6 pt-4 pb-6">
-    <a class="block w-full px-4 py-2 font-semibold text-center text-white bg-pink-500 rounded hover:bg-pink-600 transition">
-      Auto-applied
-    </a>
-  </div>
-</div>
-  </section>
+                            <!-- Ubuntu -->
+                            <div class="flex flex-col items-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 256 256">
+                                    <path fill="#DD4814" d="M255.637 127.683c0 70.514-57.165 127.68-127.683 127.68C57.434 255.363.27 198.197.27 127.683C.27 57.165 57.436 0 127.954 0c70.519 0 127.683 57.165 127.683 127.683Z" />
+                                    <path
+                                        fill="#FFF"
+                                        d="M41.133 110.633c-9.419 0-17.05 7.631-17.05 17.05c0 9.414 7.631 17.046 17.05 17.046c9.415 0 17.046-7.632 17.046-17.046c0-9.419-7.631-17.05-17.046-17.05Zm121.715 77.478c-8.153 4.71-10.95 15.13-6.24 23.279c4.705 8.154 15.125 10.949 23.279 6.24c8.153-4.705 10.949-15.125 6.24-23.28c-4.705-8.148-15.131-10.943-23.279-6.239Zm-84.686-60.428c0-16.846 8.368-31.73 21.171-40.742L86.87 66.067c-14.914 9.97-26.012 25.204-30.624 43.047c5.382 4.39 8.826 11.075 8.826 18.568c0 7.489-3.444 14.174-8.826 18.565C60.852 164.094 71.95 179.33 86.87 189.3l12.463-20.88c-12.803-9.007-21.171-23.89-21.171-40.737Zm49.792-49.797c26.013 0 47.355 19.944 49.595 45.38l24.29-.358c-1.194-18.778-9.398-35.636-22.002-48.032c-6.482 2.449-13.97 2.074-20.44-1.656c-6.483-3.741-10.548-10.052-11.659-16.902a74.26 74.26 0 0 0-19.785-2.69a73.787 73.787 0 0 0-32.819 7.663l11.845 21.227a49.596 49.596 0 0 1 20.975-4.632Zm0 99.59a49.601 49.601 0 0 1-20.974-4.632l-11.845 21.225a73.712 73.712 0 0 0 32.82 7.671a74.04 74.04 0 0 0 19.784-2.697c1.111-6.85 5.177-13.155 11.658-16.902c6.476-3.737 13.959-4.105 20.44-1.656c12.605-12.396 20.808-29.254 22.004-48.032l-24.297-.358c-2.235 25.443-23.576 45.38-49.59 45.38Zm34.888-110.231c8.154 4.708 18.575 1.92 23.279-6.234c4.71-8.154 1.92-18.575-6.234-23.285c-8.154-4.704-18.574-1.91-23.285 6.244c-4.703 8.15-1.908 18.57 6.24 23.275Z"
+                                    />
+                                </svg>
+                                <span class="text-slate-400 text-sm mt-1">Ubuntu</span>
+                            </div>
+                        </div>
+                        <!-- Setup Button at Bottom Center -->
+                        <div class="text-center py-10">
+                            <a class="px-8 py-4 rounded-full gradient-bg text-white font-bold hover:opacity-90 transition transform hover:scale-105 glow-effect inline-block" href="setup.html">
+                                Start Setup
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-  <!-- Setup Button at Bottom Center -->
-  <div class="text-center py-10">
-   <a class="px-8 py-4 rounded-full gradient-bg text-white font-bold hover:opacity-90 transition transform hover:scale-105 glow-effect inline-block" href="setup.html">
-    How to Setup
-   </a>
-  </div>
+        <!-- Footer -->
+        <footer class="bg-gray-900 text-slate-400 py-8">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col items-center space-y-4">
+                    <!-- Logo and Title (match navbar) -->
+                    <div class="flex items-center space-x-2">
+                        <div class="w-8 h-8 rounded-full gradient-bg flex items-center justify-center">
+                            <svg class="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M5 19L19 5M19 5L19 9M19 5L15 5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+                                <path d="M5 5L8.5 8.5L9.375 9.375M19 19L15 19M19 19L19 15M19 19L15.5 15.5L14.625 14.625" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+                            </svg>
+                        </div>
+                        <span class="text-xl font-bold title-font text-white">
+                            CrossyBot
+                        </span>
+                    </div>
+                    <!-- Links -->
+                    <div class="flex space-x-6 items-center">
+                        <a href="#eula" class="text-sm hover:text-white transition">Licences & End user licence agreement (EULA)</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
 
-
- 
-<script>
-  const menuButton = document.querySelector("nav button.md\:hidden");
-  const navLinks = document.createElement("div");
-  navLinks.className = "md:hidden flex flex-col mt-4 space-y-2";
-  navLinks.innerHTML = `
+        <script>
+            const menuButton = document.querySelector("nav button.md\:hidden");
+            const navLinks = document.createElement("div");
+            navLinks.className = "md:hidden flex flex-col mt-4 space-y-2";
+            navLinks.innerHTML = `
     <a href="#home" class="text-slate-300 hover:text-white transition">Home</a>
     <a href="#features" class="text-slate-300 hover:text-white transition">Features</a>
     <a href="#pricing" class="text-slate-300 hover:text-white transition">Pricing</a>
     <a href="setup.html" class="text-slate-300 hover:text-white transition">Setup</a>
     <a href="guide.html" class="text-slate-300 hover:text-white transition">User Guide</a>
-    <a href="how.html" class="text-slate-300 hover:text-white transition">How it Works</a>
+    <a href="how.html" class="text-slate-300 hover:text-white transition">How CrossyBot Works</a>
   `;
-  let isOpen = false;
-  menuButton.addEventListener("click", () => {
-    const parent = menuButton.closest("nav").querySelector(".max-w-7xl");
-    if (!isOpen) {
-      parent.appendChild(navLinks);
-    } else {
-      navLinks.remove();
+            let isOpen = false;
+            menuButton.addEventListener("click", () => {
+                const parent = menuButton.closest("nav").querySelector(".max-w-7xl");
+                if (!isOpen) {
+                    parent.appendChild(navLinks);
+                } else {
+                    navLinks.remove();
+                }
+                isOpen = !isOpen;
+            });
+        </script>
+        <script>
+            const menuBtn = document.getElementById("menu-toggle");
+            const mobileMenu = document.getElementById("mobile-menu");
+            const links = document.querySelectorAll(".menu-link");
+
+            function toggleMenu() {
+                mobileMenu.classList.toggle("translate-x-full");
+                mobileMenu.classList.toggle("translate-x-0");
+            }
+
+            menuBtn.addEventListener("click", toggleMenu);
+
+            links.forEach((link) => {
+                link.addEventListener("click", () => {
+                    if (mobileMenu.classList.contains("translate-x-0")) {
+                        toggleMenu();
+                    }
+                });
+            });
+        </script>
+        <!-- Typewriter -->
+        <script>
+    const el = document.getElementById("typewriter");
+    const text = "or Trades for you";
+    let i = 0;
+    let forward = true;
+
+    function loopType() {
+        el.textContent = text.slice(0, i);
+
+        if (forward) {
+            if (i < text.length) {
+                i++;
+                setTimeout(loopType, 80);
+            } else {
+                forward = false;
+                setTimeout(loopType, 2000); // wait after full text
+            }
+        } else {
+            if (i > 0) {
+                i--;
+                setTimeout(loopType, 50);
+            } else {
+                forward = true;
+                setTimeout(loopType, 3000); // increased wait before restart
+            }
+        }
     }
-    isOpen = !isOpen;
-  });
-</script>
-<script>
-  const menuBtn = document.getElementById("menu-toggle");
-  const mobileMenu = document.getElementById("mobile-menu");
-  const links = document.querySelectorAll(".menu-link");
 
-  function toggleMenu() {
-    mobileMenu.classList.toggle("translate-x-full");
-    mobileMenu.classList.toggle("translate-x-0");
-  }
-
-  menuBtn.addEventListener("click", toggleMenu);
-
-  links.forEach(link => {
-    link.addEventListener("click", () => {
-      if (mobileMenu.classList.contains("translate-x-0")) {
-        toggleMenu();
-      }
-    });
-  });
+    window.addEventListener("DOMContentLoaded", loopType);
 </script>
 
 
 
-</body>
 
+    </body>
 </html>
