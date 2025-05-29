@@ -95,30 +95,51 @@
                     <a class="text-slate-300 hover:text-white transition animated-underline" href="guide.html">User Guide</a>
                     <a class="text-slate-300 hover:text-white transition animated-underline" href="index.html#how">How CrossyBot Works</a>
                 </div>
-                <div class="flex items-center space-x-4">
-                    <button class="px-6 py-2 rounded-full gradient-bg text-white font-bold hover:opacity-90 transition transform hover:scale-105">
-                        Download Now
-                    </button>
-                </div>
-                <button id="menu-toggle" class="md:hidden text-slate-300">
-                    <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path d="M4 6h16M4 12h16M4 18h16" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
-                    </svg>
-                </button>
-            </div>
-            <!-- Mobile Menu -->
-            <div id="mobile-menu" class="fixed top-0 right-0 h-screen w-64 bg-white rounded-l-2xl shadow-lg transform translate-x-full transition-transform duration-300 ease-in-out md:hidden flex flex-col justify-center space-y-6 p-6 z-40">
-                <button onclick="toggleMenu()" class="mt-8 px-4 py-2 text-sm text-white bg-slate-800 rounded-lg hover:bg-slate-700 transition">
-                    Minimise >>
-                </button>
-                <a href="index.html#home" class="text-slate-800 hover:text-black menu-link">Home</a>
-                <a href="index.html#features" class="text-slate-800 hover:text-black menu-link">Features</a>
-                <a href="index.html#pricing" class="text-slate-800 hover:text-black menu-link">Pricing</a>
-                <a href="setup.html" class="text-slate-800 hover:text-black menu-link">Setup</a>
-                <a href="guide.html" class="text-slate-800 hover:text-black menu-link">User Guide</a>
-                <a href="index.html#how" class="text-slate-800 hover:text-black menu-link">How CrossyBot Works</a>
+                <div class="hidden sm:flex items-center space-x-4">
+  <button class="px-6 py-2 rounded-full gradient-bg text-white font-bold hover:opacity-90 transition transform hover:scale-105">
+    Download Now
+  </button>
+</div>
             </div>
         </nav>
+        <!-- Mobile Sidebar Menu -->
+        <div class="group fixed top-0 right-0 h-screen z-50 flex md:hidden">
+  <aside class="w-4 h-full bg-slate-800/60 border-l border-slate-700 rounded-l-xl shadow-lg backdrop-blur-md overflow-hidden transition-all duration-300 group-hover:w-64 relative flex items-center justify-center">
+
+    <!-- 3-line icon (hover up/down) -->
+    <div class="absolute top-1/2 right-1 -translate-y-1/2 text-slate-300 text-lg font-bold pointer-events-none animate-pulse-icon transition-opacity duration-200 group-hover:opacity-0">
+      <svg class="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path d="M4 6h16M4 12h16M4 18h16" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
+      </svg>
+    </div>
+
+    <!-- Menu content -->
+    <div class="opacity-0 group-hover:opacity-100 transition-opacity duration-300 w-full h-full flex flex-col justify-center p-4 overflow-y-auto">
+      <div>
+        <h3 class="text-white font-bold text-lg mb-4 gradient-text">Menu</h3>
+        <ul class="space-y-3 text-slate-300 text-base">
+          <li><a href="index.html#home" class="hover:text-white transition">Home</a></li>
+          <li><a href="index.html#features" class="hover:text-white transition">Features</a></li>
+          <li><a href="index.html#pricing" class="hover:text-white transition">Pricing</a></li>
+          <li><a href="setup.html" class="hover:text-white transition">Setup</a></li>
+          <li><a href="guide.html" class="hover:text-white transition">User Guide</a></li>
+          <li><a href="index.html#how" class="hover:text-white transition">How CrossyBot Works</a></li>
+        </ul>
+      </div>
+    </div>
+  </aside>
+</div>
+
+<style>
+@keyframes pulse-icon {
+  0%, 100% { transform: translateY(-50%) translateX(0); }
+  50% { transform: translateY(-60%) translateX(0); }
+}
+.animate-pulse-icon {
+  animation: pulse-icon 1.5s infinite ease-in-out;
+}
+</style>
+
 
 
         <!-- Hero Section -->
@@ -765,7 +786,7 @@
                                     </svg>
                                 </div>
                                 <div class="ml-4">
-                                    <h3 class="text-lg font-bold mb-1">When CrossyBot Exits Trades</h3>
+                                    <h3 class="text-lg font-bold mb-1">When Does CrossyBot Exit Trades</h3>
                                     <p class="text-slate-400">
                                         If EMAs cross against your trade when in profit (signalling trend end) - your trade will be exited.<br />
                                         All other trades will remain open & monitored until a profitable EMA cross or stop-loss has been hit.
@@ -783,7 +804,7 @@
                         <br />
                         <div class="flex flex-row items-center justify-center space-x-8">
                             <!-- Windows -->
-                            <div class="flex flex-col items-center">
+                            <div class="flex flex-col items-center wave-icon">
                                 <svg width="100" height="100" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <g fill="none" fill-rule="evenodd" transform="translate(0 1)">
                                         <path fill="#F35325" d="M2.613 9.096h7.187V1.823L2.613 2.783z" />
@@ -796,7 +817,7 @@
                             </div>
 
                             <!-- Linux -->
-                            <div class="flex flex-col items-center">
+                            <div class="flex flex-col items-center wave-icon">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 256 295">
                                     <defs>
                                         <linearGradient id="logosLinuxTux0" x1="48.548%" x2="51.047%" y1="115.276%" y2="41.364%">
@@ -1026,7 +1047,7 @@
                             </div>
 
                             <!-- Ubuntu -->
-                            <div class="flex flex-col items-center">
+                            <div class="flex flex-col items-center wave-icon">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 256 256">
                                     <path fill="#DD4814" d="M255.637 127.683c0 70.514-57.165 127.68-127.683 127.68C57.434 255.363.27 198.197.27 127.683C.27 57.165 57.436 0 127.954 0c70.519 0 127.683 57.165 127.683 127.683Z" />
                                     <path
@@ -1044,6 +1065,20 @@
                             </a>
                         </div>
                     </div>
+                    <style>
+                        @keyframes wave-bounce {
+                          0%, 100% { transform: translateY(0); }
+                          50% { transform: translateY(-15px); }
+                        }
+
+                        .wave-icon {
+                          animation: wave-bounce 1.5s infinite ease-in-out;
+                        }
+                        .wave-icon:nth-child(1) { animation-delay: 0s; }
+                        .wave-icon:nth-child(2) { animation-delay: 0.3s; }
+                        .wave-icon:nth-child(3) { animation-delay: 0.6s; }
+                    </style>
+
                 </div>
             </div>
         </section>
