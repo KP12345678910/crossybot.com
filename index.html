@@ -87,6 +87,7 @@
                     </div>
                     <span class="text-xl font-bold title-font">CrossyBot</span>
                 </div>
+
                 <div class="hidden md:flex space-x-8 items-center">
                     <a class="text-slate-300 hover:text-white transition animated-underline" href="index.html#home">Home</a>
                     <a class="text-slate-300 hover:text-white transition animated-underline" href="index.html#features">Features</a>
@@ -95,63 +96,72 @@
                     <a class="text-slate-300 hover:text-white transition animated-underline" href="guide.html">User Guide</a>
                     <a class="text-slate-300 hover:text-white transition animated-underline" href="index.html#how">How CrossyBot Works</a>
                 </div>
+
                 <div class="hidden sm:flex items-center space-x-4">
-  <button class="px-6 py-2 rounded-full gradient-bg text-white font-bold hover:opacity-90 transition transform hover:scale-105">
-    Download Now
-  </button>
-</div>
+                    <button class="px-6 py-2 rounded-full gradient-bg text-white font-bold hover:opacity-90 transition transform hover:scale-105">
+                        Download Now
+                    </button>
+                </div>
+
+                <!-- Hamburger -->
+                <button id="menuToggle" class="md:hidden text-white focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
             </div>
         </nav>
+
         <!-- Mobile Sidebar Menu -->
-        <div class="group fixed top-0 right-0 h-screen z-50 flex md:hidden">
-  <aside class="w-4 h-full bg-slate-800/60 border-l border-slate-700 rounded-l-xl shadow-lg backdrop-blur-md overflow-hidden transition-all duration-300 group-hover:w-64 relative flex items-center justify-center">
+        <div id="mobileMenu" class="hidden fixed inset-0 z-50 md:hidden">
+            <div id="menuBackdrop" class="absolute inset-0 bg-black/50"></div>
+            <aside class="ml-auto w-64 h-full bg-slate-800 border-l border-slate-700 shadow-lg backdrop-blur-md flex items-center justify-center p-4 rounded-l-xl">
+                <div class="w-full">
+                    <h3 class="text-white font-bold text-lg mb-4 gradient-text">Menu</h3>
+                    <ul class="space-y-3 text-slate-300 text-base">
+                        <li><a href="index.html#home" class="hover:text-white transition block">Home</a></li>
+                        <li><a href="index.html#features" class="hover:text-white transition block">Features</a></li>
+                        <li><a href="index.html#pricing" class="hover:text-white transition block">Pricing</a></li>
+                        <li><a href="setup.html" class="hover:text-white transition block">Setup</a></li>
+                        <li><a href="guide.html" class="hover:text-white transition block">User Guide</a></li>
+                        <li><a href="index.html#how" class="hover:text-white transition block">How CrossyBot Works</a></li>
+                    </ul>
+                </div>
+            </aside>
+        </div>
+        <script>
+            const toggle = document.getElementById("menuToggle");
+            const menu = document.getElementById("mobileMenu");
+            const backdrop = document.getElementById("menuBackdrop");
 
-    <!-- 3-line icon (hover up/down) -->
-    <div class="absolute top-1/2 right-1 -translate-y-1/2 text-slate-300 text-lg font-bold pointer-events-none animate-pulse-icon transition-opacity duration-200 group-hover:opacity-0">
-      <svg class="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path d="M4 6h16M4 12h16M4 18h16" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
-      </svg>
-    </div>
-
-    <!-- Menu content -->
-    <div class="opacity-0 group-hover:opacity-100 transition-opacity duration-300 w-full h-full flex flex-col justify-center p-4 overflow-y-auto">
-      <div>
-        <h3 class="text-white font-bold text-lg mb-4 gradient-text">Menu</h3>
-        <ul class="space-y-3 text-slate-300 text-base">
-          <li><a href="index.html#home" class="hover:text-white transition">Home</a></li>
-          <li><a href="index.html#features" class="hover:text-white transition">Features</a></li>
-          <li><a href="index.html#pricing" class="hover:text-white transition">Pricing</a></li>
-          <li><a href="setup.html" class="hover:text-white transition">Setup</a></li>
-          <li><a href="guide.html" class="hover:text-white transition">User Guide</a></li>
-          <li><a href="index.html#how" class="hover:text-white transition">How CrossyBot Works</a></li>
-        </ul>
-      </div>
-    </div>
-  </aside>
-</div>
-
-<style>
-@keyframes pulse-icon {
-  0%, 100% { transform: translateY(-50%) translateX(0); }
-  50% { transform: translateY(-60%) translateX(0); }
-}
-.animate-pulse-icon {
-  animation: pulse-icon 1.5s infinite ease-in-out;
-}
-</style>
-
-
+            toggle.addEventListener("click", () => menu.classList.remove("hidden"));
+            backdrop.addEventListener("click", () => menu.classList.add("hidden"));
+        </script>
+        <style>
+            @keyframes pulse-icon {
+                0%,
+                100% {
+                    transform: translateY(-50%) translateX(0);
+                }
+                50% {
+                    transform: translateY(-60%) translateX(0);
+                }
+            }
+            .animate-pulse-icon {
+                animation: pulse-icon 1.5s infinite ease-in-out;
+            }
+        </style>
 
         <!-- Hero Section -->
         <section class="pt-32 pb-20 px-4 md:px-12 max-w-7xl mx-auto" id="home">
-            <div class="flex flex-col lg:flex-row items-center">
+            <div class="flex flex-col lg:flex-row items-center justify-center">
                 <div class="lg:w-1/2 mb-16 lg:mb-0">
                     <div class="inline-block px-4 py-1 rounded-full bg-slate-800 text-sm font-medium mb-6">
                         <span class="gradient-text">
                             Beta v1.0 is live!
                         </span>
                     </div>
-                   <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight title-font">
+                    <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight title-font">
                         <span class="gradient-text">Trades with you</span>
                         <br />
                         <span class="text-white block w-[14ch] min-h-[1em]" id="typewriter"></span>
@@ -208,14 +218,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="lg:w-1/2 relative">
-                    <img
-                        alt="AI Technology Interface"
-                        class="w-full max-w-xl mx-auto hero-image floating"
-                        src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=1200&amp;q=80"
-                    />
-                    <div class="absolute -bottom-10 -left-10 w-32 h-32 rounded-full bg-indigo-500/20 blur-3xl"></div>
-                    <div class="absolute -top-10 -right-10 w-32 h-32 rounded-full bg-pink-500/20 blur-3xl"></div>
+                <div class="w-full h-auto sm:w-1/3 sm:h-auto md:w-1/3 md:h-auto lg:w-1/5 lg:h-1/5 flex items-center justify-center lg:ml-8">
+                    <img alt="Crossybot" class="max-w-full h-auto floating" src="https://i.postimg.cc/Sshhz9zy/device-telegram-front-page.png" />
                 </div>
             </div>
         </section>
@@ -724,7 +728,7 @@
                         <div class="inline-block px-4 py-1 rounded-full bg-slate-800 text-sm font-medium mb-6">
                             <span class="gradient-text">Time Tested</span>
                         </div>
-                        <h2 class="text-3xl md:text-5xl font-bold mb-6 title-font">Simple Strategies, <span class="gradient-text">Big Results</span></h2>
+                        <h2 class="text-3xl md:text-5xl font-bold mb-6 title-font">Simple Strategy, <span class="gradient-text">Big Results</span></h2>
                         <p class="text-lg text-slate-400 mb-10">
                             Use <u>moving averages</u> to track trends, ride the wave and level up your trading experience (watch
                             <a class="text-blue-600 underline" href="https://www.youtube.com/watch?v=6flHiM5-n50&amp;t=17s&amp;ab_channel=TradePrime" target="_blank"> this video</a> if you're new to moving averages).
@@ -1066,20 +1070,29 @@
                         </div>
                     </div>
                     <style>
-  @keyframes wave-bounce {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-5px); }
-  }
+                        @keyframes wave-bounce {
+                            0%,
+                            100% {
+                                transform: translateY(0);
+                            }
+                            50% {
+                                transform: translateY(-5px);
+                            }
+                        }
 
-  .wave-icon {
-    animation: wave-bounce 3s infinite ease-in-out;
-  }
-  .wave-icon:nth-child(1) { animation-delay: 0s; }
-  .wave-icon:nth-child(2) { animation-delay: 0.4s; }
-  .wave-icon:nth-child(3) { animation-delay: 0.8s; }
-</style>
-
-
+                        .wave-icon {
+                            animation: wave-bounce 3s infinite ease-in-out;
+                        }
+                        .wave-icon:nth-child(1) {
+                            animation-delay: 0s;
+                        }
+                        .wave-icon:nth-child(2) {
+                            animation-delay: 0.4s;
+                        }
+                        .wave-icon:nth-child(3) {
+                            animation-delay: 0.8s;
+                        }
+                    </style>
                 </div>
             </div>
         </section>
@@ -1108,6 +1121,7 @@
             </div>
         </footer>
 
+        <!-- Mobile menu toggle -->
         <script>
             const menuButton = document.querySelector("nav button.md\:hidden");
             const navLinks = document.createElement("div");
@@ -1131,60 +1145,36 @@
                 isOpen = !isOpen;
             });
         </script>
-        <script>
-            const menuBtn = document.getElementById("menu-toggle");
-            const mobileMenu = document.getElementById("mobile-menu");
-            const links = document.querySelectorAll(".menu-link");
-
-            function toggleMenu() {
-                mobileMenu.classList.toggle("translate-x-full");
-                mobileMenu.classList.toggle("translate-x-0");
-            }
-
-            menuBtn.addEventListener("click", toggleMenu);
-
-            links.forEach((link) => {
-                link.addEventListener("click", () => {
-                    if (mobileMenu.classList.contains("translate-x-0")) {
-                        toggleMenu();
-                    }
-                });
-            });
-        </script>
         <!-- Typewriter -->
         <script>
-    const el = document.getElementById("typewriter");
-    const text = "or Trades for you";
-    let i = 0;
-    let forward = true;
+            const el = document.getElementById("typewriter");
+            const text = "or Trades for you";
+            let i = 0;
+            let forward = true;
 
-    function loopType() {
-        el.textContent = text.slice(0, i);
+            function loopType() {
+                el.textContent = text.slice(0, i);
 
-        if (forward) {
-            if (i < text.length) {
-                i++;
-                setTimeout(loopType, 80);
-            } else {
-                forward = false;
-                setTimeout(loopType, 2000); // wait after full text
+                if (forward) {
+                    if (i < text.length) {
+                        i++;
+                        setTimeout(loopType, 80);
+                    } else {
+                        forward = false;
+                        setTimeout(loopType, 2000); // wait after full text
+                    }
+                } else {
+                    if (i > 0) {
+                        i--;
+                        setTimeout(loopType, 50);
+                    } else {
+                        forward = true;
+                        setTimeout(loopType, 3000); // increased wait before restart
+                    }
+                }
             }
-        } else {
-            if (i > 0) {
-                i--;
-                setTimeout(loopType, 50);
-            } else {
-                forward = true;
-                setTimeout(loopType, 3000); // increased wait before restart
-            }
-        }
-    }
 
-    window.addEventListener("DOMContentLoaded", loopType);
-</script>
-
-
-
-
+            window.addEventListener("DOMContentLoaded", loopType);
+        </script>
     </body>
 </html>
