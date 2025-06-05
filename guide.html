@@ -1,0 +1,1034 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/KP12345678910/crossybot.com/main/crossybot_logo_only.PNG" />
+        <!--        <meta http-equiv="refresh" content="0; url=https://www.crossybot.com" />-->
+        <meta charset="utf-8" />
+        <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+        <title>
+            CrossyBot | Crypto Co-pilot
+        </title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&amp;family=Space+Grotesk:wght@500;700&amp;display=swap" rel="stylesheet" />
+        <style>
+            :root {
+                --primary: #6366f1;
+                --secondary: #8b5cf6;
+                --accent: #ec4899;
+            }
+            body {
+                font-family: "Inter", sans-serif;
+                background-color: #0f172a;
+                color: #f8fafc;
+            }
+            .title-font {
+                font-family: "Space Grotesk", sans-serif;
+            }
+            .gradient-text {
+                background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+                -webkit-background-clip: text;
+                background-clip: text;
+                color: transparent;
+            }
+            .gradient-bg {
+                background: linear-gradient(135deg, var(--primary), var(--secondary), var(--accent));
+            }
+            .card-gradient {
+                background: linear-gradient(145deg, #1e293b, #0f172a);
+            }
+            .feature-card:hover {
+                transform: translateY(-10px);
+                box-shadow: 0 20px 25px -5px rgba(99, 102, 241, 0.2);
+            }
+            .glow-effect {
+                box-shadow: 0 0 15px rgba(99, 102, 241, 0.5);
+            }
+            .hero-image {
+                mask-image: radial-gradient(ellipse 50% 50% at 50% 50%, black 60%, transparent 100%);
+            }
+            .animated-underline {
+                position: relative;
+            }
+            .animated-underline::after {
+                content: "";
+                position: absolute;
+                bottom: -2px;
+                left: 0;
+                width: 0;
+                height: 2px;
+                background: currentColor;
+                transition: width 0.3s ease;
+            }
+            .animated-underline:hover::after {
+                width: 100%;
+            }
+            @keyframes float {
+                0%,
+                100% {
+                    transform: translateY(0);
+                }
+                50% {
+                    transform: translateY(-10px);
+                }
+            }
+            .floating {
+                animation: float 6s ease-in-out infinite;
+            }
+        </style>
+    </head>
+    <body class="min-h-screen">
+        <!-- Navigation -->
+        <nav class="fixed top-0 left-0 w-full z-50 py-6 px-4 md:px-12 backdrop-blur-md bg-slate-900/50">
+            <div class="flex justify-between items-center max-w-7xl mx-auto">
+                <div class="flex items-center space-x-2">
+                    <div class="w-8 h-8 rounded-full gradient-bg flex items-center justify-center">
+                        <svg class="h-5 w-5 text-white" fill="none" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M5 19L19 5M19 5L19 9M19 5L15 5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+                            <path d="M5 5L8.5 8.5L9.375 9.375M19 19L15 19M19 19L19 15M19 19L15.5 15.5L14.625 14.625" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+                        </svg>
+                    </div>
+                    <span class="text-xl font-bold title-font">CrossyBot</span>
+                </div>
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a class="text-slate-300 hover:text-white transition animated-underline" href="index.html#home">Home</a>
+                    <a class="text-slate-300 hover:text-white transition animated-underline" href="index.html#features">Features</a>
+                    <a class="text-slate-300 hover:text-white transition animated-underline" href="index.html#pricing">Pricing</a>
+                    <a class="text-slate-300 hover:text-white transition animated-underline" href="setup.html">Setup</a>
+                    <a class="text-slate-300 hover:text-white transition animated-underline" href="guide.html">User Guide</a>
+                    <a class="text-slate-300 hover:text-white transition animated-underline" href="how.html">How CrossyBot Works</a>
+                </div>
+                <div class="hidden sm:flex items-center space-x-4">
+                    <button class="px-6 py-2 rounded-full gradient-bg text-white font-bold hover:opacity-90 transition transform hover:scale-105">
+                        Download Now
+                    </button>
+                </div>
+                <!-- Hamburger -->
+                <button class="md:hidden text-white focus:outline-none" id="menuToggle">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+                        <path d="M4 6h16M4 12h16M4 18h16" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+                    </svg>
+                </button>
+            </div>
+        </nav>
+        <!-- Mobile Sidebar Menu -->
+        <div class="hidden fixed inset-0 z-50 md:hidden" id="mobileMenu">
+            <div class="absolute inset-0 bg-black/50" id="menuBackdrop"></div>
+            <aside class="ml-auto w-64 h-full bg-slate-800 border-l border-slate-700 shadow-lg backdrop-blur-md flex items-center justify-center p-4 rounded-l-xl">
+                <div class="w-full">
+                    <h3 class="text-white font-bold text-lg mb-4 gradient-text">Menu</h3>
+                    <ul class="space-y-3 text-slate-300 text-base">
+                        <li><a class="hover:text-white transition block" href="index.html#home">Home</a></li>
+                        <li><a class="hover:text-white transition block" href="index.html#features">Features</a></li>
+                        <li><a class="hover:text-white transition block" href="index.html#pricing">Pricing</a></li>
+                        <li><a class="hover:text-white transition block" href="setup.html">Setup</a></li>
+                        <li><a class="hover:text-white transition block" href="guide.html">User Guide</a></li>
+                        <li><a class="hover:text-white transition block" href="how.html">How CrossyBot Works</a></li>
+                    </ul>
+                </div>
+            </aside>
+        </div>
+        <script>
+            const toggle = document.getElementById("menuToggle");
+            const menu = document.getElementById("mobileMenu");
+            const backdrop = document.getElementById("menuBackdrop");
+
+            toggle.addEventListener("click", () => menu.classList.remove("hidden"));
+            backdrop.addEventListener("click", () => menu.classList.add("hidden"));
+        </script>
+
+        <!-- Guide -->
+        <section class="max-w-7xl mx-auto px-4 md:px-8 py-24 relative">
+            <!-- Desktop: right center -->
+            <div class="hidden sm:flex fixed top-1/2 right-[10%] w-[20%] -translate-y-1/2 items-center justify-center z-40">
+                <div class="w-full px-4 transition-all duration-300 ease-in-out hover:-translate-y-1 hover:shadow-2xl flex justify-center">
+                    <img id="dynamicImage" class="object-contain w-auto h-auto m-0 mt-16" />
+                </div>
+            </div>
+
+            <!-- Mobile: bottom right -->
+            <div class="fixed sm:hidden bottom-4 right-4 w-24 h-24 z-40">
+                <img id="dynamicImageMobile" class="w-full h-full object-contain" />
+            </div>
+
+            <!-- Full Guide Content aligned left -->
+            <div class="md:mr-auto md:w-[60%] space-y-12">
+                <div class="text-center mb-15">
+                    <h2 class="text-3xl md:text-5xl font-bold mb-6 mt-8 title-font">
+                        Master your tools,
+                        <span class="gradient-text">Maximise Potential</span>
+                    </h2>
+                    <p class="text-lg text-slate-400 max-w-2xl mx-auto mb-4">Everything you need to know about CrossyBot.</p>
+                </div>
+                <div class="border-t border-slate-700"></div>
+                <div id="section-1" class="card-wrapper space-y-2">
+                    <button class="toggle-btn text-left w-full text-xl font-semibold text-white bg-slate-700 px-4 py-2 rounded hover:bg-slate-600">1. The Basics</button>
+                    <div class="card space-y-6 p-6 bg-slate-800/80 border border-slate-700 rounded-2xl shadow-lg collapsible" data-images='[{"src": "https://i.postimg.cc/5N4WS5vs/device-1-front-page.png"}]' style="display: block;">
+                        <p class="text-slate-300 mb-4">Important introductory information for CrossyBot.</p>
+                        <div>
+                            <h3 class="text-lg font-semibold text-slate-100">How Telegram Works</h3>
+                            <ul class="list-disc text-slate-300 mt-2 space-y-1 pl-5">
+                                <li>Use commands starting with <code>/</code>, click buttons, or send text.</li>
+                                <li>Bots are workflow-driven. Use <code>/start</code> anytime to reset.</li>
+                                <li>Always interact with the <b>latest message</b>.</li>
+                                <li>Only trade <b>USD pairs</b> — no i.e. BTC/ETH pair directly.</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold text-slate-100">How the Execution Engine Works</h3>
+                            <ul class="list-disc text-slate-300 mt-2 space-y-1 pl-5">
+                                <li>Updates every ~30 seconds. (more pairs = longer timeframe)</li>
+                                <li>Executes based on automation triggers, balances or stop losses.</li>
+                                <li>You can send <code>/pause</code> anytime to pause all automations.</li>
+                                <li>CrossyBot excludes open balances on startup which need to be removed manually via Telegram for automation.</li>
+                            </ul>
+                            <p class="font-semibold text-slate-200 mt-4">Best practice:</p>
+                            <ul class="list-disc text-slate-300 mt-2 space-y-1 pl-5">
+                                <li>Start bot with everything in USD &amp; Always check bot data before removing exclusions.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div id="section-2" class="card-wrapper space-y-2">
+                    <button class="toggle-btn text-left w-full text-xl font-semibold text-white bg-slate-700 px-4 py-2 rounded hover:bg-slate-600">2. Using Commands</button>
+                    <div class="card space-y-6 p-6 bg-slate-800/80 border border-slate-700 rounded-2xl shadow-lg collapsible" data-images='[{"src": "https://i.postimg.cc/m2mfXcyB/device-2-commands.png"}]' style="display: none;">
+                        <p class="text-slate-300 mb-4">
+                            Commands are key to operating CrossyBot via Telegram & can be used at any time. <br />
+                            View valid commands by typing '/' into the chat.
+                        </p>
+                        <div>
+                            <h3 class="text-lg font-semibold text-slate-100">Available Commands</h3>
+                            <ul class="list-disc text-slate-300 mt-2 space-y-1 pl-5">
+                                <li><code>/start</code> – show the main menu</li>
+                                <li><code>/pause</code> – pause all automations</li>
+                                <li><code>/legend</code> – view bot’s legend</li>
+                                <li><code>/exclude</code> – open the exclude pairs menu</li>
+                                <li><code>/chart [pair] [htf/ltf]</code> – chart view with timeframe options</li>
+                                <li><code>/close [pair] [%]</code> – close specific trade with optional size</li>
+                                <li><code>/close all</code> – close all trades (confirmation required)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div id="section-3" class="card-wrapper space-y-2">
+                    <button class="toggle-btn text-left w-full text-xl font-semibold text-white bg-slate-700 px-4 py-2 rounded hover:bg-slate-600">
+                        3. Main Menu
+                    </button>
+                    <div class="card space-y-6 p-6 bg-slate-800/80 border border-slate-700 rounded-2xl shadow-lg collapsible" data-images='[{"src": "https://i.postimg.cc/5N4WS5vs/device-1-front-page.png"}]' style="display: none;">
+                        <p class="text-slate-300 mb-4">
+                            Use this menu to navigate through the Telegram Bot. Use the '/start' command at any time to show the menu.
+                        </p>
+                        <div>
+                            <div>
+                                <p class="text-md font-semibold text-slate-200 mt-4">Account Summary</p>
+                                <ul class="list-disc text-slate-300 mt-1 mb-2 pl-5">
+                                    <li><code>Account val</code> - Total $ value of your account</li>
+                                    <li><code>USD</code> - Available USD in your account</li>
+                                </ul>
+                                <br />
+                                <p class="text-md font-semibold text-slate-200 mt-4">Spot Summary</p>
+                                <ul class="list-disc text-slate-300 mt-1 mb-2 pl-5">
+                                    <li><code>Used</code> - Total $ value invested into spot balances</li>
+                                    <li><code>Value</code> - Current $ value of spot balances</li>
+                                    <li><code>$ P/L & % P/L</code> - $ and % spot profit/loss based on invested and current values</li>
+                                </ul>
+                                <br />
+                                <p class="text-md font-semibold text-slate-200 mt-4">Margin Summary</p>
+                                <ul class="list-disc text-slate-300 mt-1 mb-2 pl-5">
+                                    <li><code>Locked</code> - Total $ value locked as collatoral for margin positions</li>
+                                    <li><code>Borrow</code> - Total $ value of margin positions at open</li>
+                                    <li><code>Value</code> - Current $ value of margin positions</li>
+                                    <li><code>$ P/L & % P/L</code> - $ and % margin profit/loss based on invested and current values</li>
+                                </ul>
+                                <br />
+                            </div>
+                            <p class="text-slate-300">
+                                If multiple conditions are valid you may only see 1 symbol shown.<br />
+                                Balances are listed from highest to lowest PnL.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="section-4" class="card-wrapper space-y-2">
+                    <button class="toggle-btn text-left w-full text-xl font-semibold text-white bg-slate-700 px-4 py-2 rounded hover:bg-slate-600">
+                        4. Watchlist & EMAs
+                    </button>
+                    <div class="card space-y-6 p-6 bg-slate-800/80 border border-slate-700 rounded-2xl shadow-lg collapsible" data-images='[{"src": "https://i.postimg.cc/C1TWBbSH/device-4-watchlist.png"}]' style="display: none;">
+                        <p class="text-slate-300 mb-4">
+                            <b>Watchlist</b>
+                            <button class="camera-btn inline-flex items-center justify-center w-6 h-6 ml-2 rounded-full bg-black" data-image="https://i.postimg.cc/C1TWBbSH/device-4-watchlist.png">
+                                <svg viewBox="0 0 24 24" fill="none" class="w-4 h-4" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M12 16C13.6569 16 15 14.6569 15 13C15 11.3431 13.6569 10 12 10C10.3431 10 9 11.3431 9 13C9 14.6569 10.3431 16 12 16Z"
+                                        stroke="#ffffff"
+                                        stroke-width="2"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                    />
+                                    <path
+                                        d="M3 16.8V9.2C3 8.0799 3 7.51984 3.21799 7.09202C3.40973 6.71569 3.71569 6.40973 4.09202 6.21799C4.51984 6 5.0799 6 6.2 6H7.25464C7.37758 6 7.43905 6 7.49576 5.9935C7.79166 5.95961 8.05705 5.79559 8.21969 5.54609C8.25086 5.49827 8.27836 5.44328 8.33333 5.33333C8.44329 5.11342 8.49827 5.00346 8.56062 4.90782C8.8859 4.40882 9.41668 4.08078 10.0085 4.01299C10.1219 4 10.2448 4 10.4907 4H13.5093C13.7552 4 13.8781 4 13.9915 4.01299C14.5833 4.08078 15.1141 4.40882 15.4394 4.90782C15.5017 5.00345 15.5567 5.11345 15.6667 5.33333C15.7216 5.44329 15.7491 5.49827 15.7803 5.54609C15.943 5.79559 16.2083 5.95961 16.5042 5.9935C16.561 6 16.6224 6 16.7454 6H17.8C18.9201 6 19.4802 6 19.908 6.21799C20.2843 6.40973 20.5903 6.71569 20.782 7.09202C21 7.51984 21 8.0799 21 9.2V16.8C21 17.9201 21 18.4802 20.782 18.908C20.5903 19.2843 20.2843 19.5903 19.908 19.782C19.4802 20 18.9201 20 17.8 20H6.2C5.0799 20 4.51984 20 4.09202 19.782C3.71569 19.5903 3.40973 19.2843 3.21799 18.908C3 18.4802 3 17.9201 3 16.8Z"
+                                        stroke="#ffffff"
+                                        stroke-width="2"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                    />
+                                </svg>
+                            </button>
+                            <br />
+                            Track EMA states, signal times, and % change for your selected cryptos.<br />
+                            Use the 'add' and 'remove' commands on the watchlist page to manage the list.
+                        </p>
+
+                        <p class="text-slate-300">
+                            <b>Market EMA States</b>
+                            <button class="camera-btn inline-flex items-center justify-center w-6 h-6 ml-2 rounded-full bg-black" data-image="https://i.postimg.cc/T3h8ZRtm/device-4-1-market-states.png">
+                                <svg viewBox="0 0 24 24" fill="none" class="w-4 h-4" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M12 16C13.6569 16 15 14.6569 15 13C15 11.3431 13.6569 10 12 10C10.3431 10 9 11.3431 9 13C9 14.6569 10.3431 16 12 16Z"
+                                        stroke="#ffffff"
+                                        stroke-width="2"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                    />
+                                    <path
+                                        d="M3 16.8V9.2C3 8.0799 3 7.51984 3.21799 7.09202C3.40973 6.71569 3.71569 6.40973 4.09202 6.21799C4.51984 6 5.0799 6 6.2 6H7.25464C7.37758 6 7.43905 6 7.49576 5.9935C7.79166 5.95961 8.05705 5.79559 8.21969 5.54609C8.25086 5.49827 8.27836 5.44328 8.33333 5.33333C8.44329 5.11342 8.49827 5.00346 8.56062 4.90782C8.8859 4.40882 9.41668 4.08078 10.0085 4.01299C10.1219 4 10.2448 4 10.4907 4H13.5093C13.7552 4 13.8781 4 13.9915 4.01299C14.5833 4.08078 15.1141 4.40882 15.4394 4.90782C15.5017 5.00345 15.5567 5.11345 15.6667 5.33333C15.7216 5.44329 15.7491 5.49827 15.7803 5.54609C15.943 5.79559 16.2083 5.95961 16.5042 5.9935C16.561 6 16.6224 6 16.7454 6H17.8C18.9201 6 19.4802 6 19.908 6.21799C20.2843 6.40973 20.5903 6.71569 20.782 7.09202C21 7.51984 21 8.0799 21 9.2V16.8C21 17.9201 21 18.4802 20.782 18.908C20.5903 19.2843 20.2843 19.5903 19.908 19.782C19.4802 20 18.9201 20 17.8 20H6.2C5.0799 20 4.51984 20 4.09202 19.782C3.71569 19.5903 3.40973 19.2843 3.21799 18.908C3 18.4802 3 17.9201 3 16.8Z"
+                                        stroke="#ffffff"
+                                        stroke-width="2"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                    />
+                                </svg>
+                            </button>
+                            <br />
+                            Explore broader market signals using sort buttons:<br />
+                            1) Market cap<br />
+                            2) Latest HTF cross<br />
+                            3) Latest LTF cross<br />
+                            4) Latest HTF + LTF cross<br />
+                            <br />
+                            <b>💡 = EMA states match & HTF cross before LTF.</b><br />
+                            Sorting by HTF+LTF and looking for this may help identify early opportunities.
+                        </p>
+                    </div>
+                </div>
+
+                <div id="section-5" class="card-wrapper space-y-2">
+                    <button class="toggle-btn text-left w-full text-xl font-semibold text-white bg-slate-700 px-4 py-2 rounded hover:bg-slate-600">
+                        5. Open PnLs
+                    </button>
+                    <div class="card space-y-6 p-6 bg-slate-800/80 border border-slate-700 rounded-2xl shadow-lg collapsible" data-images='[{"src": "https://i.postimg.cc/6qzSmSRY/device-5-pnls.png"}]' style="display: none;">
+                        <p class="text-slate-300 mb-4">
+                            Open pnls shows the % gain/loss of open spot and margin trades.<br />
+                            <b>
+                                PNLs shown in this menu are inclusive of exchange taker fees<br />
+                                (i.e. Kraken base fee = 0.4%)
+                            </b>
+                        </p>
+                        <h3 class="text-lg font-semibold text-slate-100">Emojis in the PnL table</h3>
+                        <div>
+                            <div>
+                                <p class="text-md font-semibold text-slate-200 mt-4">EMAs</p>
+                                <ul class="list-disc text-slate-300 mt-1 mb-2 pl-5">
+                                    <li>🟢 - Bullish EMAs</li>
+                                    <li>🔴 - Bearish EMAs</li>
+                                    <li>🟠 - Unknown EMA status</li>
+                                </ul>
+                                <p class="text-md font-semibold text-slate-200 mt-4">Fund Allocation</p>
+                                <ul class="list-disc text-slate-300 mt-1 mb-2 pl-5">
+                                    <li>🎯 - Spot balance</li>
+                                    <li>⚖️ - Margin balance</li>
+                                </ul>
+                                <p class="text-md font-semibold text-slate-200 mt-4">Automations</p>
+                                <ul class="list-disc text-slate-300 mt-1 pl-5">
+                                    <li>🚫 - Excluded from automations</li>
+                                    <li>🤖 - Standard autobuyer active</li>
+                                    <li>🔫 - One shot autobuyer active</li>
+                                    <li>👋 - Manually opened balance tracked by CrossyBot</li>
+                                </ul>
+                                <br />
+                            </div>
+                            <p class="text-slate-300">
+                                If multiple conditions are valid you may only see 1 symbol shown.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Autobuyers -->
+                <div id="section-6" class="card-wrapper space-y-2">
+                    <button class="toggle-btn text-left w-full text-xl font-semibold text-white bg-slate-700 px-4 py-2 rounded hover:bg-slate-600">
+                        6. Autobuyers
+                    </button>
+                    <div class="card space-y-6 p-6 bg-slate-800/80 border border-slate-700 rounded-2xl shadow-lg collapsible" data-images='[{"src": "https://i.postimg.cc/28cMdsC5/device-6-1-standard-autobuyer.png"}]' style="display: none;">
+                        <div>
+                            <h3 class="text-lg font-semibold text-slate-100 inline-block">Standard Autobuyer</h3>
+                            <button class="camera-btn inline-flex items-center justify-center w-6 h-6 ml-2 rounded-full bg-black" data-image="https://i.postimg.cc/28cMdsC5/device-6-1-standard-autobuyer.png">
+                                <svg viewBox="0 0 24 24" fill="none" class="w-4 h-4" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M12 16C13.6569 16 15 14.6569 15 13C15 11.3431 13.6569 10 12 10C10.3431 10 9 11.3431 9 13C9 14.6569 10.3431 16 12 16Z"
+                                        stroke="#ffffff"
+                                        stroke-width="2"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                    />
+                                    <path
+                                        d="M3 16.8V9.2C3 8.0799 3 7.51984 3.21799 7.09202C3.40973 6.71569 3.71569 6.40973 4.09202 6.21799C4.51984 6 5.0799 6 6.2 6H7.25464C7.37758 6 7.43905 6 7.49576 5.9935C7.79166 5.95961 8.05705 5.79559 8.21969 5.54609C8.25086 5.49827 8.27836 5.44328 8.33333 5.33333C8.44329 5.11342 8.49827 5.00346 8.56062 4.90782C8.8859 4.40882 9.41668 4.08078 10.0085 4.01299C10.1219 4 10.2448 4 10.4907 4H13.5093C13.7552 4 13.8781 4 13.9915 4.01299C14.5833 4.08078 15.1141 4.40882 15.4394 4.90782C15.5017 5.00345 15.5567 5.11345 15.6667 5.33333C15.7216 5.44329 15.7491 5.49827 15.7803 5.54609C15.943 5.79559 16.2083 5.95961 16.5042 5.9935C16.561 6 16.6224 6 16.7454 6H17.8C18.9201 6 19.4802 6 19.908 6.21799C20.2843 6.40973 20.5903 6.71569 20.782 7.09202C21 7.51984 21 8.0799 21 9.2V16.8C21 17.9201 21 18.4802 20.782 18.908C20.5903 19.2843 20.2843 19.5903 19.908 19.782C19.4802 20 18.9201 20 17.8 20H6.2C5.0799 20 4.51984 20 4.09202 19.782C3.71569 19.5903 3.40973 19.2843 3.21799 18.908C3 18.4802 3 17.9201 3 16.8Z"
+                                        stroke="#ffffff"
+                                        stroke-width="2"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                    />
+                                </svg>
+                            </button>
+                            <p class="text-slate-300 mt-2">
+                                The standard autobuyer is made for set-and-forget automation over a trending term.<br />
+                                Split into Market Cap mode or Manual mode - this autobuyer opens trades at the set % of your portfolio whenever a lower timeframe EMA cross occurs which matches the higher timeframe EMA state AND your
+                                selected trading direction for automations (buy, short or both)<br />
+                                Manual mode allows you to fine-tune the cryptos, % allocation and directions traded - where Market cap mode will automatically split your portfolio (100%) across the top x market cap coins you have selected
+                                (i.e. 10 selected = trading top 10 market cap cryptos). This top x market cap list is dynamic and will automatically shift over time as the market does.
+                            </p>
+                        </div>
+
+                        <div>
+                            <h3 class="text-lg font-semibold text-slate-100 inline-block">One Shot Autobuyer</h3>
+                            <button class="camera-btn inline-flex items-center justify-center w-6 h-6 ml-2 rounded-full bg-black" data-image="https://i.postimg.cc/YSgPHjY4/device-6-2-one-shot-autobuyer.png">
+                                <svg viewBox="0 0 24 24" fill="none" class="w-4 h-4" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M12 16C13.6569 16 15 14.6569 15 13C15 11.3431 13.6569 10 12 10C10.3431 10 9 11.3431 9 13C9 14.6569 10.3431 16 12 16Z"
+                                        stroke="#ffffff"
+                                        stroke-width="2"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                    />
+                                    <path
+                                        d="M3 16.8V9.2C3 8.0799 3 7.51984 3.21799 7.09202C3.40973 6.71569 3.71569 6.40973 4.09202 6.21799C4.51984 6 5.0799 6 6.2 6H7.25464C7.37758 6 7.43905 6 7.49576 5.9935C7.79166 5.95961 8.05705 5.79559 8.21969 5.54609C8.25086 5.49827 8.27836 5.44328 8.33333 5.33333C8.44329 5.11342 8.49827 5.00346 8.56062 4.90782C8.8859 4.40882 9.41668 4.08078 10.0085 4.01299C10.1219 4 10.2448 4 10.4907 4H13.5093C13.7552 4 13.8781 4 13.9915 4.01299C14.5833 4.08078 15.1141 4.40882 15.4394 4.90782C15.5017 5.00345 15.5567 5.11345 15.6667 5.33333C15.7216 5.44329 15.7491 5.49827 15.7803 5.54609C15.943 5.79559 16.2083 5.95961 16.5042 5.9935C16.561 6 16.6224 6 16.7454 6H17.8C18.9201 6 19.4802 6 19.908 6.21799C20.2843 6.40973 20.5903 6.71569 20.782 7.09202C21 7.51984 21 8.0799 21 9.2V16.8C21 17.9201 21 18.4802 20.782 18.908C20.5903 19.2843 20.2843 19.5903 19.908 19.782C19.4802 20 18.9201 20 17.8 20H6.2C5.0799 20 4.51984 20 4.09202 19.782C3.71569 19.5903 3.40973 19.2843 3.21799 18.908C3 18.4802 3 17.9201 3 16.8Z"
+                                        stroke="#ffffff"
+                                        stroke-width="2"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                    />
+                                </svg>
+                            </button>
+                            <p class="text-slate-300 mt-2">
+                                The one shot autobuyer, as named, attempts execution of a one-shot trade - and will not attempt execution again even if failed. <br />
+                                The one shot autobuyer is set in $ value and triggers on the next lower timeframe EMA cross in the direction of your automation (regardless of higher timeframe EMA state).
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Exclusions -->
+                <div id="section-7" class="card-wrapper space-y-2">
+                    <button class="toggle-btn text-left w-full text-xl font-semibold text-white bg-slate-700 px-4 py-2 rounded hover:bg-slate-600">
+                        7. Exclusions
+                    </button>
+                    <div class="card space-y-6 p-6 bg-slate-800/80 border border-slate-700 rounded-2xl shadow-lg collapsible" data-images='[{"src": "https://i.postimg.cc/5y9KL3Gv/device-7-1-excluded-pairs.png"}]' style="display: none;">
+                        <p class="text-slate-300">
+                            The exclusions menu is to manage pairs you wish to exclude from automations.<br />
+                            <br />
+                            Exclusions are intended for tokens you want to buy-and-hold - or for tokens which you may prefer to trade without any CrossyBot closing or sl execution support.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Quicktrade -->
+                <div id="section-8" class="card-wrapper space-y-2">
+                    <button class="toggle-btn text-left w-full text-xl font-semibold text-white bg-slate-700 px-4 py-2 rounded hover:bg-slate-600">
+                        8. Quicktrade
+                    </button>
+                    <div class="card space-y-6 p-6 bg-slate-800/80 border border-slate-700 rounded-2xl shadow-lg collapsible" data-images='[{"src": "https://i.postimg.cc/T2Q4GzLc/device-8-1-quicktrade.png"}]' style="display: none;">
+                        <div>
+                            <h3 class="text-lg font-semibold text-slate-100 inline-block">Standard Quicktrade</h3>
+                            <button class="camera-btn inline-flex items-center justify-center w-6 h-6 ml-2 rounded-full bg-black" data-image="https://i.postimg.cc/T2Q4GzLc/device-8-1-quicktrade.png">
+                                <svg viewBox="0 0 24 24" fill="none" class="w-4 h-4" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M12 16C13.6569 16 15 14.6569 15 13C15 11.3431 13.6569 10 12 10C10.3431 10 9 11.3431 9 13C9 14.6569 10.3431 16 12 16Z"
+                                        stroke="#ffffff"
+                                        stroke-width="2"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                    />
+                                    <path
+                                        d="M3 16.8V9.2C3 8.0799 3 7.51984 3.21799 7.09202C3.40973 6.71569 3.71569 6.40973 4.09202 6.21799C4.51984 6 5.0799 6 6.2 6H7.25464C7.37758 6 7.43905 6 7.49576 5.9935C7.79166 5.95961 8.05705 5.79559 8.21969 5.54609C8.25086 5.49827 8.27836 5.44328 8.33333 5.33333C8.44329 5.11342 8.49827 5.00346 8.56062 4.90782C8.8859 4.40882 9.41668 4.08078 10.0085 4.01299C10.1219 4 10.2448 4 10.4907 4H13.5093C13.7552 4 13.8781 4 13.9915 4.01299C14.5833 4.08078 15.1141 4.40882 15.4394 4.90782C15.5017 5.00345 15.5567 5.11345 15.6667 5.33333C15.7216 5.44329 15.7491 5.49827 15.7803 5.54609C15.943 5.79559 16.2083 5.95961 16.5042 5.9935C16.561 6 16.6224 6 16.7454 6H17.8C18.9201 6 19.4802 6 19.908 6.21799C20.2843 6.40973 20.5903 6.71569 20.782 7.09202C21 7.51984 21 8.0799 21 9.2V16.8C21 17.9201 21 18.4802 20.782 18.908C20.5903 19.2843 20.2843 19.5903 19.908 19.782C19.4802 20 18.9201 20 17.8 20H6.2C5.0799 20 4.51984 20 4.09202 19.782C3.71569 19.5903 3.40973 19.2843 3.21799 18.908C3 18.4802 3 17.9201 3 16.8Z"
+                                        stroke="#ffffff"
+                                        stroke-width="2"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                    />
+                                </svg>
+                            </button>
+                            <p class="text-slate-300 mt-2">
+                                Quicktrade is for executing market long, spot or short trades with no CrossyBot fees. Using quicktrade helps keep aligned to trend signals, margin limits and prevents spot balances being collatoralized.
+                            </p>
+                            <p class="text-slate-300 mt-2">
+                                Select or enter a pair to proceed.
+                                <button class="camera-btn inline-flex items-center justify-center w-6 h-6 ml-2 rounded-full bg-black" data-image="https://i.postimg.cc/qv6bsgmm/device-8-2-quicktrade-pair-Select.png">
+                                    <svg viewBox="0 0 24 24" fill="none" class="w-4 h-4" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M12 16C13.6569 16 15 14.6569 15 13C15 11.3431 13.6569 10 12 10C10.3431 10 9 11.3431 9 13C9 14.6569 10.3431 16 12 16Z"
+                                            stroke="#ffffff"
+                                            stroke-width="2"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                        />
+                                        <path
+                                            d="M3 16.8V9.2C3 8.0799 3 7.51984 3.21799 7.09202C3.40973 6.71569 3.71569 6.40973 4.09202 6.21799C4.51984 6 5.0799 6 6.2 6H7.25464C7.37758 6 7.43905 6 7.49576 5.9935C7.79166 5.95961 8.05705 5.79559 8.21969 5.54609C8.25086 5.49827 8.27836 5.44328 8.33333 5.33333C8.44329 5.11342 8.49827 5.00346 8.56062 4.90782C8.8859 4.40882 9.41668 4.08078 10.0085 4.01299C10.1219 4 10.2448 4 10.4907 4H13.5093C13.7552 4 13.8781 4 13.9915 4.01299C14.5833 4.08078 15.1141 4.40882 15.4394 4.90782C15.5017 5.00345 15.5567 5.11345 15.6667 5.33333C15.7216 5.44329 15.7491 5.49827 15.7803 5.54609C15.943 5.79559 16.2083 5.95961 16.5042 5.9935C16.561 6 16.6224 6 16.7454 6H17.8C18.9201 6 19.4802 6 19.908 6.21799C20.2843 6.40973 20.5903 6.71569 20.782 7.09202C21 7.51984 21 8.0799 21 9.2V16.8C21 17.9201 21 18.4802 20.782 18.908C20.5903 19.2843 20.2843 19.5903 19.908 19.782C19.4802 20 18.9201 20 17.8 20H6.2C5.0799 20 4.51984 20 4.09202 19.782C3.71569 19.5903 3.40973 19.2843 3.21799 18.908C3 18.4802 3 17.9201 3 16.8Z"
+                                            stroke="#ffffff"
+                                            stroke-width="2"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                        />
+                                    </svg>
+                                </button>
+                                <br />
+                                Note: Pairs are not always standard (i.e. XXBT = BTC) so check explore pairs menu if expected pairs are not found.
+                            </p>
+                            <p class="text-slate-300 mt-2">
+                                Quicktrade requires you select a % of your portfolio to allocate to the trade.
+                                <button class="camera-btn inline-flex items-center justify-center w-6 h-6 ml-2 rounded-full bg-black" data-image="https://i.postimg.cc/6qQzyQ2f/device-8-3-quicktrade-equity-select.png">
+                                    <svg viewBox="0 0 24 24" fill="none" class="w-4 h-4" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M12 16C13.6569 16 15 14.6569 15 13C15 11.3431 13.6569 10 12 10C10.3431 10 9 11.3431 9 13C9 14.6569 10.3431 16 12 16Z"
+                                            stroke="#ffffff"
+                                            stroke-width="2"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                        />
+                                        <path
+                                            d="M3 16.8V9.2C3 8.0799 3 7.51984 3.21799 7.09202C3.40973 6.71569 3.71569 6.40973 4.09202 6.21799C4.51984 6 5.0799 6 6.2 6H7.25464C7.37758 6 7.43905 6 7.49576 5.9935C7.79166 5.95961 8.05705 5.79559 8.21969 5.54609C8.25086 5.49827 8.27836 5.44328 8.33333 5.33333C8.44329 5.11342 8.49827 5.00346 8.56062 4.90782C8.8859 4.40882 9.41668 4.08078 10.0085 4.01299C10.1219 4 10.2448 4 10.4907 4H13.5093C13.7552 4 13.8781 4 13.9915 4.01299C14.5833 4.08078 15.1141 4.40882 15.4394 4.90782C15.5017 5.00345 15.5567 5.11345 15.6667 5.33333C15.7216 5.44329 15.7491 5.49827 15.7803 5.54609C15.943 5.79559 16.2083 5.95961 16.5042 5.9935C16.561 6 16.6224 6 16.7454 6H17.8C18.9201 6 19.4802 6 19.908 6.21799C20.2843 6.40973 20.5903 6.71569 20.782 7.09202C21 7.51984 21 8.0799 21 9.2V16.8C21 17.9201 21 18.4802 20.782 18.908C20.5903 19.2843 20.2843 19.5903 19.908 19.782C19.4802 20 18.9201 20 17.8 20H6.2C5.0799 20 4.51984 20 4.09202 19.782C3.71569 19.5903 3.40973 19.2843 3.21799 18.908C3 18.4802 3 17.9201 3 16.8Z"
+                                            stroke="#ffffff"
+                                            stroke-width="2"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                        />
+                                    </svg>
+                                </button>
+                                <br />
+                                The max available option will change based on your available funds, open margin positions and risk limits.
+                            </p>
+                            <p class="text-slate-300 mt-2">
+                                Quicktrade requires you to confirm any actions before completed at the exchange.
+                                <button class="camera-btn inline-flex items-center justify-center w-6 h-6 ml-2 rounded-full bg-black" data-image="https://i.postimg.cc/DzKg164Z/device-8-4-quicktrade-confirm.png">
+                                    <svg viewBox="0 0 24 24" fill="none" class="w-4 h-4" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M12 16C13.6569 16 15 14.6569 15 13C15 11.3431 13.6569 10 12 10C10.3431 10 9 11.3431 9 13C9 14.6569 10.3431 16 12 16Z"
+                                            stroke="#ffffff"
+                                            stroke-width="2"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                        />
+                                        <path
+                                            d="M3 16.8V9.2C3 8.0799 3 7.51984 3.21799 7.09202C3.40973 6.71569 3.71569 6.40973 4.09202 6.21799C4.51984 6 5.0799 6 6.2 6H7.25464C7.37758 6 7.43905 6 7.49576 5.9935C7.79166 5.95961 8.05705 5.79559 8.21969 5.54609C8.25086 5.49827 8.27836 5.44328 8.33333 5.33333C8.44329 5.11342 8.49827 5.00346 8.56062 4.90782C8.8859 4.40882 9.41668 4.08078 10.0085 4.01299C10.1219 4 10.2448 4 10.4907 4H13.5093C13.7552 4 13.8781 4 13.9915 4.01299C14.5833 4.08078 15.1141 4.40882 15.4394 4.90782C15.5017 5.00345 15.5567 5.11345 15.6667 5.33333C15.7216 5.44329 15.7491 5.49827 15.7803 5.54609C15.943 5.79559 16.2083 5.95961 16.5042 5.9935C16.561 6 16.6224 6 16.7454 6H17.8C18.9201 6 19.4802 6 19.908 6.21799C20.2843 6.40973 20.5903 6.71569 20.782 7.09202C21 7.51984 21 8.0799 21 9.2V16.8C21 17.9201 21 18.4802 20.782 18.908C20.5903 19.2843 20.2843 19.5903 19.908 19.782C19.4802 20 18.9201 20 17.8 20H6.2C5.0799 20 4.51984 20 4.09202 19.782C3.71569 19.5903 3.40973 19.2843 3.21799 18.908C3 18.4802 3 17.9201 3 16.8Z"
+                                            stroke="#ffffff"
+                                            stroke-width="2"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                        />
+                                    </svg>
+                                </button>
+                                <br />
+                                Again, no CrossyBot fees will be charged - but exchange fees still apply.
+                            </p>
+                        </div>
+
+                        <div>
+                            <h3 class="text-lg font-semibold text-slate-100 inline-block">Bulk Quicktrade</h3>
+                            <button class="camera-btn inline-flex items-center justify-center w-6 h-6 ml-2 rounded-full bg-black" data-image="https://i.postimg.cc/8knmZNfx/device-8-6-bulk-quicktrade.png">
+                                <svg viewBox="0 0 24 24" fill="none" class="w-4 h-4" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M12 16C13.6569 16 15 14.6569 15 13C15 11.3431 13.6569 10 12 10C10.3431 10 9 11.3431 9 13C9 14.6569 10.3431 16 12 16Z"
+                                        stroke="#ffffff"
+                                        stroke-width="2"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                    />
+                                    <path
+                                        d="M3 16.8V9.2C3 8.0799 3 7.51984 3.21799 7.09202C3.40973 6.71569 3.71569 6.40973 4.09202 6.21799C4.51984 6 5.0799 6 6.2 6H7.25464C7.37758 6 7.43905 6 7.49576 5.9935C7.79166 5.95961 8.05705 5.79559 8.21969 5.54609C8.25086 5.49827 8.27836 5.44328 8.33333 5.33333C8.44329 5.11342 8.49827 5.00346 8.56062 4.90782C8.8859 4.40882 9.41668 4.08078 10.0085 4.01299C10.1219 4 10.2448 4 10.4907 4H13.5093C13.7552 4 13.8781 4 13.9915 4.01299C14.5833 4.08078 15.1141 4.40882 15.4394 4.90782C15.5017 5.00345 15.5567 5.11345 15.6667 5.33333C15.7216 5.44329 15.7491 5.49827 15.7803 5.54609C15.943 5.79559 16.2083 5.95961 16.5042 5.9935C16.561 6 16.6224 6 16.7454 6H17.8C18.9201 6 19.4802 6 19.908 6.21799C20.2843 6.40973 20.5903 6.71569 20.782 7.09202C21 7.51984 21 8.0799 21 9.2V16.8C21 17.9201 21 18.4802 20.782 18.908C20.5903 19.2843 20.2843 19.5903 19.908 19.782C19.4802 20 18.9201 20 17.8 20H6.2C5.0799 20 4.51984 20 4.09202 19.782C3.71569 19.5903 3.40973 19.2843 3.21799 18.908C3 18.4802 3 17.9201 3 16.8Z"
+                                        stroke="#ffffff"
+                                        stroke-width="2"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                    />
+                                </svg>
+                            </button>
+                            <ul class="list-disc text-slate-300 mt-1 pl-5">
+                                <li>Bulk quicktrade allows you to execute trades with wide market scope. This may be useful at times of market-wide mean reversion</li>
+                                <li>Available funds will be split across the valid pairs.</li>
+                                <li>Valid pairs are determined by: if buying or shorting & the count selected in the bulk quicktrade menu.</li>
+                                <li>Pairs are selected by largest to smallest market cap - so a count of 10 selects the top 10 market cap coins to split available funds across.</li>
+                                <li>
+                                    Once all settings are input and submitted you will be asked to reconfirm your selection before executing.
+                                    <button class="camera-btn inline-flex items-center justify-center w-6 h-6 ml-2 rounded-full bg-black" data-image="https://i.postimg.cc/pdxfmd35/device-8-7-bulk-quicktrade-confirm.png">
+                                        <svg viewBox="0 0 24 24" fill="none" class="w-4 h-4" xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M12 16C13.6569 16 15 14.6569 15 13C15 11.3431 13.6569 10 12 10C10.3431 10 9 11.3431 9 13C9 14.6569 10.3431 16 12 16Z"
+                                                stroke="#ffffff"
+                                                stroke-width="2"
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                            />
+                                            <path
+                                                d="M3 16.8V9.2C3 8.0799 3 7.51984 3.21799 7.09202C3.40973 6.71569 3.71569 6.40973 4.09202 6.21799C4.51984 6 5.0799 6 6.2 6H7.25464C7.37758 6 7.43905 6 7.49576 5.9935C7.79166 5.95961 8.05705 5.79559 8.21969 5.54609C8.25086 5.49827 8.27836 5.44328 8.33333 5.33333C8.44329 5.11342 8.49827 5.00346 8.56062 4.90782C8.8859 4.40882 9.41668 4.08078 10.0085 4.01299C10.1219 4 10.2448 4 10.4907 4H13.5093C13.7552 4 13.8781 4 13.9915 4.01299C14.5833 4.08078 15.1141 4.40882 15.4394 4.90782C15.5017 5.00345 15.5567 5.11345 15.6667 5.33333C15.7216 5.44329 15.7491 5.49827 15.7803 5.54609C15.943 5.79559 16.2083 5.95961 16.5042 5.9935C16.561 6 16.6224 6 16.7454 6H17.8C18.9201 6 19.4802 6 19.908 6.21799C20.2843 6.40973 20.5903 6.71569 20.782 7.09202C21 7.51984 21 8.0799 21 9.2V16.8C21 17.9201 21 18.4802 20.782 18.908C20.5903 19.2843 20.2843 19.5903 19.908 19.782C19.4802 20 18.9201 20 17.8 20H6.2C5.0799 20 4.51984 20 4.09202 19.782C3.71569 19.5903 3.40973 19.2843 3.21799 18.908C3 18.4802 3 17.9201 3 16.8Z"
+                                                stroke="#ffffff"
+                                                stroke-width="2"
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                            />
+                                        </svg>
+                                    </button>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Prices & EMAs -->
+                <div id="section-9" class="card-wrapper space-y-2">
+                    <button class="toggle-btn text-left w-full text-xl font-semibold text-white bg-slate-700 px-4 py-2 rounded hover:bg-slate-600">
+                        9. Prices & EMAs
+                    </button>
+                    <div class="card space-y-6 p-6 bg-slate-800/80 border border-slate-700 rounded-2xl shadow-lg collapsible" data-images='[{"src": "https://i.postimg.cc/v8j5Whps/device-9-1-charts.png"}]' style="display: none;">
+                        <p class="text-slate-300">
+                            Prices and EMAs lets you visualise what CrossyBot is doing on the go.
+                        </p>
+
+                        <p class="text-slate-300 mt-2">
+                            Select a pair, send a pair into chat or click an open balance charts button if you have open balances to view.
+                            <button class="camera-btn inline-flex items-center justify-center w-6 h-6 ml-2 rounded-full bg-black" data-image="https://i.postimg.cc/tg2x7Nh8/device-9-2-charts-pair-select.png">
+                                <svg viewBox="0 0 24 24" fill="none" class="w-4 h-4" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M12 16C13.6569 16 15 14.6569 15 13C15 11.3431 13.6569 10 12 10C10.3431 10 9 11.3431 9 13C9 14.6569 10.3431 16 12 16Z"
+                                        stroke="#ffffff"
+                                        stroke-width="2"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                    />
+                                    <path
+                                        d="M3 16.8V9.2C3 8.0799 3 7.51984 3.21799 7.09202C3.40973 6.71569 3.71569 6.40973 4.09202 6.21799C4.51984 6 5.0799 6 6.2 6H7.25464C7.37758 6 7.43905 6 7.49576 5.9935C7.79166 5.95961 8.05705 5.79559 8.21969 5.54609C8.25086 5.49827 8.27836 5.44328 8.33333 5.33333C8.44329 5.11342 8.49827 5.00346 8.56062 4.90782C8.8859 4.40882 9.41668 4.08078 10.0085 4.01299C10.1219 4 10.2448 4 10.4907 4H13.5093C13.7552 4 13.8781 4 13.9915 4.01299C14.5833 4.08078 15.1141 4.40882 15.4394 4.90782C15.5017 5.00345 15.5567 5.11345 15.6667 5.33333C15.7216 5.44329 15.7491 5.49827 15.7803 5.54609C15.943 5.79559 16.2083 5.95961 16.5042 5.9935C16.561 6 16.6224 6 16.7454 6H17.8C18.9201 6 19.4802 6 19.908 6.21799C20.2843 6.40973 20.5903 6.71569 20.782 7.09202C21 7.51984 21 8.0799 21 9.2V16.8C21 17.9201 21 18.4802 20.782 18.908C20.5903 19.2843 20.2843 19.5903 19.908 19.782C19.4802 20 18.9201 20 17.8 20H6.2C5.0799 20 4.51984 20 4.09202 19.782C3.71569 19.5903 3.40973 19.2843 3.21799 18.908C3 18.4802 3 17.9201 3 16.8Z"
+                                        stroke="#ffffff"
+                                        stroke-width="2"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                    />
+                                </svg>
+                            </button>
+                        </p>
+
+                        <ul class="list-disc text-slate-300 pl-5 mt-2 space-y-1">
+                            <li>Show all open balances sends both the higher timeframe and lower timeframe charts into the chat</li>
+                            <li>Open HTFs sends the higher timeframe charts for all open balances into the chat</li>
+                            <li>Open LTFs sends the lower timeframe charts for all open balances into the chat</li>
+                        </ul>
+
+                        <p class="text-slate-300 mt-4">
+                            Charts can be deleted from the chat with the delete button.
+                        </p>
+
+                        <p class="text-slate-300 mt-2">You can also view charts at any time in CrossyBot by using the <code>/charts</code> command.</p>
+                    </div>
+                </div>
+
+                <!-- Credits & referrals -->
+                <div id="section-10" class="card-wrapper space-y-2">
+                    <button class="toggle-btn text-left w-full text-xl font-semibold text-white bg-slate-700 px-4 py-2 rounded hover:bg-slate-600">
+                        10. Credits & Referrals
+                    </button>
+                    <div class="card space-y-6 p-6 bg-slate-800/80 border border-slate-700 rounded-2xl shadow-lg collapsible" data-images='[{"src": "https://i.postimg.cc/qMyQqWgY/device-10-1-credits.png"}]' style="display: none;">
+                        <p class="text-slate-300">
+                            On this menu you will see your credits deposit address. Send SOL to this address to have them converted into credits at curent jup.ag SOL/USDC rates.<br />
+                            >> This address is also your referral address. <<<br />
+                            <br />
+                            Share this address with other users for 10% of their fees (paid in credits) & for them to recieve 20% off base CrossyBot fees.<br />
+                            <br />
+                            Click the set referral address button and enter in a referral address to be referred and recieve 20% off fees yourself. This can be changed at any time.
+                            <button class="camera-btn inline-flex items-center justify-center w-6 h-6 ml-2 rounded-full bg-black" data-image="https://i.postimg.cc/qRNxT591/device-10-2-referrals.png">
+                                <svg viewBox="0 0 24 24" fill="none" class="w-4 h-4" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M12 16C13.6569 16 15 14.6569 15 13C15 11.3431 13.6569 10 12 10C10.3431 10 9 11.3431 9 13C9 14.6569 10.3431 16 12 16Z"
+                                        stroke="#ffffff"
+                                        stroke-width="2"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                    />
+                                    <path
+                                        d="M3 16.8V9.2C3 8.0799 3 7.51984 3.21799 7.09202C3.40973 6.71569 3.71569 6.40973 4.09202 6.21799C4.51984 6 5.0799 6 6.2 6H7.25464C7.37758 6 7.43905 6 7.49576 5.9935C7.79166 5.95961 8.05705 5.79559 8.21969 5.54609C8.25086 5.49827 8.27836 5.44328 8.33333 5.33333C8.44329 5.11342 8.49827 5.00346 8.56062 4.90782C8.8859 4.40882 9.41668 4.08078 10.0085 4.01299C10.1219 4 10.2448 4 10.4907 4H13.5093C13.7552 4 13.8781 4 13.9915 4.01299C14.5833 4.08078 15.1141 4.40882 15.4394 4.90782C15.5017 5.00345 15.5567 5.11345 15.6667 5.33333C15.7216 5.44329 15.7491 5.49827 15.7803 5.54609C15.943 5.79559 16.2083 5.95961 16.5042 5.9935C16.561 6 16.6224 6 16.7454 6H17.8C18.9201 6 19.4802 6 19.908 6.21799C20.2843 6.40973 20.5903 6.71569 20.782 7.09202C21 7.51984 21 8.0799 21 9.2V16.8C21 17.9201 21 18.4802 20.782 18.908C20.5903 19.2843 20.2843 19.5903 19.908 19.782C19.4802 20 18.9201 20 17.8 20H6.2C5.0799 20 4.51984 20 4.09202 19.782C3.71569 19.5903 3.40973 19.2843 3.21799 18.908C3 18.4802 3 17.9201 3 16.8Z"
+                                        stroke="#ffffff"
+                                        stroke-width="2"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                    />
+                                </svg>
+                            </button>
+                            <br />
+                            <br />
+                            ⚠️ Referral addresses must be for valid CrossyBot users only.<br />
+                            ⚠️ Invalid referral addresses wil be accepted, but ignored, during fee processing.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Settings -->
+                <div id="section-11" class="card-wrapper space-y-2">
+                    <button class="toggle-btn text-left w-full text-xl font-semibold text-white bg-slate-700 px-4 py-2 rounded hover:bg-slate-600">
+                        11. Settings
+                    </button>
+                    <div class="card space-y-6 p-6 bg-slate-800/80 border border-slate-700 rounded-2xl shadow-lg collapsible" data-images='[{"src": "https://i.postimg.cc/0jmG6J5m/device-11-1-settings.png"}]' style="display: none;">
+                        <p class="text-slate-300">
+                            CrossyBot's settings are crucial to the way it behaves. Settings are split out into 3 submenus:<br />
+                            • Automation settings<br />
+                            • Trade settings<br />
+                            • Portfolio settings
+                        </p>
+
+                        <p class="text-slate-300 mt-2">
+                            There are additional buttons which can be used to update API keys or refresh closed orders should you wish to.<b>Refresh closed orders if you think your open trade PNLs are not being calculated correctly.</b>
+                            <button class="camera-btn inline-flex items-center justify-center w-6 h-6 ml-2 rounded-full bg-black" data-image="https://i.postimg.cc/0jmG6J5m/device-11-1-settings.png">
+                                <svg viewBox="0 0 24 24" fill="none" class="w-4 h-4" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M12 16C13.6569 16 15 14.6569 15 13C15 11.3431 13.6569 10 12 10C10.3431 10 9 11.3431 9 13C9 14.6569 10.3431 16 12 16Z"
+                                        stroke="#ffffff"
+                                        stroke-width="2"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                    />
+                                    <path
+                                        d="M3 16.8V9.2C3 8.0799 3 7.51984 3.21799 7.09202C3.40973 6.71569 3.71569 6.40973 4.09202 6.21799C4.51984 6 5.0799 6 6.2 6H7.25464C7.37758 6 7.43905 6 7.49576 5.9935C7.79166 5.95961 8.05705 5.79559 8.21969 5.54609C8.25086 5.49827 8.27836 5.44328 8.33333 5.33333C8.44329 5.11342 8.49827 5.00346 8.56062 4.90782C8.8859 4.40882 9.41668 4.08078 10.0085 4.01299C10.1219 4 10.2448 4 10.4907 4H13.5093C13.7552 4 13.8781 4 13.9915 4.01299C14.5833 4.08078 15.1141 4.40882 15.4394 4.90782C15.5017 5.00345 15.5567 5.11345 15.6667 5.33333C15.7216 5.44329 15.7491 5.49827 15.7803 5.54609C15.943 5.79559 16.2083 5.95961 16.5042 5.9935C16.561 6 16.6224 6 16.7454 6H17.8C18.9201 6 19.4802 6 19.908 6.21799C20.2843 6.40973 20.5903 6.71569 20.782 7.09202C21 7.51984 21 8.0799 21 9.2V16.8C21 17.9201 21 18.4802 20.782 18.908C20.5903 19.2843 20.2843 19.5903 19.908 19.782C19.4802 20 18.9201 20 17.8 20H6.2C5.0799 20 4.51984 20 4.09202 19.782C3.71569 19.5903 3.40973 19.2843 3.21799 18.908C3 18.4802 3 17.9201 3 16.8Z"
+                                        stroke="#ffffff"
+                                        stroke-width="2"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                    />
+                                </svg>
+                            </button>
+                        </p>
+
+                        <p class="text-slate-300 mt-4">
+                            Automation settings sit at the crux of Crossybot operation.
+                            <button class="camera-btn inline-flex items-center justify-center w-6 h-6 ml-2 rounded-full bg-black" data-image="https://i.postimg.cc/CxJGf00v/device-11-2-settings-automation.png">
+                                <svg viewBox="0 0 24 24" fill="none" class="w-4 h-4" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M12 16C13.6569 16 15 14.6569 15 13C15 11.3431 13.6569 10 12 10C10.3431 10 9 11.3431 9 13C9 14.6569 10.3431 16 12 16Z"
+                                        stroke="#ffffff"
+                                        stroke-width="2"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                    />
+                                    <path
+                                        d="M3 16.8V9.2C3 8.0799 3 7.51984 3.21799 7.09202C3.40973 6.71569 3.71569 6.40973 4.09202 6.21799C4.51984 6 5.0799 6 6.2 6H7.25464C7.37758 6 7.43905 6 7.49576 5.9935C7.79166 5.95961 8.05705 5.79559 8.21969 5.54609C8.25086 5.49827 8.27836 5.44328 8.33333 5.33333C8.44329 5.11342 8.49827 5.00346 8.56062 4.90782C8.8859 4.40882 9.41668 4.08078 10.0085 4.01299C10.1219 4 10.2448 4 10.4907 4H13.5093C13.7552 4 13.8781 4 13.9915 4.01299C14.5833 4.08078 15.1141 4.40882 15.4394 4.90782C15.5017 5.00345 15.5567 5.11345 15.6667 5.33333C15.7216 5.44329 15.7491 5.49827 15.7803 5.54609C15.943 5.79559 16.2083 5.95961 16.5042 5.9935C16.561 6 16.6224 6 16.7454 6H17.8C18.9201 6 19.4802 6 19.908 6.21799C20.2843 6.40973 20.5903 6.71569 20.782 7.09202C21 7.51984 21 8.0799 21 9.2V16.8C21 17.9201 21 18.4802 20.782 18.908C20.5903 19.2843 20.2843 19.5903 19.908 19.782C19.4802 20 18.9201 20 17.8 20H6.2C5.0799 20 4.51984 20 4.09202 19.782C3.71569 19.5903 3.40973 19.2843 3.21799 18.908C3 18.4802 3 17.9201 3 16.8Z"
+                                        stroke="#ffffff"
+                                        stroke-width="2"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                    />
+                                </svg>
+                            </button>
+                        </p>
+
+                        <ul class="list-disc text-slate-300 pl-5 mt-2 space-y-1">
+                            <li>Pause automations – lets you pause all crossybot automations</li>
+                            <li>Exclude automations – lets you exclude specific pairs from all crossybot automations</li>
+                            <li>Set ema ranges – key settings for crossybot moving average signal generation</li>
+                            <li>Set timeframes – key settings for crossybot moving average signal generation</li>
+                            <li>Max automation value – a hard cap to the value of automations crossybot will execute</li>
+                            <li>Htf notifications – enable/disable notifications for higher timeframe crossovers when you have open balances or positions</li>
+                        </ul>
+
+                        <p class="text-slate-300 mt-4">
+                            Tweaking EMA ranges and timeframes helps balance precision and signal quality. Narrow settings increase noise and frequent signals, while broader ones smooth the trend and widen the spacing between crossovers.
+                        </p>
+
+                        <p class="text-slate-300 mt-4">
+                            Trade settings let you apply finer control over how CrossyBot operates:
+                            <button class="camera-btn inline-flex items-center justify-center w-6 h-6 ml-2 rounded-full bg-black" data-image="https://i.postimg.cc/d1CZncMc/device-11-3-settings-trades.png">
+                                <svg viewBox="0 0 24 24" fill="none" class="w-4 h-4" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M12 16C13.6569 16 15 14.6569 15 13C15 11.3431 13.6569 10 12 10C10.3431 10 9 11.3431 9 13C9 14.6569 10.3431 16 12 16Z"
+                                        stroke="#ffffff"
+                                        stroke-width="2"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                    />
+                                    <path
+                                        d="M3 16.8V9.2C3 8.0799 3 7.51984 3.21799 7.09202C3.40973 6.71569 3.71569 6.40973 4.09202 6.21799C4.51984 6 5.0799 6 6.2 6H7.25464C7.37758 6 7.43905 6 7.49576 5.9935C7.79166 5.95961 8.05705 5.79559 8.21969 5.54609C8.25086 5.49827 8.27836 5.44328 8.33333 5.33333C8.44329 5.11342 8.49827 5.00346 8.56062 4.90782C8.8859 4.40882 9.41668 4.08078 10.0085 4.01299C10.1219 4 10.2448 4 10.4907 4H13.5093C13.7552 4 13.8781 4 13.9915 4.01299C14.5833 4.08078 15.1141 4.40882 15.4394 4.90782C15.5017 5.00345 15.5567 5.11345 15.6667 5.33333C15.7216 5.44329 15.7491 5.49827 15.7803 5.54609C15.943 5.79559 16.2083 5.95961 16.5042 5.9935C16.561 6 16.6224 6 16.7454 6H17.8C18.9201 6 19.4802 6 19.908 6.21799C20.2843 6.40973 20.5903 6.71569 20.782 7.09202C21 7.51984 21 8.0799 21 9.2V16.8C21 17.9201 21 18.4802 20.782 18.908C20.5903 19.2843 20.2843 19.5903 19.908 19.782C19.4802 20 18.9201 20 17.8 20H6.2C5.0799 20 4.51984 20 4.09202 19.782C3.71569 19.5903 3.40973 19.2843 3.21799 18.908C3 18.4802 3 17.9201 3 16.8Z"
+                                        stroke="#ffffff"
+                                        stroke-width="2"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                    />
+                                </svg>
+                            </button>
+                        </p>
+
+                        <ul class="list-disc text-slate-300 pl-5 mt-2 space-y-1">
+                            <li>Taker fee rate – the fee rate set by Kraken used in CrossyBot PnL calculations</li>
+                            <li>Profitable close % – % threshold at which open trades are considered profitable and can be auto-Closed</li>
+                            <li>Trade stop loss – % drop from entry where CrossyBot will automatically close positions (can be updated live)</li>
+                        </ul>
+
+                        <p class="text-slate-300 mt-4">
+                            Portfolio settings help look after the bottom line:
+                            <button class="camera-btn inline-flex items-center justify-center w-6 h-6 ml-2 rounded-full bg-black" data-image="https://i.postimg.cc/PrTvb720/device-11-4-settings-portfolio.png">
+                                <svg viewBox="0 0 24 24" fill="none" class="w-4 h-4" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M12 16C13.6569 16 15 14.6569 15 13C15 11.3431 13.6569 10 12 10C10.3431 10 9 11.3431 9 13C9 14.6569 10.3431 16 12 16Z"
+                                        stroke="#ffffff"
+                                        stroke-width="2"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                    />
+                                    <path
+                                        d="M3 16.8V9.2C3 8.0799 3 7.51984 3.21799 7.09202C3.40973 6.71569 3.71569 6.40973 4.09202 6.21799C4.51984 6 5.0799 6 6.2 6H7.25464C7.37758 6 7.43905 6 7.49576 5.9935C7.79166 5.95961 8.05705 5.79559 8.21969 5.54609C8.25086 5.49827 8.27836 5.44328 8.33333 5.33333C8.44329 5.11342 8.49827 5.00346 8.56062 4.90782C8.8859 4.40882 9.41668 4.08078 10.0085 4.01299C10.1219 4 10.2448 4 10.4907 4H13.5093C13.7552 4 13.8781 4 13.9915 4.01299C14.5833 4.08078 15.1141 4.40882 15.4394 4.90782C15.5017 5.00345 15.5567 5.11345 15.6667 5.33333C15.7216 5.44329 15.7491 5.49827 15.7803 5.54609C15.943 5.79559 16.2083 5.95961 16.5042 5.9935C16.561 6 16.6224 6 16.7454 6H17.8C18.9201 6 19.4802 6 19.908 6.21799C20.2843 6.40973 20.5903 6.71569 20.782 7.09202C21 7.51984 21 8.0799 21 9.2V16.8C21 17.9201 21 18.4802 20.782 18.908C20.5903 19.2843 20.2843 19.5903 19.908 19.782C19.4802 20 18.9201 20 17.8 20H6.2C5.0799 20 4.51984 20 4.09202 19.782C3.71569 19.5903 3.40973 19.2843 3.21799 18.908C3 18.4802 3 17.9201 3 16.8Z"
+                                        stroke="#ffffff"
+                                        stroke-width="2"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                    />
+                                </svg>
+                            </button>
+                        </p>
+
+                        <ul class="list-disc text-slate-300 pl-5 mt-2 space-y-1">
+                            <li>Equity stop loss – sets a % portfolio loss threshold to sell all balances and stop automations</li>
+                            <li>Max margin allocation – sets max % of portfolio used for margin collateral</li>
+                        </ul>
+
+                        <p class="text-slate-300 mt-2">
+                            CrossyBot uses 2x leverage by default, so 50% max margin is the default. If using higher leverage manually, consider reducing this to e.g. 100% ÷ leverage.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Image switcher -->
+        <script>
+            const desktopImg = document.getElementById("dynamicImage");
+            const mobileImg = document.getElementById("dynamicImageMobile");
+            const caption = document.getElementById("imageCaption");
+
+            const helpIcon = `<svg class="inline-block w-4 h-4 mr-1 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+        d="M12 8v2m0 4h.01m-.01-10a9 9 0 110 18 9 9 0 010-18z" />
+    </svg>`;
+
+            const captionLinks = {
+                "API key permissions": {
+                    href: "https://support.kraken.com/hc/en-us/articles/360000919966-How-to-create-an-API-key",
+                    text: "API key permissions",
+                },
+                "The Botfather": {
+                    href: "https://telegram.me/BotFather",
+                    text: "Telegram BotFather",
+                },
+                "AWS account setup": {
+                    href: "https://aws.amazon.com/resources/create-account/",
+                    text: "AWS account setup",
+                },
+                "Launch EC2 instance": {
+                    href: "https://www.geeksforgeeks.org/launch-the-ec2-instance-in-aws-with-new-instance-wizard/",
+                    text: "Launch EC2 instance",
+                },
+            };
+
+            function updateImage(images) {
+                if (images.length) {
+                    const src = images[0].src;
+                    desktopImg.src = src;
+                    mobileImg.src = src;
+                    const link = captionLinks[images[0].caption];
+                    if (caption) {
+                        caption.innerHTML = link ? `${helpIcon}<a href="${link.href}" target="_blank" class="text-indigo-400 underline">${link.text}</a>` : `${helpIcon}${images[0].caption}`;
+                    }
+                }
+            }
+
+            function scrollHandler() {
+                document.querySelectorAll("[data-images]").forEach((section) => {
+                    section.classList.remove("active-card");
+                    const rect = section.getBoundingClientRect();
+                    if (rect.top < window.innerHeight / 2 && rect.bottom > 0) {
+                        const parsed = JSON.parse(section.getAttribute("data-images"));
+                        updateImage(parsed);
+                        section.classList.add("active-card");
+                    }
+                });
+            }
+
+            window.addEventListener("DOMContentLoaded", () => {
+                updateImage([
+                    {
+                        src: "https://i.postimg.cc/5N4WS5vs/device-1-front-page.png",
+                        caption: "API key permissions",
+                    },
+                ]);
+            });
+        </script>
+
+        <!-- Footer -->
+        <footer class="bg-gray-900 text-slate-400 py-8">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col items-center space-y-4">
+                    <!-- Logo and Title (match navbar) -->
+                    <div class="flex items-center space-x-2">
+                        <div class="w-8 h-8 rounded-full gradient-bg flex items-center justify-center">
+                            <svg class="h-5 w-5 text-white" fill="none" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M5 19L19 5M19 5L19 9M19 5L15 5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+                                <path d="M5 5L8.5 8.5L9.375 9.375M19 19L15 19M19 19L19 15M19 19L15.5 15.5L14.625 14.625" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+                            </svg>
+                        </div>
+                        <span class="text-xl font-bold title-font text-white">
+                            CrossyBot
+                        </span>
+                    </div>
+                    <!-- Links -->
+                    <div class="flex space-x-6 items-center">
+                        <a class="text-sm hover:text-white transition" href="#eula">Licences &amp; End user licence agreement (EULA)</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <!-- Mobile menu toggle -->
+        <script>
+            const menuButton = document.querySelector("nav button.md\:hidden");
+            const navLinks = document.createElement("div");
+            navLinks.className = "md:hidden flex flex-col mt-4 space-y-2";
+            navLinks.innerHTML = `
+    <a href="#home" class="text-slate-300 hover:text-white transition">Home</a>
+    <a href="#features" class="text-slate-300 hover:text-white transition">Features</a>
+    <a href="#pricing" class="text-slate-300 hover:text-white transition">Pricing</a>
+    <a href="setup.html" class="text-slate-300 hover:text-white transition">Setup</a>
+    <a href="guide.html" class="text-slate-300 hover:text-white transition">User Guide</a>
+    <a href="how.html" class="text-slate-300 hover:text-white transition">How CrossyBot Works</a>
+  `;
+            let isOpen = false;
+            menuButton.addEventListener("click", () => {
+                const parent = menuButton.closest("nav").querySelector(".max-w-7xl");
+                if (!isOpen) {
+                    parent.appendChild(navLinks);
+                } else {
+                    navLinks.remove();
+                }
+                isOpen = !isOpen;
+            });
+        </script>
+
+        <!-- image expand script -->
+        <script>
+            function createImageOverlay(src) {
+                const overlay = document.createElement("div");
+                overlay.className = "fixed inset-0 bg-black/80 flex items-center justify-center z-50";
+                overlay.innerHTML = `<img src="${src}" class="max-w-full max-h-full rounded shadow-lg cursor-pointer" />`;
+
+                overlay.addEventListener("click", () => overlay.remove());
+                document.body.appendChild(overlay);
+            }
+
+            ["dynamicImage", "dynamicImageMobile"].forEach((id) => {
+                const img = document.getElementById(id);
+                if (img) {
+                    img.style.cursor = "zoom-in";
+                    img.addEventListener("click", (e) => {
+                        e.stopPropagation();
+                        createImageOverlay(e.target.src);
+                    });
+                }
+            });
+        </script>
+
+        <!-- Cards accordian -->
+        <script>
+            document.addEventListener("DOMContentLoaded", () => {
+                const cards = document.querySelectorAll(".card-wrapper");
+
+                function updateImageFromCard(card) {
+                    const content = card.querySelector(".card");
+                    const images = JSON.parse(content.getAttribute("data-images") || "[]");
+                    if (images.length && typeof updateImage === "function") {
+                        updateImage(images);
+                    }
+                }
+
+                function collapseAllCards() {
+                    document.querySelectorAll(".card").forEach((c) => {
+                        c.style.display = "none";
+                        c.classList.remove("active-card");
+                    });
+                }
+
+                function expandCard(wrapper) {
+                    if (!wrapper) return;
+                    const card = wrapper.querySelector(".card");
+                    const id = wrapper.id;
+
+                    collapseAllCards();
+
+                    if (card) {
+                        card.style.display = "block";
+                        card.classList.add("active-card");
+
+                        const navOffset = document.querySelector("nav")?.offsetHeight || 80;
+                        const y = wrapper.getBoundingClientRect().top + window.pageYOffset - navOffset - 20;
+                        window.scrollTo({ top: y, behavior: "smooth" });
+
+                        updateImageFromCard(wrapper);
+
+                        if (id) {
+                            history.replaceState(null, "", `#${id}`);
+                        }
+                    }
+                }
+
+                cards.forEach((wrapper) => {
+                    const button = wrapper.querySelector(".toggle-btn");
+
+                    button.addEventListener("click", () => {
+                        expandCard(wrapper);
+                    });
+                });
+
+                // On load: expand card if hash matches
+                if (window.location.hash) {
+                    const target = document.querySelector(window.location.hash);
+                    expandCard(target);
+                }
+
+                // On hash change (e.g., navigating to #section-x)
+                window.addEventListener("hashchange", () => {
+                    const target = document.querySelector(window.location.hash);
+                    expandCard(target);
+                });
+            });
+        </script>
+
+        <!-- Camera image switching -->
+        <script>
+            document.querySelectorAll(".camera-btn").forEach((btn) => {
+                btn.addEventListener("click", (e) => {
+                    e.stopPropagation();
+                    const src = btn.getAttribute("data-image");
+                    if (src) {
+                        document.getElementById("dynamicImage").src = src;
+                        document.getElementById("dynamicImageMobile").src = src;
+                    }
+                });
+            });
+        </script>
+
+        <!-- Direct section image switching -->
+        <script>
+            window.addEventListener("DOMContentLoaded", () => {
+                const hash = location.hash;
+                if (hash) {
+                    const section = document.querySelector(hash + " .card");
+                    const imageData = section?.dataset.images;
+                    const imageObj = imageData ? JSON.parse(imageData)[0] : null;
+                    const imgSrc = imageObj?.src || "https://i.postimg.cc/5N4WS5vs/device-1-front-page.png";
+                    document.getElementById("dynamicImage").src = imgSrc;
+                    document.getElementById("dynamicImageMobile").src = imgSrc;
+                }
+            });
+        </script>
+    </body>
+</html>
