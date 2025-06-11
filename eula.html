@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/KP12345678910/crossybot.com/main/crossybot_logo_only.PNG" />
+<!--        <meta http-equiv="refresh" content="0; url=https://www.crossybot.com" />-->
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>
+            CrossyBot | Crypto Co-pilot
+        </title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&amp;family=Space+Grotesk:wght@500;700&amp;display=swap" rel="stylesheet" />
+        <style>
+            :root {
+                --primary: #6366f1;
+                --secondary: #8b5cf6;
+                --accent: #ec4899;
+            }
+            body {
+                font-family: "Inter", sans-serif;
+                background-color: #0f172a;
+                color: #f8fafc;
+            }
+            .title-font {
+                font-family: "Space Grotesk", sans-serif;
+            }
+            .gradient-text {
+                background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+                -webkit-background-clip: text;
+                background-clip: text;
+                color: transparent;
+            }
+            .gradient-bg {
+                background: linear-gradient(135deg, var(--primary), var(--secondary), var(--accent));
+            }
+            .card-gradient {
+                background: linear-gradient(145deg, #1e293b, #0f172a);
+            }
+            .feature-card:hover {
+                transform: translateY(-10px);
+                box-shadow: 0 20px 25px -5px rgba(99, 102, 241, 0.2);
+            }
+            .glow-effect {
+                box-shadow: 0 0 15px rgba(99, 102, 241, 0.5);
+            }
+            .hero-image {
+                mask-image: radial-gradient(ellipse 50% 50% at 50% 50%, black 60%, transparent 100%);
+            }
+            .animated-underline {
+                position: relative;
+            }
+            .animated-underline::after {
+                content: "";
+                position: absolute;
+                bottom: -2px;
+                left: 0;
+                width: 0;
+                height: 2px;
+                background: currentColor;
+                transition: width 0.3s ease;
+            }
+            .animated-underline:hover::after {
+                width: 100%;
+            }
+            @keyframes float {
+                0%,
+                100% {
+                    transform: translateY(0);
+                }
+                50% {
+                    transform: translateY(-10px);
+                }
+            }
+            .floating {
+                animation: float 6s ease-in-out infinite;
+            }
+        </style>
+    </head>
+    <body class="min-h-screen">
+        <!-- Navigation -->
+        <nav class="fixed top-0 left-0 w-full z-50 py-6 px-4 md:px-12 backdrop-blur-md bg-slate-900/50">
+            <div class="flex justify-between items-center max-w-7xl mx-auto">
+                <div class="flex items-center space-x-2">
+                    <div class="w-8 h-8 rounded-full gradient-bg flex items-center justify-center">
+                        <svg class="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M5 19L19 5M19 5L19 9M19 5L15 5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+                            <path d="M5 5L8.5 8.5L9.375 9.375M19 19L15 19M19 19L19 15M19 19L15.5 15.5L14.625 14.625" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+                        </svg>
+                    </div>
+                    <span class="text-xl font-bold title-font">CrossyBot</span>
+                </div>
+
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a class="text-slate-300 hover:text-white transition animated-underline" href="index.html#home">Home</a>
+                    <a class="text-slate-300 hover:text-white transition animated-underline" href="index.html#features">Features</a>
+                    <a class="text-slate-300 hover:text-white transition animated-underline" href="index.html#pricing">Pricing</a>
+                    <a class="text-slate-300 hover:text-white transition animated-underline" href="setup.html">Setup</a>
+                    <a class="text-slate-300 hover:text-white transition animated-underline" href="guide.html">User Guide</a>
+                    <a class="text-slate-300 hover:text-white transition animated-underline" href="how.html">How CrossyBot Works</a>
+                </div>
+
+                <div class="hidden sm:flex items-center space-x-4">
+                    <button class="px-6 py-2 rounded-full gradient-bg text-white font-bold hover:opacity-90 transition transform hover:scale-105">
+                        Download Now
+                    </button>
+                </div>
+
+                <!-- Hamburger -->
+                <button id="menuToggle" class="md:hidden text-white focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+            </div>
+        </nav>
+
+        <!-- Mobile Sidebar Menu -->
+        <div id="mobileMenu" class="hidden fixed inset-0 z-50 md:hidden">
+            <div id="menuBackdrop" class="absolute inset-0 bg-black/50"></div>
+            <aside class="ml-auto w-64 h-full bg-slate-800 border-l border-slate-700 shadow-lg backdrop-blur-md flex items-center justify-center p-4 rounded-l-xl">
+                <div class="w-full">
+                    <h3 class="text-white font-bold text-lg mb-4 gradient-text">Menu</h3>
+                    <ul class="space-y-3 text-slate-300 text-base">
+                        <li><a href="index.html#home" class="hover:text-white transition block">Home</a></li>
+                        <li><a href="index.html#features" class="hover:text-white transition block">Features</a></li>
+                        <li><a href="index.html#pricing" class="hover:text-white transition block">Pricing</a></li>
+                        <li><a href="setup.html" class="hover:text-white transition block">Setup</a></li>
+                        <li><a href="guide.html" class="hover:text-white transition block">User Guide</a></li>
+                        <li><a href="how.html" class="hover:text-white transition block">How CrossyBot Works</a></li>
+                    </ul>
+                </div>
+            </aside>
+        </div>
+        <script>
+            const toggle = document.getElementById("menuToggle");
+            const menu = document.getElementById("mobileMenu");
+            const backdrop = document.getElementById("menuBackdrop");
+
+            toggle.addEventListener("click", () => menu.classList.remove("hidden"));
+            backdrop.addEventListener("click", () => menu.classList.add("hidden"));
+        </script>
+        <style>
+            @keyframes pulse-icon {
+                0%,
+                100% {
+                    transform: translateY(-50%) translateX(0);
+                }
+                50% {
+                    transform: translateY(-60%) translateX(0);
+                }
+            }
+            .animate-pulse-icon {
+                animation: pulse-icon 1.5s infinite ease-in-out;
+            }
+        </style>
+
+
+<!-- EULA Terms -->
+        <main class="pt-32"></main>
+<main class="pt-0 pb-20 px-4 md:px-12 max-w-5xl mx-auto space-y-6">
+<h1 class="text-4xl font-bold title-font mb-8 gradient-text text-center">End User License Agreement (EULA)</h1>
+<h2 class="text-2xl font-bold title-font mt-6">1. Acceptance of Terms</h2>
+<p class="text-slate-300">By accessing, installing, or using the CrossyBot software (“the Software”), you agree to be legally bound by these Terms of Service (“Terms”). If you do not agree with any part of the Terms, you must not use the Software.</p>
+<p class="text-slate-300">You confirm that you are at least 18 years old and are not located in, or a citizen or resident of, any jurisdiction where use of the Software is prohibited by applicable law, regulation, or sanctions, including but not limited to those listed in Section [Prohibited Jurisdictions].</p>
+<p class="text-slate-300">Use of the Software constitutes your full and unconditional acceptance of these Terms, and any future updates or modifications, which may be made at any time without prior notice. It is your responsibility to review the Terms periodically. Continued use of the Software after any changes constitutes acceptance of those changes.</p>
+<h2 class="text-2xl font-bold title-font mt-6">2. Description of Service</h2>
+<p class="text-slate-300">CrossyBot is an execution-only cryptocurrency trading automation tool. It enables users to automate trade execution based on user-defined parameters such as EMA crossover strategies. The Software integrates with the Kraken API using user-provided API keys and offers a Telegram-based interface for interaction and control.</p>
+<p class="text-slate-300">CrossyBot is strictly a tool for executing user-directed actions. It does not provide financial, investment, or trading advice, and should not be relied upon as such. Users retain full control and responsibility over all trading decisions and parameters.</p>
+<p class="text-slate-300">The client application is self-hosted by users, either on their own Windows device or optionally on a cloud-hosted EC2 instance. The CrossyBot API backend is hosted on a third-party platform and facilitates necessary supporting functions (e.g., account management, credit accounting, email notifications), but does not initiate trades or manage user funds.</p>
+<h2 class="text-2xl font-bold title-font mt-6">3. License Grant</h2>
+<p class="text-slate-300">CrossyBot grants you a limited, revocable, non-exclusive, non-transferable license to use the Software solely for your personal or internal commercial purposes, in accordance with these Terms.</p>
+<p class="text-slate-300">You may not sell, rent, lease, sublicense, distribute, or otherwise transfer or make the Software available to any third party. You may not modify, reverse engineer, decompile, or disassemble any part of the Software except as permitted by law.</p>
+<p class="text-slate-300">This license is conditional on your continued compliance with these Terms and may be terminated at any time without notice if you breach any part of this agreement.</p>
+<h2 class="text-2xl font-bold title-font mt-6">4. User Representations &amp; Warranties</h2>
+<p class="text-slate-300">By using the Software, you represent and warrant that:</p>
+<p class="text-slate-300">You are at least 18 years old and have full legal capacity to enter into and be bound by these Terms.</p>
+<p class="text-slate-300">All funds used via the Software are lawfully obtained and not derived from any illegal activity, including money laundering or terrorist financing.</p>
+<p class="text-slate-300">You are not subject to any sanctions, embargoes, or restrictions imposed by the UK, UN, OFAC, EU, or any other relevant authority, and you are not located in or a resident/citizen of any jurisdiction where use of the Software is prohibited.</p>
+<p class="text-slate-300">You agree to promptly cease all use of the Software if any of the above representations become untrue.</p>
+<h2 class="text-2xl font-bold title-font mt-6">5. User Obligations</h2>
+<p class="text-slate-300">You agree to:</p>
+<p class="text-slate-300">Maintain the security and confidentiality of your API keys, Telegram credentials, and device(s) running the Software.</p>
+<p class="text-slate-300">Be solely responsible for all activity conducted through your installation of the Software, whether authorised by you or not.</p>
+<p class="text-slate-300">Not abuse, exploit, tamper with, or reverse engineer any part of the Software or its underlying systems.</p>
+<p class="text-slate-300">Not attempt to bypass or circumvent any geographic restrictions, IP-based geoblocking, or other security measures, including through use of VPNs, proxies, or similar tools.</p>
+<p class="text-slate-300">Any violation of these obligations may result in immediate termination of your access and may be reported to the appropriate authorities.</p>
+<h2 class="text-2xl font-bold title-font mt-6">6. Prohibited Jurisdictions</h2>
+<p class="text-slate-300">Use of the Software is strictly prohibited in the following jurisdictions:</p>
+<p class="text-slate-300">United States (US)</p>
+<p class="text-slate-300">Canada (CA)</p>
+<p class="text-slate-300">France (FR), Germany (DE), Netherlands (NL)</p>
+<p class="text-slate-300">Australia (AU)</p>
+<p class="text-slate-300">Singapore (SG)</p>
+<p class="text-slate-300">Hong Kong (HK)</p>
+<p class="text-slate-300">China (CN)</p>
+<p class="text-slate-300">India (IN)</p>
+<p class="text-slate-300">Any country or region subject to UK, UN, OFAC, or other applicable sanctions</p>
+<p class="text-slate-300">You must not access or use the Software if you are located in, a citizen of, or otherwise subject to the jurisdiction of any of the above.</p>
+<p class="text-slate-300">You agree not to use VPNs, proxies, or any other method to mask your location or circumvent geographic restrictions. IP-based geoblocking is actively enforced. Violation of this clause will result in immediate termination of access.</p>
+<h2 class="text-2xl font-bold title-font mt-6">7. Payment &amp; Fees</h2>
+<p class="text-slate-300">Use of the Software is free for all manual market trades and for automated trades with a notional value under $30.</p>
+<p class="text-slate-300">For automated trades exceeding $30 in notional value, a base fee of 0.5% applies. Volume-based discounts of up to 20% may be applied automatically based on your trading activity. An additional 20% discount is available if referred by an existing user.</p>
+<h2 class="text-2xl font-bold title-font mt-6">7. Payment &amp; Fees</h2>
+<p class="text-slate-300">Use of the Software is free for all manual market trades and for automated trades with a notional value under $30.</p>
+<p class="text-slate-300">For automated trades exceeding $30 in notional value, a base fee of 0.5% applies. Volume-based discounts of up to 20% may be applied automatically based on your trading activity. An additional 20% discount is available if referred by an existing user.</p>
+<p class="text-slate-300">Payments must be made in SOL to your dedicated deposit address. Upon receipt, SOL is converted into non-refundable credits used to cover applicable fees. Once converted, credits cannot be exchanged, withdrawn, or refunded under any circumstances.</p>
+<p class="text-slate-300">All credit purchases are final. No refunds will be provided under any event, including but not limited to user error, dissatisfaction, or unused balance.</p>
+<p class="text-slate-300">If sufficient credits are not available at the time of execution, the trade will not be executed, and no notification is guaranteed. It is your responsibility to ensure your credit balance is adequate.</p>
+<h2 class="text-2xl font-bold title-font mt-6">8. Referral System</h2>
+<p class="text-slate-300">To earn referral credits, the referred user must first deposit SOL and have it converted to credits, with a minimum deposit equivalent to $10 required.</p>
+<p class="text-slate-300">Referrers earn a fixed 10% of the fees paid by their referred users. Referred users receive a 20% discount on all applicable fees.</p>
+<p class="text-slate-300">Referral credits are automatically applied, non-refundable, and non-transferable under any circumstances. Referral activity is subject to verification and may be revoked in cases of abuse or fraud.</p>
+<h2 class="text-2xl font-bold title-font mt-6">9. Consumer Rights Waiver (UK-Specific)</h2>
+<p class="text-slate-300">You acknowledge that the Software is intended for business and professional use only, and is not marketed or sold as a consumer product.</p>
+<p class="text-slate-300">By accessing or using the Software, you expressly waive any right to the 14-day cooling-off period under the Consumer Contracts Regulations 2013, in accordance with the digital goods exemption. Delivery is deemed to occur at the point of download, installation, or access.</p>
+<p class="text-slate-300">No refunds will be provided once the Software or credits have been delivered or activated.</p>
+<h2 class="text-2xl font-bold title-font mt-6">10. Disclaimer of Warranties</h2>
+<p class="text-slate-300">The Software is provided on an “as is” and “as available” basis without any warranties of any kind, express or implied.</p>
+<p class="text-slate-300">CrossyBot makes no guarantees regarding uptime, performance, accuracy, or reliability of the Software or its outputs. Use of the Software is at your sole risk.</p>
+<p class="text-slate-300">To the fullest extent permitted by law, all implied warranties, including but not limited to merchantability, fitness for a particular purpose, and non-infringement, are expressly disclaimed.</p>
+<h2 class="text-2xl font-bold title-font mt-6">11. Limitation of Liability</h2>
+<p class="text-slate-300">To the maximum extent permitted by law, CrossyBot shall not be liable for any direct, indirect, incidental, consequential, or special losses or damages arising out of or in connection with the use of the Software. This includes, but is not limited to, trading losses, missed opportunities, software bugs, exchange/API outages, execution errors, or system downtime.</p>
+<p class="text-slate-300">You acknowledge that all trading decisions are your own and that you assume full responsibility for any outcomes.</p>
+<p class="text-slate-300">In all cases, CrossyBot’s total aggregate liability, if any, shall be strictly limited to the total amount of fees you have paid, if any, for use of the Software.</p>
+<h2 class="text-2xl font-bold title-font mt-6">12. Indemnity</h2>
+<p class="text-slate-300">You agree to indemnify, defend, and hold harmless CrossyBot, its developer(s), affiliates, and service providers from and against any and all losses, claims, damages, liabilities, penalties, costs, or expenses (including legal fees) arising out of or related to:</p>
+<p class="text-slate-300">Your use or misuse of the Software;</p>
+<p class="text-slate-300">Any breach of these Terms;</p>
+<p class="text-slate-300">Any violation of applicable law or regulation;</p>
+<p class="text-slate-300">Any third-party claims or regulatory actions resulting from your actions or use of the Software.</p>
+<p class="text-slate-300">This indemnity survives termination of your use of the Software.</p>
+<h2 class="text-2xl font-bold title-font mt-6">13. Data &amp; Privacy</h2>
+<p class="text-slate-300">CrossyBot does not sell, rent, or share your personal data with third parties.</p>
+<p class="text-slate-300">API keys and Telegram bot tokens are stored locally on your device and are never transmitted to CrossyBot servers. The local database is encrypted using SQLCipher and decrypted only at runtime. Only minimal operational data (e.g., username, deposit address, credit balance) is shared with the CrossyBot API server.</p>
+<p class="text-slate-300">All stored passwords are hashed, and data handling practices are designed with GDPR principles in mind — including data minimisation, purpose limitation, and security by design.</p>
+<h2 class="text-2xl font-bold title-font mt-6">14. Security Responsibilities</h2>
+<p class="text-slate-300">You are solely responsible for securing your API keys, Telegram credentials, seed phrases, and any other sensitive information used with the Software.</p>
+<p class="text-slate-300">CrossyBot does not store or have access to your private keys or trading credentials. We accept no responsibility or liability for any loss, theft, or compromise of credentials resulting from your actions, negligence, or failure to maintain proper security.</p>
+<h2 class="text-2xl font-bold title-font mt-6">15. Crypto Risks Disclaimer</h2>
+<p class="text-slate-300">You acknowledge that cryptocurrency markets are highly volatile and inherently risky. By using the Software, you assume full responsibility for all trading and investment decisions.</p>
+<p class="text-slate-300">You accept that bugs, latency, network issues, theft, exchange/API errors, or failed trades may occur, and that these risks rest entirely with you.</p>
+<p class="text-slate-300">CrossyBot makes no guarantees regarding trade execution, timing, pricing, or outcomes. Use of the Software is entirely at your own risk.</p>
+<h2 class="text-2xl font-bold title-font mt-6">16. No Financial Advice</h2>
+<p class="text-slate-300">The Software is a technical tool for automating user-defined trading strategies. It does not provide financial, investment, or trading advice.</p>
+<p class="text-slate-300">All trade parameters and decisions are fully controlled by you. CrossyBot does not and will not act as a financial advisor.</p>
+<p class="text-slate-300">Nothing in the Software or related communications should be interpreted as a recommendation or endorsement of any trading strategy, asset, or financial decision.</p>
+<h2 class="text-2xl font-bold title-font mt-6">17. Intellectual Property</h2>
+<p class="text-slate-300">All rights, title, and interest in and to the Software, including all code, design, content, branding (including the name “CrossyBot”), and related materials, are the exclusive intellectual property of the developer.</p>
+<p class="text-slate-300">You may not copy, reproduce, distribute, modify, reverse engineer, decompile, or create derivative works from any part of the Software.</p>
+<p class="text-slate-300">Any feedback, suggestions, or ideas submitted by users become the sole property of CrossyBot, with no obligation of compensation or attribution.</p>
+<h2 class="text-2xl font-bold title-font mt-6">18. Third-Party Services Disclaimer</h2>
+<p class="text-slate-300">The Software integrates with third-party services including, but not limited to, Kraken, Telegram, and SOL RPC providers. These services are not controlled by CrossyBot and are used entirely at your own risk.</p>
+<p class="text-slate-300">CrossyBot is not liable for any failures, downtime, inaccuracies, API changes, or disruptions caused by these third-party services, nor for any resulting losses or issues.</p>
+<h2 class="text-2xl font-bold title-font mt-6">19. Feedback &amp; Suggestions</h2>
+<p class="text-slate-300">By submitting any feedback, ideas, or suggestions regarding the Software, you grant CrossyBot a perpetual, worldwide, royalty-free, and unrestricted right to use, modify, and incorporate them into the Software or other products.</p>
+<p class="text-slate-300">You agree that no compensation, acknowledgment, or obligation is owed to you for any such input.</p>
+<h2 class="text-2xl font-bold title-font mt-6">20. Modifications</h2>
+<p class="text-slate-300">We reserve the right to update or modify these Terms at any time. Material changes will be communicated via the Software or official channels.</p>
+<p class="text-slate-300">Your continued use of the Software after any changes constitutes your acceptance of the updated Terms. It is your responsibility to review the Terms periodically.</p>
+<h2 class="text-2xl font-bold title-font mt-6">21. Termination</h2>
+<p class="text-slate-300">We may suspend, restrict, or terminate your access to the Software at any time, with or without notice, particularly in the event of a breach of these Terms.</p>
+<p class="text-slate-300">No refunds or compensation will be provided in the event of termination. We reserve the right to block or disable accounts or installations at our sole discretion.</p>
+<h2 class="text-2xl font-bold title-font mt-6">22. Force Majeure</h2>
+<p class="text-slate-300">CrossyBot shall not be liable for any delay or failure to perform resulting from causes beyond its reasonable control. This includes, but is not limited to, acts of God, war, terrorism, cyberattacks, changes in law or regulation, natural disasters, power or internet outages, exchange or network failures, and third-party service disruptions.</p>
+<h2 class="text-2xl font-bold title-font mt-6">23. Arbitration &amp; Class Action Waiver</h2>
+<p class="text-slate-300">Any dispute arising out of or relating to these Terms or the use of the Software shall be resolved by binding arbitration under UK arbitration rules. You waive the right to bring or participate in any class action, group litigation, or jury trial against CrossyBot.</p>
+<p class="text-slate-300">All claims must be brought individually and not consolidated with any other proceeding.</p>
+<h2 class="text-2xl font-bold title-font mt-6">24. Governing Law</h2>
+<p class="text-slate-300">These Terms shall be governed by and construed in accordance with the laws of England and Wales.</p>
+<p class="text-slate-300">Any legal action or proceeding arising out of or relating to these Terms shall be subject to the exclusive jurisdiction of the courts of England and Wales.</p>
+
+<h1 class="text-4xl font-bold title-font mb-8 gradient-text text-center">Licenses</h1>
+
+<div class="space-y-4">
+  <p class="text-slate-300"><strong>Paramiko</strong> — <a href="https://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt" class="text-blue-400 underline">LGPL v2.1</a></p>
+  <p class="text-slate-300"><strong>python-telegram-bot</strong> — <a href="https://www.gnu.org/licenses/lgpl-3.0.txt" class="text-blue-400 underline">LGPL v3</a></p>
+  <p class="text-slate-300"><strong>certifi</strong> — <a href="https://www.mozilla.org/media/MPL/2.0/index.0c59146c9c7e.txt" class="text-blue-400 underline">MPL 2.0</a></p>
+</div>
+
+<div class="overflow-x-auto mt-6">
+  <table class="min-w-full text-left text-sm text-slate-300">
+    <thead class="bg-slate-800 font-bold text-slate-100">
+      <tr>
+        <th class="px-4 py-2">Name</th>
+        <th class="px-4 py-2">Version</th>
+        <th class="px-4 py-2">License</th>
+      </tr>
+    </thead>
+    <tbody class="divide-y divide-slate-700">
+<tr><td class="px-4 py-2">Nuitka</td><td class="px-4 py-2">2.7.6</td><td class="px-4 py-2">Apache Software License</td></tr>
+<tr><td class="px-4 py-2">PyJWT</td><td class="px-4 py-2">2.9.0</td><td class="px-4 py-2">MIT License</td></tr>
+<tr><td class="px-4 py-2">PyNaCl</td><td class="px-4 py-2">1.5.0</td><td class="px-4 py-2">Apache License 2.0</td></tr>
+<tr><td class="px-4 py-2">anyio</td><td class="px-4 py-2">4.5.2</td><td class="px-4 py-2">MIT License</td></tr>
+<tr><td class="px-4 py-2">base58</td><td class="px-4 py-2">2.1.1</td><td class="px-4 py-2">MIT License</td></tr>
+<tr><td class="px-4 py-2">bcrypt</td><td class="px-4 py-2">4.3.0</td><td class="px-4 py-2">Apache Software License</td></tr>
+<tr><td class="px-4 py-2">certifi</td><td class="px-4 py-2">2025.4.26</td><td class="px-4 py-2">Mozilla Public License 2.0 (MPL 2.0)</td></tr>
+<tr><td class="px-4 py-2">cffi</td><td class="px-4 py-2">1.17.1</td><td class="px-4 py-2">MIT License</td></tr>
+<tr><td class="px-4 py-2">charset-normalizer</td><td class="px-4 py-2">3.4.2</td><td class="px-4 py-2">MIT License</td></tr>
+<tr><td class="px-4 py-2">construct</td><td class="px-4 py-2">2.10.68</td><td class="px-4 py-2">MIT License</td></tr>
+<tr><td class="px-4 py-2">construct-typing</td><td class="px-4 py-2">0.5.6</td><td class="px-4 py-2">MIT License</td></tr>
+<tr><td class="px-4 py-2">contourpy</td><td class="px-4 py-2">1.1.1</td><td class="px-4 py-2">BSD License</td></tr>
+<tr><td class="px-4 py-2">cryptography</td><td class="px-4 py-2">45.0.3</td><td class="px-4 py-2">Apache-2.0 OR BSD-3-Clause</td></tr>
+<tr><td class="px-4 py-2">cycler</td><td class="px-4 py-2">0.12.1</td><td class="px-4 py-2">BSD License</td></tr>
+<tr><td class="px-4 py-2">exceptiongroup</td><td class="px-4 py-2">1.3.0</td><td class="px-4 py-2">MIT License</td></tr>
+<tr><td class="px-4 py-2">fonttools</td><td class="px-4 py-2">4.57.0</td><td class="px-4 py-2">MIT License</td></tr>
+<tr><td class="px-4 py-2">h11</td><td class="px-4 py-2">0.16.0</td><td class="px-4 py-2">MIT License</td></tr>
+<tr><td class="px-4 py-2">httpcore</td><td class="px-4 py-2">1.0.9</td><td class="px-4 py-2">BSD License</td></tr>
+<tr><td class="px-4 py-2">httpx</td><td class="px-4 py-2">0.28.1</td><td class="px-4 py-2">BSD License</td></tr>
+<tr><td class="px-4 py-2">idna</td><td class="px-4 py-2">3.10</td><td class="px-4 py-2">BSD License</td></tr>
+<tr><td class="px-4 py-2">importlib_resources</td><td class="px-4 py-2">6.4.5</td><td class="px-4 py-2">Apache Software License</td></tr>
+<tr><td class="px-4 py-2">jsonalias</td><td class="px-4 py-2">0.1.1</td><td class="px-4 py-2">MIT</td></tr>
+<tr><td class="px-4 py-2">kiwisolver</td><td class="px-4 py-2">1.4.7</td><td class="px-4 py-2">BSD License</td></tr>
+<tr><td class="px-4 py-2">matplotlib</td><td class="px-4 py-2">3.7.5</td><td class="px-4 py-2">Python Software Foundation License</td></tr>
+<tr><td class="px-4 py-2">numpy</td><td class="px-4 py-2">1.24.4</td><td class="px-4 py-2">BSD License</td></tr>
+<tr><td class="px-4 py-2">ordered-set</td><td class="px-4 py-2">4.1.0</td><td class="px-4 py-2">MIT License</td></tr>
+<tr><td class="px-4 py-2">packaging</td><td class="px-4 py-2">25.0</td><td class="px-4 py-2">Apache Software License; BSD License</td></tr>
+<tr><td class="px-4 py-2">pandas</td><td class="px-4 py-2">2.0.3</td><td class="px-4 py-2">BSD License</td></tr>
+<tr><td class="px-4 py-2">paramiko</td><td class="px-4 py-2">3.5.1</td><td class="px-4 py-2">GNU Library or Lesser General Public License (LGPL)</td></tr>
+<tr><td class="px-4 py-2">pillow</td><td class="px-4 py-2">10.4.0</td><td class="px-4 py-2">Historical Permission Notice and Disclaimer (HPND)</td></tr>
+<tr><td class="px-4 py-2">pycparser</td><td class="px-4 py-2">2.22</td><td class="px-4 py-2">BSD License</td></tr>
+<tr><td class="px-4 py-2">pyparsing</td><td class="px-4 py-2">3.1.4</td><td class="px-4 py-2">MIT License</td></tr>
+<tr><td class="px-4 py-2">python-dateutil</td><td class="px-4 py-2">2.9.0.post0</td><td class="px-4 py-2">Apache Software License; BSD License</td></tr>
+<tr><td class="px-4 py-2">python-telegram-bot</td><td class="px-4 py-2">21.6</td><td class="px-4 py-2">GNU Lesser General Public License v3 (LGPLv3)</td></tr>
+<tr><td class="px-4 py-2">pytz</td><td class="px-4 py-2">2025.2</td><td class="px-4 py-2">MIT License</td></tr>
+<tr><td class="px-4 py-2">requests</td><td class="px-4 py-2">2.32.3</td><td class="px-4 py-2">Apache Software License</td></tr>
+<tr><td class="px-4 py-2">six</td><td class="px-4 py-2">1.17.0</td><td class="px-4 py-2">MIT License</td></tr>
+<tr><td class="px-4 py-2">sniffio</td><td class="px-4 py-2">1.3.1</td><td class="px-4 py-2">Apache Software License; MIT License</td></tr>
+<tr><td class="px-4 py-2">solana</td><td class="px-4 py-2">0.35.1</td><td class="px-4 py-2">MIT License</td></tr>
+<tr><td class="px-4 py-2">solders</td><td class="px-4 py-2">0.21.0</td><td class="px-4 py-2">MIT</td></tr>
+<tr><td class="px-4 py-2">sqlcipher3-wheels</td><td class="px-4 py-2">0.5.4.post0</td><td class="px-4 py-2">zlib/libpng License</td></tr>
+<tr><td class="px-4 py-2">typing_extensions</td><td class="px-4 py-2">4.13.2</td><td class="px-4 py-2">MIT</td></tr>
+<tr><td class="px-4 py-2">tzdata</td><td class="px-4 py-2">2025.2</td><td class="px-4 py-2">Apache Software License</td></tr>
+<tr><td class="px-4 py-2">urllib3</td><td class="px-4 py-2">2.2.3</td><td class="px-4 py-2">MIT License</td></tr>
+<tr><td class="px-4 py-2">websockets</td><td class="px-4 py-2">11.0.3</td><td class="px-4 py-2">BSD License</td></tr>
+<tr><td class="px-4 py-2">zipp</td><td class="px-4 py-2">3.20.2</td><td class="px-4 py-2">MIT License</td></tr>
+<tr><td class="px-4 py-2">zstandard</td><td class="px-4 py-2">0.23.0</td><td class="px-4 py-2">BSD License</td></tr>
+</tbody></table></div>
+</main>
+
+    <!-- Footer -->
+<footer class="bg-gray-900 text-slate-400 py-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col items-center space-y-4">
+            <!-- Logo and Title (match navbar) -->
+            <div class="flex items-center space-x-2">
+                <div class="w-8 h-8 rounded-full gradient-bg flex items-center justify-center">
+                    <svg class="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M5 19L19 5M19 5L19 9M19 5L15 5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+                        <path d="M5 5L8.5 8.5L9.375 9.375M19 19L15 19M19 19L19 15M19 19L15.5 15.5L14.625 14.625" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+                    </svg>
+                </div>
+                <span class="text-xl font-bold title-font text-white">
+                    CrossyBot
+                </span>
+            </div>
+            <!-- Links -->
+            <div class="flex space-x-3 text-sm">
+                <a href="support.html" class="hover:text-white transition">Support</a>
+                <span>|</span>
+                <a href="eula.html" class="hover:text-white transition">Licenses, Terms & EULA</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+
+        <!-- Mobile menu toggle -->
+        <script>
+            const menuButton = document.querySelector("nav button.md\:hidden");
+            const navLinks = document.createElement("div");
+            navLinks.className = "md:hidden flex flex-col mt-4 space-y-2";
+            navLinks.innerHTML = `
+    <a href="#home" class="text-slate-300 hover:text-white transition">Home</a>
+    <a href="#features" class="text-slate-300 hover:text-white transition">Features</a>
+    <a href="#pricing" class="text-slate-300 hover:text-white transition">Pricing</a>
+    <a href="setup.html" class="text-slate-300 hover:text-white transition">Setup</a>
+    <a href="guide.html" class="text-slate-300 hover:text-white transition">User Guide</a>
+    <a href="how.html" class="text-slate-300 hover:text-white transition">How CrossyBot Works</a>
+  `;
+            let isOpen = false;
+            menuButton.addEventListener("click", () => {
+                const parent = menuButton.closest("nav").querySelector(".max-w-7xl");
+                if (!isOpen) {
+                    parent.appendChild(navLinks);
+                } else {
+                    navLinks.remove();
+                }
+                isOpen = !isOpen;
+            });
+        </script>
+</body>
+</html>
