@@ -2,7 +2,6 @@
 <html lang="en">
     <head>
         <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/KP12345678910/crossybot.com/main/crossybot_logo_only.PNG" />
-                <meta http-equiv="refresh" content="0; url=https://www.crossybot.com" />
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>
@@ -99,11 +98,51 @@
                     <a class="text-slate-300 hover:text-white transition animated-underline" href="how.html">How CrossyBot Works</a>
                 </div>
 
-                <div class="hidden sm:flex items-center space-x-4">
-                    <button class="px-6 py-2 rounded-full gradient-bg text-white font-bold hover:opacity-90 transition transform hover:scale-105">
-                        Download Now
-                    </button>
-                </div>
+                                <!-- Download Button -->
+<div class="hidden sm:flex items-center space-x-4">
+    <button onclick="document.getElementById('termsModal').classList.remove('hidden')"
+        class="px-6 py-2 rounded-full gradient-bg text-white font-bold hover:opacity-90 transition transform hover:scale-105">
+        Download Now
+    </button>
+</div>
+
+<!-- Modal -->
+<div id="termsModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-start justify-center pt-[120px] hidden z-50">
+    <div class="bg-white text-black p-6 rounded-xl shadow-lg max-w-sm w-full">
+        <h2 class="text-lg font-bold mb-4">Agree to Terms & Conditions</h2>
+        <p class="text-sm mb-4">
+            Please confirm you have read and agree to the terms at
+            <a href="https://crossybot.com/eula" target="_blank" class="text-blue-600 underline">crossybot.com/eula</a>.
+        </p>
+        <label class="flex items-center space-x-2 mb-4">
+            <input type="checkbox" id="agreeCheckbox" class="form-checkbox">
+            <span class="text-sm">I agree to the terms</span>
+        </label>
+        <div class="flex justify-end space-x-2">
+            <button onclick="document.getElementById('termsModal').classList.add('hidden')"
+                class="px-4 py-2 rounded bg-gray-300 hover:bg-gray-400 text-sm">Cancel</button>
+            <a id="downloadBtn"
+               href="http://dl.dropboxusercontent.com/scl/fi/o53e6ny7c5n5vgnht1txj/CrossyBot-Betav0.1.zip?rlkey=dfeajjsugtfdl7wueq9i8rm26&e=1&st=dxrt4sui&dl=1"
+               class="px-4 py-2 rounded bg-blue-500 text-white text-sm font-semibold opacity-50 pointer-events-none">
+                Confirm & Download
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- Script -->
+<script>
+    const checkbox = document.getElementById('agreeCheckbox');
+    const downloadBtn = document.getElementById('downloadBtn');
+
+    checkbox.addEventListener('change', () => {
+        if (checkbox.checked) {
+            downloadBtn.classList.remove('opacity-50', 'pointer-events-none');
+        } else {
+            downloadBtn.classList.add('opacity-50', 'pointer-events-none');
+        }
+    });
+</script>
 
                 <!-- Hamburger -->
                 <button id="menuToggle" class="md:hidden text-white focus:outline-none">
